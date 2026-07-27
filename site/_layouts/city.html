@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1d6a96">
+  <title>{{ page.city }}, {{ page.country }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {% seo %}
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="container day-page">
+    <nav class="day-nav">
+      <a href="{{ '/cities/' | relative_url }}" class="day-nav-link prev">&larr; All cities</a>
+      <span class="day-nav-current">
+        <strong>{{ page.country }}</strong>
+        <small>suggest {{ page.suggested_nights }} nights</small>
+      </span>
+      <span class="day-nav-link next disabled"></span>
+    </nav>
+
+    <header class="day-header">
+      <h1>{{ page.city }}</h1>
+      <p class="day-location">
+        {% if page.winter_viability == 'good' %}☀️ Good in winter
+        {% elsif page.winter_viability == 'mixed' %}🌧️ Mixed in winter
+        {% else %}❄️ Largely closed in winter{% endif %}
+      </p>
+      {% if page.highlights %}
+      <div class="day-highlights">
+        {% for highlight in page.highlights %}
+        <span class="highlight-tag">{{ highlight }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <img src="{{ page.hero_image }}" alt="{{ page.hero_alt }}" class="day-hero">
+
+    <article class="day-content">
+      {{ content }}
+    </article>
+
+    {% include winter-disclaimer.html %}
+
+    {% include giscus.html %}
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+</body>
+</html>

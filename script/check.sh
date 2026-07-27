@@ -50,6 +50,13 @@ assert_contains "$SITE_OUT/assets/css/style.css" ".site-header"
 assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
 assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
 assert_contains "$SITE_OUT/index.html" "Open Questions"
+assert_file "$SITE_OUT/cities/athens/index.html"
+assert_contains "$SITE_OUT/cities/athens/index.html" "In winter"
+assert_contains "$SITE_OUT/cities/athens/index.html" "Draft day sketch"
+assert_contains "$SITE_OUT/cities/athens/index.html" "Getting here"
+assert_contains "$SITE_OUT/cities/athens/index.html" "climate normals"
+# Giscus stays out of the markup until the real repo IDs are filled in.
+assert_absent "$SITE_OUT/cities/athens/index.html" "giscus.app/client.js"
 
 echo
 if [ "$FAIL" -eq 0 ]; then
