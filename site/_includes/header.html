@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="header-container">
+    <a href="{{ '/' | relative_url }}" class="site-logo">
+      <span class="logo-flag">🌍</span>
+      <span class="logo-text">Europe Trip</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-icon"></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+      <a href="{{ '/cities/' | relative_url }}" {% if page.url contains 'cities' %}class="active"{% endif %}>Cities</a>
+      <a href="{{ '/questions/' | relative_url }}" {% if page.url contains 'questions' %}class="active"{% endif %}>Questions</a>
+      <a href="{{ '/logistics/' | relative_url }}" {% if page.url contains 'logistics' %}class="active"{% endif %}>Logistics</a>
+      <a href="{{ '/ruled-out/' | relative_url }}" {% if page.url contains 'ruled-out' %}class="active"{% endif %}>Ruled Out</a>
+      <a href="{{ '/feedback/' | relative_url }}" {% if page.url contains 'feedback' %}class="active"{% endif %}>Feedback</a>
+    </nav>
+  </div>
+</header>

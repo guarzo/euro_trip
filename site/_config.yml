@@ -1,0 +1,61 @@
+title: "Europe Trip Planning"
+description: "Where, when, and how long — winter break 2028/29"
+baseurl: ""
+url: "https://eu.dpao.la"
+
+# Nothing about this trip is decided yet. These are the candidates.
+trip_season: "Winter break 2028/29"
+trip_length_target: "~2 weeks"
+
+family_members:
+  - name: "Papa"
+    emoji: "👨"
+  - name: "Mama"
+    emoji: "👩"
+  - name: "Bubu"
+    emoji: "👦"
+    age: 18
+  - name: "Gaby"
+    emoji: "👧"
+    age: 17
+
+# Giscus. Fill these in AFTER creating the GitHub repo and enabling
+# Discussions + the Giscus app. Layouts omit the comment widget entirely
+# while repo_id is empty, so the site builds and deploys fine without them.
+giscus:
+  repo: "guarzo/euro_trip"
+  repo_id: ""
+  category: "General"
+  category_id: ""
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+collections:
+  cities:
+    output: true
+    permalink: /cities/:name/
+  questions:
+    output: true
+    permalink: /questions/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "cities"
+    values:
+      layout: "city"
+  - scope:
+      path: ""
+      type: "questions"
+    values:
+      layout: "question"

@@ -1,0 +1,31 @@
+/* Europe Trip Planning - Mobile-First Styles */
+
+:root {
+  /* Colors - Mediterranean palette */
+  --color-primary: #1d6a96;      /* Aegean blue */
+  --color-primary-dark: #14506f;
+  --color-secondary: #c1592f;    /* Terracotta */
+  --color-accent: #e0a24a;       /* Olive gold */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  --container-max: 800px;
+  --header-height: 60px;
+}
