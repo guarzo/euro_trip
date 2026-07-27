@@ -42,6 +42,14 @@ assert_file "$SITE_OUT/assets/css/style.css"
 assert_contains "$SITE_OUT/index.html" "Europe Trip Planning"
 # No countdown: the trip date is undecided (see Global Constraints).
 assert_absent "$SITE_OUT/index.html" "countdown"
+assert_file "$SITE_OUT/assets/js/app.js"
+assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
+assert_contains "$SITE_OUT/assets/css/style.css" ".quick-link"
+assert_contains "$SITE_OUT/assets/css/style.css" ".site-header"
+# The countdown timer was removed along with the service worker (see Global Constraints).
+assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
+assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
+assert_contains "$SITE_OUT/index.html" "Open Questions"
 
 echo
 if [ "$FAIL" -eq 0 ]; then
