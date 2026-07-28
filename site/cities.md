@@ -6,7 +6,7 @@ permalink: /cities/
 
 <section class="hero">
   <h1 class="hero-title">Candidate Cities</h1>
-  <p class="hero-subtitle">Eleven cities, six countries — all of them viable in winter</p>
+  <p class="hero-subtitle">Eleven cities, six countries — all workable in winter, some more comfortably than others</p>
 </section>
 
 <div class="alert alert-info">

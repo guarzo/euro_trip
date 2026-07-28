@@ -3,6 +3,10 @@ name: Deploy Jekyll site to Pages
 on:
   push:
     branches: ["main"]
+  # Gate changes before they land, not just before they deploy. The deploy
+  # job is guarded by its own `if` below so PRs verify without publishing.
+  pull_request:
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -46,6 +50,8 @@ jobs:
           path: ./site/_site
 
   deploy:
+    # Pull requests verify but never publish.
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

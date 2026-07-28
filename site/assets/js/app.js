@@ -73,7 +73,9 @@
     const state = value || 'unset';
     btn.dataset.interestState = state;
     btn.textContent = INTEREST_LABELS[state];
-    btn.setAttribute('aria-pressed', state === 'yes');
+    // Three states, so "no" maps to mixed rather than false — otherwise a
+    // screen reader cannot tell "not marked" from "explicitly not interested".
+    btn.setAttribute('aria-pressed', state === 'yes' ? 'true' : (state === 'no' ? 'mixed' : 'false'));
   }
 
   const interestButtons = document.querySelectorAll('.interest-toggle');
@@ -88,8 +90,9 @@
       renderInterest(btn, interests[key]);
 
       btn.addEventListener('click', function(e) {
-        // The toggle sits inside a link on the cities index; without these
-        // the click would navigate away instead of cycling the state.
+        // The button is a sibling of the city link, not a child of it, so
+        // these are not load-bearing today. Kept as a guard in case a future
+        // layout does nest the toggle inside the link.
         e.preventDefault();
         e.stopPropagation();
 

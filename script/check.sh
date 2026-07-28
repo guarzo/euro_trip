@@ -40,8 +40,22 @@ echo "== asserting =="
 assert_file "$SITE_OUT/index.html"
 assert_file "$SITE_OUT/assets/css/style.css"
 assert_contains "$SITE_OUT/index.html" "Europe Trip Planning"
-# No countdown: the trip date is undecided (see Global Constraints).
-assert_absent "$SITE_OUT/index.html" "countdown"
+
+# The custom domain depends entirely on this file reaching the artifact.
+# site/CNAME is published only because it is not in _config.yml's exclude
+# list — an edit there would silently unpublish eu.dpao.la.
+assert_file "$SITE_OUT/CNAME"
+assert_contains "$SITE_OUT/CNAME" "eu.dpao.la"
+
+# No countdown anywhere: the trip date is undecided (see Global Constraints).
+# Scans the whole built tree, not just the homepage.
+if grep -ril "countdown" "$SITE_OUT" > /dev/null 2>&1; then
+  echo "FAIL  'countdown' found in built site:"
+  grep -ril "countdown" "$SITE_OUT" | sed 's/^/      /'
+  FAIL=1
+else
+  echo "ok    no 'countdown' anywhere in the built site"
+fi
 assert_file "$SITE_OUT/assets/js/app.js"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
 assert_contains "$SITE_OUT/assets/css/style.css" ".quick-link"
@@ -64,9 +78,10 @@ for CITY in rome florence naples barcelona madrid seville granada paris london a
   assert_contains "$SITE_OUT/cities/$CITY/index.html" "Draft day sketch"
 done
 assert_file "$SITE_OUT/cities/index.html"
-assert_contains "$SITE_OUT/cities/index.html" "/cities/athens/"
-assert_contains "$SITE_OUT/cities/index.html" "/cities/amsterdam/"
-assert_contains "$SITE_OUT/cities/index.html" "/cities/granada/"
+# Every city must be reachable from the index, not just a sampled few.
+for CITY in athens rome florence naples barcelona madrid seville granada paris london amsterdam; do
+  assert_contains "$SITE_OUT/cities/index.html" "/cities/$CITY/"
+done
 # The northern cities' early sunsets are what the "which arc" decision turns on;
 # they must survive any later edit to those pages.
 assert_contains "$SITE_OUT/cities/london/index.html" "3:53"
@@ -87,8 +102,10 @@ for Q in exact-dates how-many-countries open-jaw-flights trains-vs-flights pace 
   assert_contains "$SITE_OUT/questions/$Q/index.html" "My recommendation"
 done
 assert_file "$SITE_OUT/questions/index.html"
-assert_contains "$SITE_OUT/questions/index.html" "/questions/which-arc/"
-assert_contains "$SITE_OUT/questions/index.html" "/questions/etias-and-passports/"
+for Q in which-arc exact-dates how-many-countries open-jaw-flights trains-vs-flights \
+         pace christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports; do
+  assert_contains "$SITE_OUT/questions/index.html" "/questions/$Q/"
+done
 
 assert_file "$SITE_OUT/ruled-out/index.html"
 assert_contains "$SITE_OUT/ruled-out/index.html" "Santorini"

@@ -21,10 +21,12 @@ permalink: /questions/
 
 <div class="itinerary-list">
 {% for q in open_questions %}
-  <a href="{{ q.url | relative_url }}" class="itinerary-item">
-    <span class="itinerary-location">{{ q.question }}</span>
-    <span class="itinerary-day-date">{{ q.impact }} impact</span>
-  </a>
+  <div class="itinerary-item">
+    <a href="{{ q.url | relative_url }}">
+      <span class="itinerary-location">{{ q.question }}</span>
+      <span class="itinerary-day-date">{{ q.impact }} impact</span>
+    </a>
+  </div>
 {% endfor %}
 </div>
 
@@ -33,10 +35,12 @@ permalink: /questions/
 
 <div class="itinerary-list">
 {% for q in decided_questions %}
-  <a href="{{ q.url | relative_url }}" class="itinerary-item">
-    <span class="itinerary-location">{{ q.question }}</span>
-    <span class="itinerary-day-date">{{ q.impact }} impact</span>
-  </a>
+  <div class="itinerary-item">
+    <a href="{{ q.url | relative_url }}">
+      <span class="itinerary-location">{{ q.question }}</span>
+      <span class="itinerary-day-date">{{ q.impact }} impact</span>
+    </a>
+  </div>
 {% endfor %}
 </div>
 {% endif %}

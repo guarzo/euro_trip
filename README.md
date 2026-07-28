@@ -56,6 +56,28 @@ All hero images use the `commons.wikimedia.org/wiki/Special:FilePath/` form
 rather than hand-built `upload.wikimedia.org` thumbnail paths, because the
 latter embed a hash directory that is easy to get wrong and fails silently.
 
+## Deployment and the custom domain
+
+Pushing to `main` builds and deploys via `.github/workflows/jekyll.yml`. The
+workflow runs `script/check.sh` and uploads the `site/_site` tree that the checks
+passed against — deliberately *not* `actions/jekyll-build-pages`, which builds
+with the `github-pages` gem (Jekyll 3.x) and would deploy a differently-built
+site from the one that was verified.
+
+**The site only works at `eu.dpao.la`.** `site/_config.yml` sets `baseurl: ""`,
+which is correct for a custom domain but means every internal link resolves from
+the domain root. At `https://guarzo.github.io/euro_trip/` the pages render and
+every link 404s. Do not "fix" that by setting `baseurl: "/euro_trip"` — it would
+break the site the moment the custom domain is in use.
+
+The custom domain requires:
+
+- A DNS record: `eu.dpao.la. CNAME guarzo.github.io.`
+- `site/CNAME` reaching the built artifact. It is published only because it is
+  absent from `_config.yml`'s `exclude:` list; `check.sh` asserts
+  `_site/CNAME` exists so an `exclude:` edit cannot silently unpublish it.
+- The domain set under Settings → Pages → Custom domain.
+
 ## Enabling comments
 
 Comments use [Giscus](https://giscus.app/), backed by GitHub Discussions. The

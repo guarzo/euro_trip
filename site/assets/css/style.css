@@ -265,12 +265,6 @@ body {
   margin: var(--space-md) 0;
 }
 
-.alert-warning {
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
-  color: #92400e;
-}
-
 .alert-info {
   background: #dbeafe;
   border: 1px solid #3b82f6;
@@ -452,73 +446,6 @@ th {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Checklists */
-.checklist {
-  list-style: none;
-  padding: 0;
-  margin: var(--space-md) 0;
-}
-
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.checklist-item:last-child {
-  border-bottom: none;
-}
-
-.checklist-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  margin-top: 2px;
-  cursor: pointer;
-}
-
-.checklist-item.checked label {
-  text-decoration: line-through;
-  color: var(--color-text-light);
-}
-
-.checklist-item label {
-  flex: 1;
-  cursor: pointer;
-}
-
-.checklist-section {
-  margin: var(--space-lg) 0;
-}
-
-.checklist-section h3 {
-  margin: 0 0 var(--space-sm);
-  font-size: 1rem;
-  color: var(--color-secondary);
-}
-
-.copy-btn {
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-/* Status indicators */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
 /* Comments section */
 .day-comments {
   margin-top: var(--space-2xl);
@@ -544,6 +471,7 @@ th {
 
 .itinerary-item {
   display: flex;
+  align-items: center;
   gap: var(--space-md);
   padding: var(--space-md) 0;
   border-bottom: 1px solid var(--color-border);
@@ -553,147 +481,33 @@ th {
   border-bottom: none;
 }
 
-.itinerary-day {
-  flex-shrink: 0;
-  width: 50px;
-  text-align: center;
-}
-
-.itinerary-day-num {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1;
+/* The link fills the row so the toggle button sits hard right. */
+.itinerary-item > a {
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
 }
 
 .itinerary-day-date {
+  display: block;
   font-size: 0.75rem;
   color: var(--color-text-light);
 }
 
-.itinerary-content h3 {
-  margin: 0 0 var(--space-xs);
-  font-size: 1rem;
-}
-
-.itinerary-content h3 a {
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.itinerary-content h3 a:hover {
-  color: var(--color-primary);
-}
-
-.itinerary-content p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--color-text-light);
-}
-
+/* On /cities/ and /questions/ this carries the row's primary label — the
+   city name or the question — so it reads as a heading, not as the small
+   secondary badge it was in the source stylesheet. */
 .itinerary-location {
-  display: inline-block;
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--color-bg);
-  border-radius: 4px;
-  font-size: 0.8rem;
-  color: var(--color-secondary);
-  margin-top: var(--space-xs);
-}
-
-/* Logistics cards */
-.logistics-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: var(--space-lg);
-  margin-bottom: var(--space-lg);
-}
-
-.logistics-card h3 {
-  margin: 0 0 var(--space-md);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.logistics-card .icon {
-  font-size: 1.5rem;
-}
-
-.logistics-segment {
-  background: var(--color-bg);
-  border-radius: 8px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-sm);
-}
-
-.logistics-segment:last-child {
-  margin-bottom: 0;
-}
-
-.segment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
-}
-
-.segment-header h4 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.segment-date {
-  font-size: 0.85rem;
-  color: var(--color-text-light);
-}
-
-.segment-details {
-  font-size: 0.9rem;
-}
-
-.segment-details p {
-  margin: var(--space-xs) 0;
-}
-
-.segment-route {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  display: block;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: var(--space-sm);
-}
-
-.segment-route .arrow {
+  line-height: 1.3;
   color: var(--color-primary);
+  margin-bottom: var(--space-xs);
 }
 
-/* Hotel cards */
-.hotel-card {
-  background: var(--color-bg);
-  border-radius: 8px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-sm);
-}
-
-.hotel-card h4 {
-  margin: 0 0 var(--space-xs);
-}
-
-.hotel-dates {
-  font-size: 0.9rem;
-  color: var(--color-text-light);
-  margin-bottom: var(--space-sm);
-}
-
-.hotel-address {
-  font-size: 0.85rem;
-  background: var(--color-surface);
-  padding: var(--space-sm);
-  border-radius: 4px;
-  font-family: var(--font-mono);
+.itinerary-item > a:hover .itinerary-location {
+  text-decoration: underline;
 }
 
 /* Hero images for day pages */
@@ -715,38 +529,6 @@ th {
   .day-hero {
     height: 350px;
   }
-}
-
-/* Image gallery */
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-sm);
-  margin: var(--space-md) 0;
-}
-
-.image-gallery img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Inline images in content */
-.content-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin: var(--space-md) 0;
-}
-
-.image-caption {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--color-text-light);
-  margin-top: var(--space-xs);
-  font-style: italic;
 }
 
 /* Photo card for activities */

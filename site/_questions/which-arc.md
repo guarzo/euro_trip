@@ -17,7 +17,7 @@ Two weeks realistically supports three or four bases. So we pick a lane.
 
 ### 1. Mediterranean — Athens · Rome · Barcelona or Madrid
 
-The original plan. Mild and bright: January highs of 12–16&nbsp;°C (54–61&nbsp;°F), and in Seville the sun is up until about 6:00&nbsp;PM. Ancient sites and museums are at their least crowded all year.
+The original plan. Mild and bright: January highs of 11–15&nbsp;°C (52–59&nbsp;°F) across these four cities, and in Madrid the sun is up until nearly 6:00&nbsp;PM. Ancient sites and museums are at their least crowded all year.
 
 The cost is transit. There is no useful rail between Greece, Italy, and Spain, so each move is a flight with airport time on both ends. Athens is the outlier — two hours from Rome, further from everything else.
 
