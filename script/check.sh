@@ -97,6 +97,11 @@ assert_file "$SITE_OUT/logistics/index.html"
 assert_contains "$SITE_OUT/logistics/index.html" "Eurostar"
 assert_file "$SITE_OUT/feedback/index.html"
 
+assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"
+assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
+assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
+assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"

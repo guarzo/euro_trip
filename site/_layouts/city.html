@@ -24,6 +24,12 @@ layout: default
     {% endfor %}
   </div>
   {% endif %}
+  <p>
+    <button class="interest-toggle"
+            data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"
+            aria-pressed="false">☆ Interested?</button>
+  </p>
+  <p class="interest-note">Saved in your browser only — nobody else sees this. For opinions that count, use the comments below.</p>
 </header>
 
 <img src="{{ page.hero_image }}" alt="{{ page.hero_alt }}" class="day-hero">

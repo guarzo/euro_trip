@@ -780,3 +780,59 @@ th {
     height: 200px;
   }
 }
+
+/* ============================================
+   Interest Toggles
+   ============================================ */
+
+.interest-toggle {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text-light);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  /* Large enough to tap without catching the surrounding link. */
+  min-height: 44px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.interest-toggle:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.interest-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.interest-toggle[data-interest-state="yes"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.interest-toggle[data-interest-state="no"] {
+  background: var(--color-border);
+  border-color: var(--color-border);
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.interest-note {
+  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+/* On the cities index the toggle shares a row with the city link. */
+.itinerary-item .interest-toggle {
+  flex-shrink: 0;
+  margin-left: var(--space-md);
+}
