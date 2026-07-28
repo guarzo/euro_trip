@@ -112,6 +112,14 @@ assert_contains "$SITE_OUT/ruled-out/index.html" "Santorini"
 assert_contains "$SITE_OUT/ruled-out/index.html" "Venice"
 assert_file "$SITE_OUT/logistics/index.html"
 assert_contains "$SITE_OUT/logistics/index.html" "Eurostar"
+# Markdown tables inside a block-level HTML wrapper need markdown="1", or
+# kramdown emits the raw "| Route | Time |" source. Grepping for cell text
+# passes either way, so assert the actual <table> element instead.
+assert_contains "$SITE_OUT/logistics/index.html" "<table"
+assert_absent "$SITE_OUT/logistics/index.html" "|---|"
+assert_contains "$SITE_OUT/index.html" "<table"
+assert_absent "$SITE_OUT/index.html" "|---|"
+assert_contains "$SITE_OUT/questions/trains-vs-flights/index.html" "<table"
 assert_file "$SITE_OUT/feedback/index.html"
 
 assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"

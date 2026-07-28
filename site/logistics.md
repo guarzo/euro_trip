@@ -20,7 +20,7 @@ permalink: /logistics/
 
 <h3>Fast and easy — take the train</h3>
 
-<div class="table-wrapper">
+<div class="table-wrapper" markdown="1">
 
 | Route | Time | Operator |
 |---|---|---|
@@ -40,7 +40,7 @@ permalink: /logistics/
 
 <h3>Fly — no practical rail</h3>
 
-<div class="table-wrapper">
+<div class="table-wrapper" markdown="1">
 
 | Route | Time |
 |---|---|
@@ -75,7 +75,7 @@ permalink: /logistics/
 
 <p>January daytime highs and late-December sunset times. <strong>The daylight column is the one people underestimate.</strong></p>
 
-<div class="table-wrapper">
+<div class="table-wrapper" markdown="1">
 
 | City | January high | Sunset in late December |
 |---|---|---|

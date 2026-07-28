@@ -36,7 +36,7 @@ title: Home
 
 <p>The southern countries and the northern cities are two coherent trips, not one. Cramming all six countries into two weeks means about a third of the trip in transit. Pick a lane:</p>
 
-<div class="table-wrapper">
+<div class="table-wrapper" markdown="1">
 
 | Arc | Cities | The case for it | The catch |
 |---|---|---|---|
