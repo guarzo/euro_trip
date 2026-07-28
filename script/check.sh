@@ -74,6 +74,12 @@ assert_contains "$SITE_OUT/cities/amsterdam/index.html" "4:29"
 # Amsterdam is the one city rated 'mixed' rather than 'good'.
 assert_contains "$SITE_OUT/cities/amsterdam/index.html" "Mixed in winter"
 
+assert_file "$SITE_OUT/questions/which-arc/index.html"
+assert_contains "$SITE_OUT/questions/which-arc/index.html" "Which arc"
+assert_contains "$SITE_OUT/questions/which-arc/index.html" "Why it matters"
+assert_contains "$SITE_OUT/questions/which-arc/index.html" "My recommendation"
+assert_contains "$SITE_OUT/questions/which-arc/index.html" "4:29"
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"

@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<nav class="day-nav">
+  <a href="{{ '/questions/' | relative_url }}" class="day-nav-link prev">&larr; All questions</a>
+  <span class="day-nav-current">
+    <strong>{% if page.status == 'decided' %}Decided{% else %}Open{% endif %}</strong>
+    <small>{{ page.impact }} impact</small>
+  </span>
+  <span class="day-nav-link next disabled"></span>
+</nav>
+
+<header class="day-header">
+  <h1>{{ page.question }}</h1>
+  <div class="day-highlights">
+    <span class="highlight-tag">{% if page.status == 'decided' %}✅ Decided{% else %}🟡 Open{% endif %}</span>
+    <span class="highlight-tag">{{ page.impact }} impact</span>
+  </div>
+</header>
+
+<article class="day-content">
+  {{ content }}
+</article>
+
+{% include giscus.html %}
