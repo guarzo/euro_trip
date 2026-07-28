@@ -1,25 +1,40 @@
 ---
 layout: default
 ---
-<nav class="day-nav">
+<nav class="day-nav full" aria-label="Section">
   <a href="{{ '/questions/' | relative_url }}" class="day-nav-link prev">&larr; All questions</a>
   <span class="day-nav-current">
-    <strong>{% if page.status == 'decided' %}Decided{% else %}Open{% endif %}</strong>
-    <small>{{ page.impact }} impact</small>
+    <strong>{% if page.status == 'decided' %}Decided{% else %}Still open{% endif %}</strong>
+    <small class="credit">{{ page.impact }} impact</small>
   </span>
-  <span class="day-nav-link next disabled"></span>
 </nav>
 
-<header class="day-header">
-  <h1>{{ page.question }}</h1>
-  <div class="day-highlights">
-    <span class="highlight-tag">{% if page.status == 'decided' %}✅ Decided{% else %}🟡 Open{% endif %}</span>
-    <span class="highlight-tag">{{ page.impact }} impact</span>
+{%- comment -%}
+  A question is a poster too. The question itself is the shout; status and
+  impact are its credit line. Status is stated in words, never by color alone.
+{%- endcomment -%}
+<section class="wall full">
+  <div class="wall-inner">
+    <header class="day-header">
+      <h1>{{ page.question }}</h1>
+      <p class="day-location">
+        {% if page.status == 'decided' %}Decided{% else %}Still open{% endif %}
+        &nbsp;&middot;&nbsp; {{ page.impact }} impact on the trip
+      </p>
+      <p class="interest-note">Every recommendation here is one person&rsquo;s reasoning, written down so it can be argued with. Disagree at the bottom of the page.</p>
+    </header>
   </div>
-</header>
+</section>
 
 <article class="day-content">
   {{ content }}
 </article>
 
 {% include giscus.html %}
+
+{% include close-wall.html
+   shout_a="Change"
+   shout_b="My Mind"
+   standfirst="That recommendation is one person&rsquo;s reasoning, and the section above says exactly what would overturn it. Disagreeing is the most useful thing you can do here."
+   action="Say so"
+   href="/feedback/" %}

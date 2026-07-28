@@ -4,9 +4,22 @@ title: Feedback
 permalink: /feedback/
 ---
 
-<section class="hero">
-  <h1 class="hero-title">Feedback</h1>
-  <p class="hero-subtitle">Tell us what you actually want</p>
+<section class="wall wall-hero full">
+  <div class="wall-inner">
+    <h1 class="shout">
+      <span class="line">Tell Us</span>
+      <span class="line line-small line-out">What</span>
+      <span class="line">You Want</span>
+    </h1>
+
+    <p class="wall-standfirst">&ldquo;I don&rsquo;t want to go to another museum&rdquo; is useful information. So is &ldquo;I only care about one thing and it&rsquo;s Rome.&rdquo; Say it now, while changing the plan costs nothing.</p>
+
+    <p class="wall-credit credit">
+      <span>No wrong answers yet</span>
+      <span>Nothing is booked</span>
+      <span>Disagreeing helps most</span>
+    </p>
+  </div>
 </section>
 
 <div class="alert alert-info">
@@ -29,3 +42,10 @@ permalink: /feedback/
 <p>Disagreeing with a recommendation is the most useful thing you can do here. Every recommendation on this site is one person's reasoning written down so that it can be argued with — including the ones on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>.</p>
 
 {% include giscus.html %}
+
+{% include close-wall.html
+   shout_a="Still"
+   shout_b="Open"
+   standfirst="Ten decisions, none of them made. Reading one and disagreeing with it is worth more than agreeing with all ten."
+   action="See the questions"
+   href="/questions/" %}

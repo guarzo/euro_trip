@@ -58,8 +58,12 @@ else
 fi
 assert_file "$SITE_OUT/assets/js/app.js"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
-assert_contains "$SITE_OUT/assets/css/style.css" ".quick-link"
+# The homepage's quick-link tile grid was replaced by the poster bill stack.
+assert_contains "$SITE_OUT/assets/css/style.css" ".bill-stack"
 assert_contains "$SITE_OUT/assets/css/style.css" ".site-header"
+# The display face is the design; a missing font file must fail the build.
+assert_file "$SITE_OUT/assets/fonts/archivo-latin.woff2"
+assert_file "$SITE_OUT/assets/fonts/archivo-latin-ext.woff2"
 # The countdown timer was removed along with the service worker (see Global Constraints).
 assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
 assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"

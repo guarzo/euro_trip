@@ -1,620 +1,1293 @@
-/* Europe Trip Planning - Mobile-First Styles */
+/* ============================================================================
+   EUROPE TRIP PLANNING — "THE ARGUMENT WALL"
+
+   THESIS: This site is not a travel brochure, it is an argument about a trip
+   nobody has agreed to yet. It refuses the category default — full-bleed hero
+   photo, cream ground, serif display, "Discover Europe" — and stages every
+   city and every open question as a street poster demanding you take a side.
+
+   OWN-WORLD: Public-theater street typography. Condensed Archivo wood-type
+   capitals at architectural scale, cropped by the frame and cut on fixed
+   diagonals. Taxi yellow (#f5c518) and warm paper (#f4f1e9) grounds, dense
+   ink (#131110), one red-orange signal (#e5471d) held only for the live
+   action. Dense letterpress credit blocks carry the facts. No lowercase
+   display, no italics, no gradients on type, no soft corners.
+
+   STORY: A teenager opens a link on a phone, is told in three words that
+   NOTHING IS DECIDED, sees that London goes dark at 3:53 PM while Seville
+   holds light until 6:00, and understands their opinion is the missing input.
+
+   FIRST VIEWPORT: Yellow wall. "NOTHING / IS / DECIDED" stacked in cropped
+   wood-type caps on a -2deg baseline, running off the right edge. A tracked
+   credit rule beneath: SIX COUNTRIES · ELEVEN CITIES · FOURTEEN DAYS · NO
+   PLAN. The single signal-red action sits below it, bottom-left of the wall.
+
+   FORM: Poster wall — candidate 6 of the grounded list (debate scorecard
+   fused into street typography). Staging: the poster's own shout-over-
+   fine-print parallel, claim and credit block. Seed key 3c99b6e8.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------- Fonts --- */
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../fonts/archivo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+/* --------------------------------------------------------------- Tokens --- */
 
 :root {
-  /* Colors - Mediterranean palette */
-  --color-primary: #1d6a96;      /* Aegean blue */
-  --color-primary-dark: #14506f;
-  --color-secondary: #c1592f;    /* Terracotta */
-  --color-accent: #e0a24a;       /* Olive gold */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --ink: #131110;
+  --ink-soft: #2b2622;
+  --ink-mute: #5b5449;
+  --yellow: #f5c518;
+  --yellow-deep: #d9a800;
+  --paper: #f4f1e9;
+  --paper-deep: #e7e2d5;
+  --signal: #e5471d;
+  --signal-deep: #bf3410;
 
-  --color-bg: #fafafa;
-  --color-surface: #ffffff;
-  --color-text: #1f2937;
-  --color-text-light: #6b7280;
-  --color-border: #e5e7eb;
+  /* One family. The width axis is the wood-type mechanism. */
+  --font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Fixed diagonal set. Arbitrary angles are a smell. */
+  --tilt-a: -2deg;
+  --tilt-b: -4deg;
+  --tilt-c: 2deg;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, monospace;
+  --rule: 2px solid var(--ink);
+  --rule-hair: 1px solid rgba(19, 17, 16, 0.22);
 
-  --container-max: 800px;
-  --header-height: 60px;
+  --read: 66ch;
+  --gutter: 1.25rem;
+  --wide: 1180px;
+
+  --slam: 260ms cubic-bezier(0.16, 0.9, 0.2, 1);
 }
 
-/* Reset */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+/* ---------------------------------------------------------------- Reset --- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Container */
+img { max-width: 100%; }
+
+::selection { background: var(--signal); color: var(--paper); }
+
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+
+.site-header :focus-visible { outline-color: var(--yellow); }
+
+/* The wall is loud, so the door out of it must be unmissable. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--signal);
+  color: var(--paper);
+  padding: var(--space-sm) var(--space-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.skip-link:focus { left: var(--space-sm); top: var(--space-sm); }
+
+/* ------------------------------------------------- Display type system --- */
+
+/* Wood type: condensed caps, tightening as they grow. Never lowercase. */
+.shout, .wall-title, .site-logo, h1, h2, h3, h4 {
+  font-family: var(--font);
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.shout {
+  display: block;
+  font-weight: 900;
+  font-stretch: 70%;
+  line-height: 0.82;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* The credit block: a poster's fine print, and this site's whole fact layer. */
+.credit, .credit-label, .tag, .day-nav-current small, th {
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------- Page chassis --- */
+
+/* Full-bleed grid: walls span edge to edge, prose stays in a reading column. */
 .container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: var(--space-md);
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [read-start] min(var(--read), 100% - (var(--gutter) * 2)) [read-end]
+    minmax(var(--gutter), 1fr) [full-end];
+  padding: 0;
+  max-width: none;
 }
 
-/* Header */
+.container > * { grid-column: read; }
+
+.container > .wall,
+.container > .full,
+.container > .day-hero-frame,
+.container > .postered { grid-column: full; }
+
+/* --------------------------------------------------------------- Header --- */
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-primary);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .header-container {
-  max-width: var(--container-max);
+  max-width: var(--wide);
   margin: 0 auto;
-  padding: var(--space-sm) var(--space-md);
+  padding: 0 var(--gutter);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
+  min-height: 56px;
 }
 
 .site-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  color: white;
+  gap: 0.6rem;
+  color: var(--paper);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 900;
+  font-stretch: 70%;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  padding: var(--space-sm) 0;
 }
 
-.logo-flag {
-  font-size: 1.5rem;
+/* A torn poster corner, not a globe emoji. */
+.logo-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  background: var(--yellow);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 62% 100%, 0 100%);
+  transform: rotate(var(--tilt-b));
 }
 
-/* Mobile menu toggle */
 .menu-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  align-self: center;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 }
 
-.menu-icon {
+.menu-icon, .menu-icon::before, .menu-icon::after {
   display: block;
-  width: 24px;
-  height: 2px;
-  background: white;
-  position: relative;
+  width: 26px;
+  height: 3px;
+  background: var(--paper);
+  transition: transform var(--slam), background 120ms linear;
 }
 
-.menu-icon::before,
-.menu-icon::after {
+.menu-icon { position: relative; }
+
+.menu-icon::before, .menu-icon::after {
   content: '';
   position: absolute;
-  width: 24px;
-  height: 2px;
-  background: white;
   left: 0;
 }
 
-.menu-icon::before { top: -7px; }
-.menu-icon::after { bottom: -7px; }
+.menu-icon::before { top: -8px; }
+.menu-icon::after  { top: 8px; }
 
-/* Navigation */
+.menu-toggle[aria-expanded="true"] .menu-icon { background: transparent; }
+.menu-toggle[aria-expanded="true"] .menu-icon::before { transform: translateY(8px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-icon::after  { transform: translateY(-8px) rotate(-45deg); }
+
+/* ------------------------------------------------------------------ Nav --- */
+
+/* Nav words are postered. Current page is reversed type, never underlined. */
 .site-nav {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--color-primary-dark);
-  padding: var(--space-sm) 0;
+  background: var(--ink);
+  border-bottom: 5px solid var(--yellow);
+  padding: var(--space-sm) 0 var(--space-md);
 }
 
-.site-nav.open {
-  display: block;
-}
+.site-nav.open { display: block; }
 
 .site-nav a {
   display: block;
-  padding: var(--space-sm) var(--space-md);
-  color: white;
+  padding: 0.5rem var(--gutter);
+  color: var(--paper);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 900;
+  font-stretch: 72%;
+  text-transform: uppercase;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  transition: transform var(--slam), color var(--slam);
+  transform-origin: left center;
 }
 
 .site-nav a:hover,
-.site-nav a.active {
-  background: rgba(255,255,255,0.1);
+.site-nav a:focus-visible {
+  color: var(--yellow);
+  transform: rotate(var(--tilt-a));
 }
 
-/* Desktop nav */
-@media (min-width: 768px) {
-  .menu-toggle {
-    display: none;
-  }
+.site-nav a.active { color: var(--ink); background: var(--yellow); }
+
+@media (min-width: 940px) {
+  .menu-toggle { display: none; }
 
   .site-nav {
     display: flex;
+    align-items: stretch;
     position: static;
     background: transparent;
+    border: none;
     padding: 0;
-    gap: var(--space-xs);
   }
 
   .site-nav a {
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: 4px;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.7rem;
+    font-size: 0.95rem;
+    font-stretch: 82%;
+    letter-spacing: 0.03em;
   }
+
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    transform: none;
+    background: var(--ink-soft);
+    color: var(--yellow);
+  }
+
+  .site-nav a.active { background: var(--yellow); color: var(--ink); }
 }
 
-/* Footer */
-.site-footer {
-  margin-top: var(--space-2xl);
-  padding: var(--space-lg) var(--space-md);
-  background: var(--color-secondary);
-  color: white;
-  text-align: center;
+/* ------------------------------------------------------------ The walls --- */
+
+/* A shouting region: yellow ground, cropped type, at most one signal action.
+   Overflow is visible at the bottom so the next element can overprint the
+   wall's edge — posters are pasted over each other, not stacked in flow. */
+.wall {
+  position: relative;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: clamp(2.25rem, 7vw, 4.5rem) 0 clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: var(--space-2xl);
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.footer-trip {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.1rem;
+/* The paste-up: the element immediately after a hero wall is pulled up so it
+   sits half on yellow and half on paper, the way a fresh bill overprints the
+   one beneath it. One deliberate overlap turns stacked sections into a wall. */
+.wall-hero + .section-heading,
+.wall-hero + .alert,
+.wall-hero + .postered {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--space-2xl) * -1 - 0.6rem);
 }
 
-.footer-dates {
-  margin: var(--space-xs) 0 var(--space-md);
-  opacity: 0.8;
+.wall-hero + .alert { background: var(--paper); }
+
+.wall-hero + .section-heading {
+  background: var(--paper);
+  padding: var(--space-md) var(--space-md) 0;
+  margin-left: calc(var(--space-md) * -1);
+  margin-right: calc(var(--space-md) * -1);
 }
 
-.footer-meta {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.7;
+/* Paste-up texture: the wall is a physical surface, not a flat color field. */
+.wall::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: repeating-linear-gradient(
+    2deg,
+    rgba(19, 17, 16, 0.04) 0 1px,
+    transparent 1px 8px
+  );
+  pointer-events: none;
 }
 
-.footer-meta a {
-  color: white;
+.wall-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  /* Lets a shout size itself against this box AND the viewport, so the crop
+     can be measured from the frame rather than from the column. */
+  container-type: inline-size;
 }
 
-/* Homepage */
-.hero {
-  text-align: center;
-  padding: var(--space-xl) 0;
+/* Hero: the thesis at architectural scale, genuinely cut by the frame.
+   The shout escapes .wall-inner's max-width and sizes off the viewport, so
+   the longest word runs past the right edge at every width and the eye
+   finishes the shout. Each line is nowrap — the crop is the point, and a
+   wrapped word would defeat it. */
+.wall-hero { padding-top: clamp(2.5rem, 8vw, 5rem); }
+
+.wall-hero .shout {
+  font-size: clamp(5rem, 31vw, 34rem);
+  font-stretch: 64%;
+  transform: rotate(var(--tilt-a));
+  transform-origin: left center;
+  margin-left: -0.05em;
+  /* Escape the centered inner box: the wall is the frame, not the column. */
+  width: max-content;
+  max-width: none;
 }
 
-.hero-title {
-  margin: 0;
-  font-size: 2rem;
-  color: var(--color-primary);
+.wall-hero .shout .line {
+  display: block;
+  white-space: nowrap;
 }
 
-.hero-subtitle {
-  margin: var(--space-sm) 0 0;
-  color: var(--color-text-light);
-  font-size: 1.1rem;
+/* Scale contrast: the connective word drops to a fraction of its neighbours
+   and locks up against them, the way a poster sets a small word into the
+   counter of a large one. */
+.wall-hero .shout .line-small {
+  font-size: 0.26em;
+  font-stretch: 92%;
+  letter-spacing: 0.06em;
+  margin: 0.12em 0 0.1em 0.06em;
 }
 
-/* Quick links grid */
-.quick-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-  margin: var(--space-xl) 0;
+/* One line reversed out, the way a pasted bill overprints the one beneath. */
+.wall-hero .shout .line-out {
+  color: var(--paper);
+  -webkit-text-stroke: 2px var(--ink);
+  paint-order: stroke fill;
 }
 
-.quick-link {
+.wall-standfirst {
+  max-width: 36ch;
+  margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+  font-size: clamp(1rem, 2.3vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* The credit block butts hard against the shout — no comfortable gap. */
+.wall-credit {
+  margin: var(--space-md) 0 0;
+  padding-top: var(--space-sm);
+  border-top: var(--rule);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--space-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  text-decoration: none;
-  color: var(--color-text);
-  transition: transform 0.15s, box-shadow 0.15s;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  max-width: 52ch;
 }
 
-.quick-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.wall-credit span { white-space: nowrap; }
+
+/* A closing wall. A page never ends on a reading column; it ends anchored. */
+.wall-close {
+  margin-bottom: 0;
+  padding: clamp(2.5rem, 8vw, 4.5rem) 0 clamp(2.5rem, 7vw, 4rem);
 }
 
-.quick-link-icon {
-  font-size: 2rem;
+.wall-close-shout {
+  font-size: clamp(3.75rem, 24vw, 26rem);
+  font-stretch: 64%;
+  transform: rotate(var(--tilt-a));
+  transform-origin: left center;
+  margin-left: -0.05em;
+  width: max-content;
+  max-width: none;
+}
+
+.wall-close-shout .line { display: block; white-space: nowrap; }
+
+/* --------------------------------------------------------- Poster words --- */
+
+/* Section headings are pasted words, not underlined labels. */
+.section-heading {
+  display: block;
+  margin: var(--space-3xl) 0 var(--space-lg);
+  padding: 0;
+  border: none;
+  font-weight: 900;
+  font-stretch: 68%;
+  font-size: clamp(2rem, 6.5vw, 3.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.section-heading::after {
+  content: '';
+  display: block;
+  height: 6px;
+  background: var(--ink);
+  margin-top: 0.5rem;
+}
+
+.wall .section-heading { margin-top: 0; }
+
+/* ---------------------------------------------------------- Prose rules --- */
+
+.day-content h2,
+.container h2:not(.section-heading) {
+  font-weight: 900;
+  font-stretch: 74%;
+  font-size: clamp(1.65rem, 5vw, 2.3rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: var(--space-2xl) 0 var(--space-md);
+  text-transform: uppercase;
+}
+
+.day-content h3, .container h3 {
+  font-weight: 800;
+  font-stretch: 82%;
+  font-size: 1.12rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin: var(--space-xl) 0 var(--space-sm);
+  text-transform: uppercase;
+}
+
+.day-content p, .container > p { margin: 0 0 var(--space-md); }
+
+.day-content ul, .day-content ol, .container > ul, .container > ol {
+  margin: 0 0 var(--space-md);
+  padding-left: 1.15rem;
+}
+
+.day-content li, .container > ul li, .container > ol li {
   margin-bottom: var(--space-sm);
 }
 
-.quick-link-label {
+.day-content strong, .container strong { font-weight: 800; }
+
+/* Emphasis without italics: this world has no italic wood type. */
+.day-content em, .container em {
+  font-style: normal;
+  font-weight: 700;
+  background: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 0.4em;
+}
+
+/* Links: an ink word on a signal rule that floods on hover. */
+.day-content a,
+.container > p a,
+.container li a,
+.alert a,
+.comments-prompt a {
+  color: var(--ink);
+  text-decoration: none;
+  background-image: linear-gradient(var(--signal), var(--signal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 1px;
   font-weight: 600;
-  font-size: 0.95rem;
+  transition: background-size var(--slam), color var(--slam);
 }
 
-@media (min-width: 480px) {
-  .quick-links {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.day-content a:hover,
+.container > p a:hover,
+.container li a:hover,
+.alert a:hover,
+.comments-prompt a:hover {
+  background-size: 100% 100%;
+  color: var(--paper);
 }
 
-/* Alerts */
+/* --------------------------------------------------------- Poster bills --- */
+
+/* A candidate city or an open question, pasted up as its own bill. */
+.postered { background: var(--paper); margin: 0 0 var(--space-2xl); }
+
+.bill-stack {
+  max-width: var(--wide);
+  margin: 0 auto;
+  display: grid;
+  gap: 3px;
+  background: var(--ink);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  /* The running order is generated, so adding a city never renumbers by hand. */
+  counter-reset: bill;
+}
+
+@media (min-width: 640px) {
+  .bill-stack { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .bill-stack { grid-template-columns: repeat(3, 1fr); }
+}
+
+.bill {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background var(--slam);
+  counter-increment: bill;
+}
+
+/* The running order, set as a ghosted ordinal and cropped by the bill's own
+   edge — the poster's native numbering device, and the ornament that gives
+   the stack depth without adding a second visual language. */
+.bill::before {
+  content: counter(bill, decimal-leading-zero);
+  position: absolute;
+  top: -0.32em;
+  right: -0.12em;
+  z-index: 0;
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: 6.5rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--yellow-deep);
+  opacity: 0.32;
+  pointer-events: none;
+  transition: color var(--slam), opacity var(--slam);
+}
+
+.bill:hover::before,
+.bill:focus-within::before { color: var(--ink); opacity: 0.14; }
+
+.bill > * { position: relative; z-index: 1; }
+
+.bill:hover, .bill:focus-within { background: var(--yellow); }
+
+.bill-link { text-decoration: none; color: inherit; display: block; }
+
+.bill-name {
+  display: block;
+  font-weight: 900;
+  font-stretch: 66%;
+  font-size: clamp(1.9rem, 6vw, 2.9rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transition: transform var(--slam);
+  transform-origin: left center;
+  text-wrap: balance;
+}
+
+.bill:hover .bill-name, .bill:focus-within .bill-name {
+  transform: rotate(var(--tilt-a));
+}
+
+.bill-sub {
+  display: block;
+  margin-top: var(--space-xs);
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  color: var(--ink-mute);
+}
+
+.bill:hover .bill-sub, .bill:focus-within .bill-sub { color: var(--ink-soft); }
+
+.bill-credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.8rem;
+  padding-top: var(--space-sm);
+  border-top: var(--rule);
+  margin-top: auto;
+}
+
+/* Winter viability: the WORD carries meaning, weight only reinforces it. */
+.bill-viability { font-weight: 800; }
+.bill-viability[data-viability="mixed"],
+.bill-viability[data-viability="poor"] { color: var(--ink-mute); }
+.bill:hover .bill-viability { color: var(--ink); }
+
+/* Impact rank on a question bill: high impact reverses out. */
+.bill-impact[data-impact="high"] {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.15rem 0.4rem;
+}
+
+.bill:hover .bill-impact[data-impact="high"] { background: var(--signal); }
+
+/* ---------------------------------------------------------- Daylight bar --- */
+
+/* The site's crux fact as the poster's own bar chart. Every figure here is
+   the same one published on the Logistics page. */
+.daylight {
+  margin: 0 0 var(--space-lg);
+  padding: 0;
+  list-style: none;
+}
+
+.daylight-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 4.2rem;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.35rem 0;
+  border-bottom: var(--rule-hair);
+}
+
+.daylight-row:last-child { border-bottom: none; }
+
+.daylight-city {
+  font-weight: 800;
+  font-stretch: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+}
+
+.daylight-bar {
+  position: relative;
+  height: 15px;
+  background: rgba(19, 17, 16, 0.1);
+  border: 1px solid var(--ink);
+}
+
+.daylight-bar span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ink);
+}
+
+/* The two extremes are the argument the chart is making. */
+.daylight-row[data-extreme="dark"]  .daylight-bar span { background: var(--ink-mute); }
+.daylight-row[data-extreme="light"] .daylight-bar span { background: var(--signal); }
+
+.daylight-time {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+
+.daylight-note {
+  margin: 0;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+}
+
+/* -------------------------------------------------------------- Actions --- */
+
+/* The one signal element in its region. Never decorative, never doubled.
+   Resting state is the deeper red: this is the most important element on the
+   site and it has to survive a phone screen in daylight. */
+.action {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: 0.8rem 1.4rem;
+  background: var(--signal-deep);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 900;
+  font-stretch: 76%;
+  text-transform: uppercase;
+  font-size: clamp(1.05rem, 3vw, 1.4rem);
+  line-height: 1;
+  border: 3px solid var(--ink);
+  transition: transform var(--slam), background var(--slam);
+}
+
+.action:hover, .action:focus-visible {
+  transform: rotate(var(--tilt-c));
+  background: var(--signal);
+}
+
+/* A secondary action stays ink: only one signal per region. */
+.action-quiet { background: var(--ink); }
+.action-quiet:hover, .action-quiet:focus-visible { background: var(--ink-soft); }
+
+/* --------------------------------------------------------------- Alerts --- */
+
+/* A pasted-on notice: the site's honesty layer, so it reads as a stamped
+   bill — full ink frame with a reversed-out label, not a tinted card with an
+   accent edge. */
 .alert {
-  padding: var(--space-md);
-  border-radius: 8px;
-  margin: var(--space-md) 0;
-}
-
-.alert-info {
-  background: #dbeafe;
-  border: 1px solid #3b82f6;
-  color: #1e40af;
+  margin: var(--space-xl) 0;
+  padding: 0;
+  background: var(--paper-deep);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
 }
 
 .alert-title {
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-}
-
-/* Section headings */
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin: var(--space-xl) 0 var(--space-md);
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--color-border);
-  font-size: 1.25rem;
-  color: var(--color-secondary);
-}
-
-/* Day navigation */
-.day-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: var(--space-lg);
-}
-
-.day-nav-link {
-  padding: var(--space-sm) var(--space-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  text-decoration: none;
-  color: var(--color-primary);
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.day-nav-link:hover {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
-}
-
-.day-nav-link.disabled {
-  visibility: hidden;
-}
-
-.day-nav-current {
-  text-align: center;
-}
-
-.day-nav-current strong {
-  display: block;
-  font-size: 1.1rem;
-}
-
-.day-nav-current small {
-  color: var(--color-text-light);
-}
-
-/* Day header */
-.day-header {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-}
-
-.day-header h1 {
   margin: 0;
-  font-size: 1.75rem;
-  color: var(--color-primary);
+  padding: 0.4rem var(--space-md);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 900;
+  font-stretch: 80%;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.72rem;
 }
 
-.day-location {
-  margin: var(--space-sm) 0 0;
-  color: var(--color-text-light);
-  font-size: 1.1rem;
+.alert > p:not(.alert-title) { padding: 0 var(--space-md); }
+.alert > p:not(.alert-title):first-of-type { padding-top: var(--space-md); }
+.alert p:last-child { margin-bottom: var(--space-md); }
+.alert-info { background: var(--paper-deep); }
+.alert-warning { background: var(--yellow); }
+.wall .alert { background: rgba(244, 241, 233, 0.5); }
+
+/* --------------------------------------------------------- Credit tables --- */
+
+/* Tables are the poster's letterpress fine print — native to this world,
+   not an exception to it. */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: var(--space-lg) 0;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+th {
+  background: var(--ink);
+  color: var(--paper);
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+}
+
+td {
+  padding: 0.55rem 0.6rem;
+  border-bottom: var(--rule-hair);
+  vertical-align: top;
+  font-variant-numeric: tabular-nums;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(odd) td { background: rgba(19, 17, 16, 0.04); }
+td strong { font-weight: 800; }
+
+/* ----------------------------------------------------------------- Tags --- */
 
 .day-highlights {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   margin-top: var(--space-md);
 }
 
-.highlight-tag {
-  padding: var(--space-xs) var(--space-sm);
-  background: #fef3c7;
-  color: #92400e;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+.highlight-tag, .tag {
+  display: inline-block;
+  padding: 0.28rem 0.55rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 0;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.66rem;
+  line-height: 1.4;
 }
 
-/* Activity cards */
-.activity-block {
-  margin: var(--space-lg) 0;
+.wall .highlight-tag { color: var(--yellow); }
+
+/* ------------------------------------------------------ City / Q header --- */
+
+.day-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: var(--space-sm) var(--gutter);
+  border-bottom: 3px solid var(--ink);
 }
+
+.day-nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.7rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  font-weight: 800;
+  font-stretch: 84%;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.7rem;
+  transition: background var(--slam), transform var(--slam);
+}
+
+.day-nav-link:hover, .day-nav-link:focus-visible {
+  background: var(--signal);
+  transform: rotate(var(--tilt-a));
+}
+
+.day-nav-link.disabled { visibility: hidden; }
+
+.day-nav-current { text-align: right; }
+
+.day-nav-current strong {
+  display: block;
+  font-weight: 900;
+  font-stretch: 78%;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  line-height: 1.15;
+}
+
+.day-nav-current small { color: var(--ink-mute); display: block; }
+
+.day-header { margin-bottom: 0; text-align: left; }
+
+.day-header-action { margin: var(--space-lg) 0 0; }
+
+/* The city or question title. A single-word city name is cut by the frame the
+   same way the hero is; a long question wraps inside the column, because a
+   cropped question would stop being a question. */
+.day-header h1 {
+  font-weight: 900;
+  font-stretch: 64%;
+  font-size: clamp(3.25rem, 15vw, 9.5rem);
+  line-height: 0.82;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-transform: uppercase;
+  transform: rotate(var(--tilt-a));
+  transform-origin: left center;
+  text-wrap: balance;
+}
+
+/* The city title crops by roughly one letter regardless of name length: the
+   type is sized from the viewport divided by the name's own character count,
+   so ROME runs huge and AMSTERDAM runs smaller, and neither loses more than
+   about its last glyph. Archivo at width 64% averages ~0.52em per cap, so
+   dividing by (len * 0.52) fills the line; the 1.16 factor is the deliberate
+   overrun that puts the final letter past the frame. `--name-len` is set per
+   page by the city layout. */
+/* The city title always crops by about the same sliver, whatever the name's
+   length. Archivo at width 64% averages ~0.52em per cap, so a name of n caps
+   is ~0.52n ems wide. Sizing off the wall's own inline size (cqi) rather than
+   the viewport keeps the maths honest, because the wall is a centered column
+   at wide widths; the 1.06 factor is the deliberate overrun that puts the last
+   glyph past the frame. ROME runs huge, AMSTERDAM runs smaller, both lose the
+   same sliver. `--name-len` is set per page by the city layout. */
+.day-page-city .day-header h1 {
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+  font-size: calc(100cqi / (var(--name-len, 8) * 0.52) * 1.12);
+}
+
+/* Past the wall's max-width the inner box stops growing, so cqi alone would
+   leave the name floating inside a centered column instead of hitting the
+   frame. Beyond that point the name sizes off the viewport again. */
+@media (min-width: 1180px) {
+  .day-page-city .day-header h1 {
+    font-size: calc(100vw / (var(--name-len, 8) * 0.52) * 0.96);
+  }
+}
+
+/* Questions are sentences: they stay legible and simply run large. */
+.day-page-question .day-header h1 {
+  font-size: clamp(2.25rem, 8vw, 5rem);
+  line-height: 0.9;
+}
+
+.day-location {
+  margin: var(--space-md) 0 0;
+  font-weight: 800;
+  font-stretch: 84%;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+}
+
+/* --------------------------------------------------------- Hero imagery --- */
+
+/* Photography enters the palette or it does not enter. A Wikimedia photo is
+   posterized to ink-on-yellow so it joins the wall rather than interrupting. */
+.day-hero-frame {
+  position: relative;
+  margin: 0 0 var(--space-2xl);
+  background: var(--yellow);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  overflow: hidden;
+}
+
+.day-hero {
+  display: block;
+  width: 100%;
+  height: clamp(210px, 40vw, 440px);
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
+  filter: grayscale(1) contrast(1.4) brightness(1.08);
+  mix-blend-mode: multiply;
+}
+
+.day-hero-caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-width: min(92%, 54ch);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.35rem 0.7rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.64rem;
+}
+
+/* ------------------------------------------------------- Activity cards --- */
+
+.activity-block { margin: var(--space-2xl) 0; }
 
 .activity-time {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-weight: 600;
-  color: var(--color-secondary);
-  margin-bottom: var(--space-sm);
+  display: block;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 3px solid var(--ink);
+  font-weight: 900;
+  font-stretch: 74%;
+  text-transform: uppercase;
+  font-size: clamp(1.15rem, 4vw, 1.6rem);
+  line-height: 1;
 }
 
+/* An entry in the day sketch. Numbered off a hanging rule, the way a poster
+   sets its running order — not a card with an accent edge. */
 .activity-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: var(--space-md);
-  margin-bottom: var(--space-md);
+  position: relative;
+  background: transparent;
+  border: none;
+  border-top: var(--rule);
+  border-radius: 0;
+  padding: var(--space-sm) 0 var(--space-md);
+  margin-bottom: 0;
 }
 
 .activity-card h3 {
-  margin: 0 0 var(--space-sm);
-  font-size: 1.1rem;
-  color: var(--color-text);
+  margin: 0 0 var(--space-xs);
+  font-size: 1.02rem;
+  font-stretch: 84%;
+  letter-spacing: 0.025em;
 }
 
 .activity-card p {
-  margin: 0;
-  color: var(--color-text-light);
-  font-size: 0.95rem;
+  margin: 0 0 var(--space-sm);
+  color: var(--ink-soft);
+  font-size: 0.96rem;
 }
+
+.activity-card p:last-child { margin-bottom: 0; }
 
 .activity-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border);
-  font-size: 0.85rem;
+  gap: var(--space-xs) var(--space-md);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: var(--rule-hair);
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.64rem;
 }
 
-.activity-meta a {
-  color: var(--color-primary);
-  text-decoration: none;
-}
+.activity-meta a { color: var(--ink); }
 
-.activity-meta a:hover {
-  text-decoration: underline;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-md) 0;
-  font-size: 0.9rem;
-}
-
-th, td {
-  padding: var(--space-sm);
-  text-align: left;
-  border-bottom: 1px solid var(--color-border);
-}
-
-th {
-  background: var(--color-bg);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Responsive table wrapper */
-.table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Comments section */
-.day-comments {
-  margin-top: var(--space-2xl);
-  padding-top: var(--space-lg);
-  border-top: 2px solid var(--color-border);
-}
-
-.day-comments h2 {
-  margin: 0 0 var(--space-sm);
-}
-
-.comments-prompt {
-  color: var(--color-text-light);
-  margin-bottom: var(--space-md);
-}
-
-/* Itinerary overview */
-.itinerary-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.itinerary-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-md) 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.itinerary-item:last-child {
-  border-bottom: none;
-}
-
-/* The link fills the row so the toggle button sits hard right. */
-.itinerary-item > a {
-  flex: 1;
-  min-width: 0;
-  text-decoration: none;
-}
-
-.itinerary-day-date {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--color-text-light);
-}
-
-/* On /cities/ and /questions/ this carries the row's primary label — the
-   city name or the question — so it reads as a heading, not as the small
-   secondary badge it was in the source stylesheet. */
-.itinerary-location {
-  display: block;
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--color-primary);
-  margin-bottom: var(--space-xs);
-}
-
-.itinerary-item > a:hover .itinerary-location {
-  text-decoration: underline;
-}
-
-/* Hero images for day pages */
-.day-hero {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: var(--space-lg);
-}
-
-@media (min-width: 480px) {
-  .day-hero {
-    height: 280px;
-  }
-}
-
-@media (min-width: 768px) {
-  .day-hero {
-    height: 350px;
-  }
-}
-
-/* Photo card for activities */
-.activity-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: var(--space-sm);
-}
-
-/* Print styles */
-@media print {
-  .site-header,
-  .site-footer,
-  .day-nav,
-  .day-comments,
-  .menu-toggle {
-    display: none !important;
-  }
-
-  body {
-    font-size: 12pt;
-  }
-
-  .container {
-    max-width: none;
-  }
-
-  .day-hero {
-    height: 200px;
-  }
-}
-
-/* ============================================
-   Interest Toggles
-   ============================================ */
-
+/* ------------------------------------------------------ Interest toggle --- */
+/* A stamp on the poster. Three states, 44px minimum, text-first. */
 .interest-toggle {
-  display: inline-block;
-  padding: var(--space-sm) var(--space-md);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--color-text-light);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  cursor: pointer;
-  /* Large enough to tap without catching the surrounding link. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.9rem;
   min-height: 44px;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 900;
+  font-stretch: 86%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: var(--ink);
+  background: transparent;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background var(--slam), color var(--slam), transform var(--slam);
 }
 
-.interest-toggle:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+.interest-toggle:hover { transform: rotate(var(--tilt-c)); }
+
+/* On a yellow ground the unset state needs its own field, or the stamp
+   disappears into the wall. */
+.wall .interest-toggle,
+.bill:hover .interest-toggle,
+.bill:focus-within .interest-toggle { background: var(--paper); }
+
+.wall .interest-toggle[data-interest-state="yes"],
+.bill:hover .interest-toggle[data-interest-state="yes"] {
+  background: var(--signal);
 }
 
-.interest-toggle:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+.wall .interest-toggle[data-interest-state="no"],
+.bill:hover .interest-toggle[data-interest-state="no"] {
+  background: var(--ink);
 }
 
 .interest-toggle[data-interest-state="yes"] {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
+  background: var(--signal);
+  color: var(--paper);
 }
 
 .interest-toggle[data-interest-state="no"] {
-  background: var(--color-border);
-  border-color: var(--color-border);
-  color: var(--color-text-light);
-  text-decoration: line-through;
+  background: var(--ink);
+  color: var(--paper);
+  opacity: 0.6;
 }
 
 .interest-note {
   margin-top: var(--space-sm);
-  font-size: 0.8rem;
-  color: var(--color-text-light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-mute);
+  max-width: 50ch;
 }
 
-/* On the cities index the toggle shares a row with the city link. */
-.itinerary-item .interest-toggle {
-  flex-shrink: 0;
-  margin-left: var(--space-md);
+.wall .interest-note { color: var(--ink-soft); }
+.bill .interest-toggle { align-self: flex-start; }
+
+/* ------------------------------------------------------------- Comments --- */
+
+.day-comments {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-lg);
+  border-top: 6px solid var(--ink);
+}
+
+.day-comments h2 {
+  margin: 0 0 var(--space-xs);
+  font-weight: 900;
+  font-stretch: 70%;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+}
+
+.comments-prompt {
+  color: var(--ink-mute);
+  margin-bottom: var(--space-lg);
+  max-width: var(--read);
+}
+
+/* --------------------------------------------------------------- Footer --- */
+
+.site-footer {
+  margin-top: var(--space-3xl);
+  padding: var(--space-2xl) 0 var(--space-xl);
+  background: var(--ink);
+  color: var(--paper);
+  text-align: left;
+  border-top: 6px solid var(--yellow);
+}
+
+.footer-container {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.footer-trip {
+  margin: 0;
+  font-weight: 900;
+  font-stretch: 66%;
+  font-size: clamp(1.7rem, 6.5vw, 3.2rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  color: var(--yellow);
+  text-wrap: balance;
+}
+
+.footer-dates {
+  margin: var(--space-md) 0 var(--space-lg);
+  font-weight: 700;
+  font-stretch: 86%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.footer-meta {
+  margin: 0;
+  padding-top: var(--space-md);
+  border-top: 2px solid rgba(244, 241, 233, 0.25);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-meta a {
+  color: var(--yellow);
+  text-decoration: none;
+  border-bottom: 2px solid var(--yellow);
+}
+
+.footer-meta a:hover { color: var(--paper); border-color: var(--signal); }
+
+/* ----------------------------------------------------------------- Slam --- */
+
+/* The wall's native motion: a poster goes up in one beat. Content is visible
+   by default — the hiding class is only added once JS confirms support. */
+.js-slam .slam-in {
+  opacity: 0;
+  transform: translateY(16px) rotate(var(--tilt-c));
+}
+
+/* A full-width block slams straight up: rotating one overhangs the frame and
+   produces a phantom horizontal scroll. The tilt belongs to words. */
+.js-slam .bill.slam-in,
+.js-slam .postered.slam-in {
+  transform: translateY(16px);
+}
+
+.js-slam .slam-in.slammed {
+  opacity: 1;
+  transform: none;
+  transition: opacity 160ms linear, transform var(--slam);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-slam .slam-in { opacity: 1; transform: none; }
+  .wall-hero .shout, .day-header h1, .logo-mark { transform: none; }
+}
+
+/* ---------------------------------------------------------------- Print --- */
+
+@media print {
+  .site-header, .site-footer, .day-nav, .day-comments,
+  .menu-toggle, .interest-toggle, .action { display: none !important; }
+
+  body { font-size: 11pt; background: #fff; color: #000; }
+  .container { display: block; padding: 0 1rem; }
+  .wall { background: #fff; padding: 0 0 1rem; border-bottom: 2px solid #000; }
+  .wall-inner, .footer-container, .bill-stack { padding: 0; }
+  .wall-hero .shout, .day-header h1 { transform: none; margin-right: 0; font-size: 2.5rem; }
+  .day-hero { filter: grayscale(1); mix-blend-mode: normal; height: 180px; }
+  .bill-stack { display: block; background: none; }
 }

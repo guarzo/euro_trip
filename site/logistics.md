@@ -4,9 +4,23 @@ title: Logistics
 permalink: /logistics/
 ---
 
-<section class="hero">
-  <h1 class="hero-title">Logistics</h1>
-  <p class="hero-subtitle">How the pieces actually connect</p>
+<section class="wall wall-hero full">
+  <div class="wall-inner">
+    <h1 class="shout">
+      <span class="line">How The</span>
+      <span class="line line-small line-out">Pieces</span>
+      <span class="line">Connect</span>
+    </h1>
+
+    <p class="wall-standfirst">Some of these cities are three hours apart by train. Others are only reachable by air. That shapes the route more than anything else on this site.</p>
+
+    <p class="wall-credit credit">
+      <span>Trains</span>
+      <span>Flights</span>
+      <span>Borders</span>
+      <span>Winter daylight</span>
+    </p>
+  </div>
 </section>
 
 <div class="alert alert-info">
@@ -94,3 +108,10 @@ permalink: /logistics/
 </div>
 
 <p>Seville gets more than two extra hours of usable afternoon than London does. Over fourteen days that is a materially different trip — and it is the crux of <a href="{{ '/questions/which-arc/' | relative_url }}">Which arc?</a></p>
+
+{% include close-wall.html
+   shout_a="So Which"
+   shout_b="Arc"
+   standfirst="Journey times and daylight are the whole input to that decision. Now that you have them, the arc question is the one worth arguing about."
+   action="Read the breakdown"
+   href="/questions/which-arc/" %}
