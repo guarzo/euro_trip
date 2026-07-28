@@ -90,6 +90,13 @@ assert_file "$SITE_OUT/questions/index.html"
 assert_contains "$SITE_OUT/questions/index.html" "/questions/which-arc/"
 assert_contains "$SITE_OUT/questions/index.html" "/questions/etias-and-passports/"
 
+assert_file "$SITE_OUT/ruled-out/index.html"
+assert_contains "$SITE_OUT/ruled-out/index.html" "Santorini"
+assert_contains "$SITE_OUT/ruled-out/index.html" "Venice"
+assert_file "$SITE_OUT/logistics/index.html"
+assert_contains "$SITE_OUT/logistics/index.html" "Eurostar"
+assert_file "$SITE_OUT/feedback/index.html"
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"
