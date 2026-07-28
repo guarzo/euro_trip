@@ -4,14 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1d6a96">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  {%- comment -%}
+    City and question pages title themselves from their own front matter
+    rather than a `title` key. The city and question layouts nest inside this
+    one, so the <head> lives here only and this is where that resolves.
+  {%- endcomment -%}
+  {%- if page.city -%}
+    {%- assign head_title = page.city | append: ", " | append: page.country -%}
+  {%- elsif page.question -%}
+    {%- assign head_title = page.question -%}
+  {%- else -%}
+    {%- assign head_title = page.title -%}
+  {%- endif -%}
+  <title>{% if head_title %}{{ head_title }} | {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  {% seo %}
+  {%- comment -%}
+    title=false: we set <title> above. Without it jekyll-seo-tag emits a
+    second <title>, and its guess drops the country on city pages.
+  {%- endcomment -%}
+  {% seo title=false %}
 </head>
 <body>
   {% include header.html %}
 
-  <main class="container">
+  <main class="container{% if page.city or page.question %} day-page{% endif %}">
     {{ content }}
   </main>
 
