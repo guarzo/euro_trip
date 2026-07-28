@@ -21,6 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: ./site
+
+      # Fails the build on a missing page or a broken internal link, rather
+      # than deploying it. Runs before the Pages build so a bad commit never
+      # reaches the artifact step.
+      - name: Build and verify
+        run: ./script/check.sh
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

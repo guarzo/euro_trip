@@ -6,7 +6,8 @@ site/.jekyll-cache/
 .jekyll-metadata
 .bundle/
 vendor/
-Gemfile.lock
+# Gemfile.lock IS committed: CI uses ruby/setup-ruby with bundler-cache,
+# which needs it, and a deployed site wants reproducible gem versions.
 *.swp
 *.swo
 .DS_Store

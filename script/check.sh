@@ -102,6 +102,21 @@ assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
 
+echo "== checking internal links =="
+# External links are deliberately not checked: the site links to dozens of
+# Google Maps and Wikimedia URLs, and checking them every run would be slow
+# and flaky. Hero images are verified separately when they change.
+if ( cd site && bundle exec htmlproofer ./_site \
+      --disable-external \
+      --allow-hash-href \
+      --no-enforce-https ) > /dev/null 2>&1; then
+  echo "ok    no broken internal links"
+else
+  echo "FAIL  broken internal links — rerun htmlproofer directly for detail:"
+  echo "      (cd site && bundle exec htmlproofer ./_site --disable-external --allow-hash-href --no-enforce-https)"
+  FAIL=1
+fi
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"
