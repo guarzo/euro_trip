@@ -80,6 +80,16 @@ assert_contains "$SITE_OUT/questions/which-arc/index.html" "Why it matters"
 assert_contains "$SITE_OUT/questions/which-arc/index.html" "My recommendation"
 assert_contains "$SITE_OUT/questions/which-arc/index.html" "4:29"
 
+for Q in exact-dates how-many-countries open-jaw-flights trains-vs-flights pace \
+         christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports; do
+  assert_file "$SITE_OUT/questions/$Q/index.html"
+  assert_contains "$SITE_OUT/questions/$Q/index.html" "Why it matters"
+  assert_contains "$SITE_OUT/questions/$Q/index.html" "My recommendation"
+done
+assert_file "$SITE_OUT/questions/index.html"
+assert_contains "$SITE_OUT/questions/index.html" "/questions/which-arc/"
+assert_contains "$SITE_OUT/questions/index.html" "/questions/etias-and-passports/"
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"
