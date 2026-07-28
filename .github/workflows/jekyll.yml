@@ -28,23 +28,22 @@ jobs:
           bundler-cache: true
           working-directory: ./site
 
-      # Fails the build on a missing page or a broken internal link, rather
-      # than deploying it. Runs before the Pages build so a bad commit never
-      # reaches the artifact step.
-      - name: Build and verify
-        run: ./script/check.sh
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./site
-          destination: ./_site
+      # check.sh builds the site with our own Gemfile (Jekyll 4.3) and then
+      # asserts against the output, so the artifact we upload below is the
+      # exact tree we verified. We deliberately do NOT use
+      # actions/jekyll-build-pages: it builds with the github-pages gem
+      # (Jekyll 3.10), which would deploy a differently-built site from the
+      # one the checks passed against.
+      - name: Build and verify
+        run: ./script/check.sh
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site/_site
 
   deploy:
     environment:
