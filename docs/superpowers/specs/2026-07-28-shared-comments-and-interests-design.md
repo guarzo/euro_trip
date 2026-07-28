@@ -75,18 +75,30 @@ more schema than a four-person thread needs.
 
 ## Data model
 
-Two tables. Both key off `page_path`, using the same `pathname` Giscus used —
-`/cities/rome/`, `/questions/pace/` — so no page needs a hand-assigned ID.
+Two tables, keyed differently on purpose: **an interest is about a city, a
+comment is about a page.**
+
+`interests` keys on `interest_key` — the `city:athens` identifier the existing
+markup already emits via `data-interest-key`. This is load-bearing. The cities
+index at `/cities/` renders all eleven toggles on one page, so a `page_path` key
+would collide every toggle on that page into a single row, and would make
+marking Rome from the index a different record than marking Rome from
+`/cities/rome/`. Keying on the city makes those two controls two views of one
+row.
+
+`comments` keys on `page_path`, using the same `pathname` Giscus used —
+`/cities/rome/`, `/questions/pace/`. Threads genuinely are per-page, and the
+cities index has no thread.
 
 ```sql
 -- person values mirror site.family_members in _config.yml
 create table interests (
-  id         uuid primary key default gen_random_uuid(),
-  page_path  text not null,
-  person     text not null check (person in ('papa','mama','bubu','gaby')),
-  state      text not null check (state in ('yes','no')),
-  updated_at timestamptz not null default now(),
-  unique (page_path, person)
+  id           uuid primary key default gen_random_uuid(),
+  interest_key text not null,
+  person       text not null check (person in ('papa','mama','bubu','gaby')),
+  state        text not null check (state in ('yes','no')),
+  updated_at   timestamptz not null default now(),
+  unique (interest_key, person)
 );
 
 create table comments (
@@ -97,13 +109,20 @@ create table comments (
   created_at timestamptz not null default now()
 );
 
-create index on interests (page_path);
+create index on interests (interest_key);
 create index on comments (page_path);
 ```
 
-`interests` writes are upserts against `(page_path, person)`. The third toggle
-state — "unset" — is a **row delete**, not a stored value, so the table only
-ever holds actual opinions.
+`interests` writes are upserts against `(interest_key, person)`. The third
+toggle state — "unset" — is a **row delete**, not a stored value, so the table
+only ever holds actual opinions.
+
+The `city:` prefix is retained so question pages could become togglable later
+without a migration. Question toggles are **not** part of this work.
+
+Because interests are city-keyed rather than page-keyed, the cities index
+fetches all interest rows in one unfiltered query rather than filtering by
+page. At eleven cities and four people that is at most forty-four rows.
 
 ### Row Level Security
 
@@ -129,8 +148,8 @@ interest toggles. Rather than growing it, split into ES modules under
 | Module | Responsibility | Depends on |
 | --- | --- | --- |
 | `identity.js` | Who am I; pick, switch, the four names. Exports a getter and a change event. | — |
-| `supabase.js` | Creates the client. Exposes exactly `getInterests(path)`, `setInterest(path, person, state)`, `getComments(path)`, `addComment(path, person, body)`. | — |
-| `interests.js` | Renders the four-avatar row; wires the toggle. | `identity`, `supabase` |
+| `supabase.js` | Creates the client. Exposes exactly `getInterests()`, `setInterest(interestKey, person, state)`, `clearInterest(interestKey, person)`, `getComments(pagePath)`, `addComment(pagePath, person, body)`. | — |
+| `interests.js` | Renders the four-avatar row; wires the toggle. Reads `data-interest-key` from each button. | `identity`, `supabase` |
 | `comments.js` | Renders the thread and the post form. | `identity`, `supabase` |
 | `ui.js` | Existing mobile nav and smooth scroll, behavior unchanged. | — |
 
@@ -180,8 +199,11 @@ run once at the end:
 2. Mark a city interested.
 3. Load that page in a second browser; confirm the mark appears against the
    right avatar.
-4. Post a comment; reload; confirm it survives.
-5. Unset the mark; reload; confirm it is gone in both browsers.
+4. Load `/cities/`; confirm the same city shows the same mark there — this is
+   what the `interest_key` schema exists for.
+5. Post a comment; reload; confirm it survives.
+6. Unset the mark; reload; confirm it is gone in both browsers and on the
+   index.
 
 Automating this would mean adding Playwright and a seeded test project — a real
 toolchain addition to a site that currently needs only Ruby. Rejected
