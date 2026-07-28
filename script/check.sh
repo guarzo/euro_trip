@@ -58,6 +58,22 @@ assert_contains "$SITE_OUT/cities/athens/index.html" "climate normals"
 # Giscus stays out of the markup until the real repo IDs are filled in.
 assert_absent "$SITE_OUT/cities/athens/index.html" "giscus.app/client.js"
 
+for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam; do
+  assert_file "$SITE_OUT/cities/$CITY/index.html"
+  assert_contains "$SITE_OUT/cities/$CITY/index.html" "In winter"
+  assert_contains "$SITE_OUT/cities/$CITY/index.html" "Draft day sketch"
+done
+assert_file "$SITE_OUT/cities/index.html"
+assert_contains "$SITE_OUT/cities/index.html" "/cities/athens/"
+assert_contains "$SITE_OUT/cities/index.html" "/cities/amsterdam/"
+assert_contains "$SITE_OUT/cities/index.html" "/cities/granada/"
+# The northern cities' early sunsets are what the "which arc" decision turns on;
+# they must survive any later edit to those pages.
+assert_contains "$SITE_OUT/cities/london/index.html" "3:53"
+assert_contains "$SITE_OUT/cities/amsterdam/index.html" "4:29"
+# Amsterdam is the one city rated 'mixed' rather than 'good'.
+assert_contains "$SITE_OUT/cities/amsterdam/index.html" "Mixed in winter"
+
 echo
 if [ "$FAIL" -eq 0 ]; then
   echo "ALL CHECKS PASSED"

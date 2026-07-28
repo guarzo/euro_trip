@@ -3,7 +3,7 @@ city: Athens
 country: Greece
 winter_viability: good
 suggested_nights: 3
-hero_image: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg/1280px-Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg
+hero_image: https://commons.wikimedia.org/wiki/Special:FilePath/Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg?width=1280
 hero_alt: The Acropolis seen from Philopappos Hill
 highlights:
   - Acropolis
