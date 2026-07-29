@@ -36,7 +36,7 @@ layout: default
       {% endif %}
 
       <p class="day-header-action">
-        <button class="interest-toggle"
+        <button type="button" class="interest-toggle"
                 data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"
                 aria-pressed="false">Interested?</button>
       </p>
@@ -46,8 +46,13 @@ layout: default
 </section>
 
 <figure class="day-hero-frame full">
+  {%- comment -%}
+    The caption repeats the alt text verbatim, so it is hidden from assistive
+    tech: a screen reader would otherwise announce the same sentence twice,
+    once as the image and once as its caption.
+  {%- endcomment -%}
   <img src="{{ page.hero_image }}" alt="{{ page.hero_alt }}" class="day-hero" loading="lazy">
-  <figcaption class="day-hero-caption">{{ page.hero_alt }}</figcaption>
+  <figcaption class="day-hero-caption" aria-hidden="true">{{ page.hero_alt }}</figcaption>
 </figure>
 
 <article class="day-content">

@@ -122,15 +122,17 @@ title: Home
 
 <h2 class="section-heading">Open Questions</h2>
 
-<p>Ten decisions are on the table, from exact dates to whether we take trains or budget flights. Each has its own page with options, a recommendation, and a section on what would change its mind.</p>
+<p>{{ site.questions | size }} decisions are on the table, from exact dates to whether we take trains or budget flights. Each has its own page with options, a recommendation, and a section on what would change its mind.</p>
 
 {%- comment -%}
-  The four highest-impact open questions, pasted up as bills. The rest live
-  on the questions index; this is the door, not the list.
+  The highest-impact questions that are still open, pasted up as bills. The
+  heading above calls these open questions, so a decided one must not appear
+  here even though its impact is still high; the questions index is where
+  decided ones surface.
 {%- endcomment -%}
 <div class="postered full">
   <div class="bill-stack">
-  {%- assign top_questions = site.questions | where: "impact", "high" | sort: "order" -%}
+  {%- assign top_questions = site.questions | where: "impact", "high" | where: "status", "open" | sort: "order" -%}
   {%- for q in top_questions -%}
     <div class="bill">
       <a class="bill-link" href="{{ q.url | relative_url }}">
@@ -138,14 +140,14 @@ title: Home
       </a>
       <span class="bill-credit credit">
         <span class="bill-impact" data-impact="{{ q.impact }}">{{ q.impact }} impact</span>
-        <span>{% if q.status == 'decided' %}Decided{% else %}Still open{% endif %}</span>
+        <span>Still open</span>
       </span>
     </div>
   {%- endfor -%}
   </div>
 </div>
 
-<p><a href="{{ '/questions/' | relative_url }}">See all ten questions &rarr;</a></p>
+<p><a href="{{ '/questions/' | relative_url }}">See all {{ site.questions | size }} questions &rarr;</a></p>
 
 <h2 class="section-heading">Eleven cities on the table</h2>
 

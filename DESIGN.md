@@ -125,9 +125,15 @@ No lowercase display type. **No italics anywhere** — wood type has no italic, 
 ## Motion
 
 The wall's native motion is **the slam** — a poster goes up in one beat, on a
-`260ms cubic-bezier(0.16, 0.9, 0.2, 1)`. Entrances are a single fast settle from
-`translateY(16px) rotate(2deg)`, never a fade-and-rise. Hover tilts words onto a
-diagonal.
+`260ms cubic-bezier(0.16, 0.9, 0.2, 1)`. An entrance is a single fast settle
+from `translateY(16px) rotate(2deg)`, with opacity carried alongside it on a
+shorter 160ms ramp so the beat stays the transform's, not the fade's. Hover
+tilts words onto a diagonal.
+
+**Full-width blocks slam straight up.** `.bill` and `.postered` drop the
+rotation and settle on `translateY` alone: a rotated full-bleed block overhangs
+the frame and produces a phantom horizontal scroll. The tilt belongs to words,
+which have room beside them to rotate into.
 
 Content is visible by default: `app.js` adds the `js-slam` hiding class only
 after confirming both `IntersectionObserver` support and a non-reduced motion

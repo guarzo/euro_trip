@@ -305,7 +305,12 @@ img { max-width: 100%; }
 @media (min-width: 940px) {
   .menu-toggle { display: none; }
 
-  .site-nav {
+  /* `.site-nav.open` is a two-class selector and would otherwise outrank a
+     single-class rule here, leaving the nav stacked as a mobile panel after
+     a resize from an open menu. Matching its specificity keeps the desktop
+     row authoritative without touching the mobile open behavior. */
+  .site-nav,
+  .site-nav.open {
     display: flex;
     align-items: stretch;
     position: static;
@@ -500,8 +505,11 @@ img { max-width: 100%; }
 
 /* ---------------------------------------------------------- Prose rules --- */
 
+/* Prose headings. A `.shout` is a poster word rather than a prose heading, so
+   it is excluded here even when it is marked up as an h2 — which the closing
+   wall's heading is, to keep the document outline honest. */
 .day-content h2,
-.container h2:not(.section-heading) {
+.container h2:not(.section-heading):not(.shout) {
   font-weight: 900;
   font-stretch: 74%;
   font-size: clamp(1.65rem, 5vw, 2.3rem);
@@ -915,8 +923,10 @@ td strong { font-weight: 800; }
   transition: background var(--slam), transform var(--slam);
 }
 
+/* signal-deep, not signal: this label is 0.7rem, and paper on --signal is
+   3.54:1 — fine for the large .action button, short of AA for small text. */
 .day-nav-link:hover, .day-nav-link:focus-visible {
-  background: var(--signal);
+  background: var(--signal-deep);
   transform: rotate(var(--tilt-a));
 }
 
@@ -956,18 +966,11 @@ td strong { font-weight: 800; }
   text-wrap: balance;
 }
 
-/* The city title crops by roughly one letter regardless of name length: the
-   type is sized from the viewport divided by the name's own character count,
-   so ROME runs huge and AMSTERDAM runs smaller, and neither loses more than
-   about its last glyph. Archivo at width 64% averages ~0.52em per cap, so
-   dividing by (len * 0.52) fills the line; the 1.16 factor is the deliberate
-   overrun that puts the final letter past the frame. `--name-len` is set per
-   page by the city layout. */
 /* The city title always crops by about the same sliver, whatever the name's
    length. Archivo at width 64% averages ~0.52em per cap, so a name of n caps
    is ~0.52n ems wide. Sizing off the wall's own inline size (cqi) rather than
    the viewport keeps the maths honest, because the wall is a centered column
-   at wide widths; the 1.06 factor is the deliberate overrun that puts the last
+   at wide widths; the 1.12 factor is the deliberate overrun that puts the last
    glyph past the frame. ROME runs huge, AMSTERDAM runs smaller, both lose the
    same sliver. `--name-len` is set per page by the city layout. */
 .day-page-city .day-header h1 {
@@ -1288,6 +1291,10 @@ td strong { font-weight: 800; }
   .wall { background: #fff; padding: 0 0 1rem; border-bottom: 2px solid #000; }
   .wall-inner, .footer-container, .bill-stack { padding: 0; }
   .wall-hero .shout, .day-header h1 { transform: none; margin-right: 0; font-size: 2.5rem; }
+  /* On screen this word is paper reversed out of a yellow wall. On white
+     paper it would print as near-white on white, legible only by its stroke. */
+  .wall-hero .shout .line-out,
+  .wall-close-shout .line-out { color: #000; -webkit-text-stroke: 0; }
   .day-hero { filter: grayscale(1); mix-blend-mode: normal; height: 180px; }
   .bill-stack { display: block; background: none; }
 }

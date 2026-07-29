@@ -120,5 +120,5 @@ Read primarily on phones, frequently one-handed and at night. Touch targets stay
 at 44px minimum (the interest toggle already sets this deliberately). Interest
 state is exposed to assistive tech with a three-way `aria-pressed` mapping,
 because "not marked" and "explicitly not interested" must be distinguishable.
-Winter viability and question status are currently signaled with emoji plus
-text; the text must remain load-bearing, never the color or glyph alone.
+Winter viability and question status must be carried by meaningful text — never
+by color or a glyph alone.

@@ -2,13 +2,16 @@
   The closing wall. DESIGN.md: a page never ends on a reading column; it ends
   anchored on a wall, carrying that page's single call to action. Callers pass
   `shout_a`, `shout_b`, `standfirst`, `action`, and `href`.
+
+  The shout is an h2, not a p: it is this section's heading, and every page
+  that includes it already has its h1 in the hero above.
 {%- endcomment -%}
 <section class="wall wall-close full">
   <div class="wall-inner">
-    <p class="shout wall-close-shout">
+    <h2 class="shout wall-close-shout">
       <span class="line">{{ include.shout_a }}</span>
       <span class="line line-out">{{ include.shout_b }}</span>
-    </p>
+    </h2>
     <p class="wall-standfirst">{{ include.standfirst }}</p>
     <a class="action" href="{{ include.href | relative_url }}">{{ include.action }} &rarr;</a>
   </div>

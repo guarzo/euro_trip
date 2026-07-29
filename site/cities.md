@@ -44,12 +44,17 @@ permalink: /cities/
       </a>
       <span class="bill-credit credit">
         <span class="bill-viability" data-viability="{{ city.winter_viability }}">
+          {%- comment -%}
+            Only 'good' and 'mixed' exist in the data today. The fallback
+            carries 'poor' and says so in the same words as the city page,
+            so the two never drift apart.
+          {%- endcomment -%}
           {%- if city.winter_viability == 'good' -%}Good in winter
           {%- elsif city.winter_viability == 'mixed' -%}Mixed in winter
-          {%- else -%}Largely closed{%- endif -%}
+          {%- else -%}Largely closed in winter{%- endif -%}
         </span>
       </span>
-      <button class="interest-toggle"
+      <button type="button" class="interest-toggle"
               data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"
               aria-pressed="false">Interested?</button>
     </div>
