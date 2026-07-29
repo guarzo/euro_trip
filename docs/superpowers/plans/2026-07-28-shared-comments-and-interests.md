@@ -10,6 +10,8 @@
 
 **Spec:** `docs/superpowers/specs/2026-07-28-shared-comments-and-interests-design.md`
 
+**Base:** `origin/main` at `26d7217`, which includes the "Argument Wall" redesign. That redesign rewrote every file this plan touches; `DESIGN.md` and `PRODUCT.md` are now checked-in sources of truth and this plan is written against them, not against the pre-redesign site.
+
 ## Global Constraints
 
 - **No build step.** No npm, no bundler, no `package.json`. The toolchain stays Ruby-only. Supabase JS is imported from the CDN with `<script type="module">`.
@@ -22,6 +24,18 @@
 - **`script/check.sh` must pass** at the end of every task that changes the site. It is the project's only automated test surface.
 - **Add an assertion to `check.sh` whenever you add or change a page** — the README requires it.
 - **Commit after every task.**
+
+### Design constraints (from `DESIGN.md` — these are not suggestions)
+
+Read `DESIGN.md` before writing any CSS. The rules this plan is most at risk of breaking:
+
+- **Use the palette tokens only.** `--ink`, `--ink-soft`, `--ink-mute`, `--yellow`, `--yellow-deep`, `--paper`, `--paper-deep`, `--signal`, `--signal-deep`. **Never write a raw hex value.** Spacing uses `--space-*`, motion uses `--slam`, rotation uses `--tilt-a|b|c` only.
+- **`--signal` is a scarcity token.** Never decorative, never a border, and **never more than one signal element visible per region**. Every page already spends its one `.action` on the closing wall — so **the comment Post button uses `.action-quiet` (ink), not `.action`.** This is the single most likely rule to violate.
+- **No rounded corners above 2px.** No drop shadows, no gradients on type, no italics, no lowercase display type.
+- **Controls are stamped, not tinted.** 3px ink frames, uppercase, weight 900, `font-stretch: 86%`, `letter-spacing: 0.1em`, `border-radius: 0` — match the existing `.interest-toggle` block at `style.css:1107`, which is the reference implementation.
+- **Touch targets stay ≥44px** (`min-height: 44px`).
+- **Emoji may reinforce a state but may never be its only carrier.** Every mark needs a text or `aria-label` carrier.
+- **On yellow ground, an unset stamp needs a `--paper` field** or it vanishes into the wall. The existing `.wall .interest-toggle` rules show the pattern.
 
 ## File Structure
 
@@ -40,13 +54,14 @@
 | `site/_includes/giscus.html` (delete) | Replaced. |
 | `site/_includes/identity-banner.html` (create) | The "Who's this?" picker and current-identity display. |
 | `site/_includes/header.html` (modify) | Include the identity banner. |
-| `site/_layouts/city.html` (modify) | Swap the single toggle for the avatar row; swap the include. |
+| `site/_layouts/city.html` (modify) | Swap the header toggle for the avatar row; swap the include; correct the close-wall copy. |
 | `site/_layouts/question.html` (modify) | Swap the include. |
-| `site/cities.md` (modify) | Swap toggles for avatar rows; update the note copy. |
+| `site/cities.md` (modify) | Swap bill toggles for avatar rows; update the note copy. |
 | `site/feedback.md` (modify) | Swap the include. |
-| `site/assets/css/style.css` (modify) | Styles for the avatar row, identity banner, comment thread, and error states. |
+| `site/assets/css/style.css` (modify) | Restyle the interest stamp as a row; add identity banner, comment thread, and error states — all in poster idiom, tokens only. |
 | `script/check.sh` (modify) | Static assertions for the new markup; assert Giscus is gone. |
 | `README.md` (modify) | Replace "Enabling comments" with Supabase setup and the manual verification script. |
+| `PRODUCT.md` (modify) | Correct the interest-toggle and comments entries, which this work makes false. |
 
 Task order is deliberate: the schema and config exist before any code needs them, identity precedes the two features that depend on it, and the module split lands before new features are added to it — so no task both restructures and adds behavior.
 
@@ -366,62 +381,89 @@ The old localStorage interest toggles keep working through this task; Task 3 rem
 
 - [ ] **Step 5: Style the banner**
 
-Append to `site/assets/css/style.css`:
+Append to `site/assets/css/style.css`. Tokens only — no raw hex, no radius, and no `--signal` (the page spends its one signal on the closing wall):
 
 ```css
-/* ============================================
-   Identity banner
-   ============================================ */
+/* ------------------------------------------------------ Identity banner --- */
+
+/* A stamped strip under the nav: the wall's "who's pasting this up" line.
+   Ink on paper-deep so it reads as a separate pasted band from the header
+   above it, not as chrome. */
 .identity-banner {
-  background: #f4f8fb;
-  border-top: 1px solid #dbe6ee;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
   align-items: center;
-}
-
-.identity-prompt {
-  margin-right: 0.25rem;
-  color: #44606f;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding: var(--space-sm) var(--gutter);
+  background: var(--paper-deep);
+  border-top: var(--rule);
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink);
 }
 
 .identity-choices {
   display: inline-flex;
-  gap: 0.35rem;
+  gap: var(--space-xs);
   flex-wrap: wrap;
 }
 
 .identity-choice,
 .identity-switch {
-  background: #fff;
-  border: 1px solid #bfd3e0;
-  border-radius: 999px;
-  padding: 0.2rem 0.7rem;
-  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 900;
+  font-stretch: 86%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 0;
   cursor: pointer;
+  transition: background var(--slam), color var(--slam), transform var(--slam);
 }
 
 .identity-choice:hover,
 .identity-switch:hover {
-  background: #e8f1f7;
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(var(--tilt-c));
 }
 
-.identity-choice:focus-visible,
-.identity-switch:focus-visible {
-  outline: 2px solid #1d6a96;
-  outline-offset: 2px;
+.identity-current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
+/* The switch is secondary to the choices, so it sits as a rule-underlined
+   word rather than a second stamp competing with the identity it follows. */
 .identity-switch {
-  margin-left: 0.5rem;
-  font-size: 0.8rem;
-  color: #5b7383;
+  border: none;
+  background: transparent;
+  padding: 0.5rem 0.2rem;
+  color: var(--ink-mute);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.identity-switch:hover {
+  background: transparent;
+  color: var(--ink);
 }
 ```
+
+`:focus-visible` is not declared here: `style.css` already sets a global
+`3px solid var(--signal)` outline, and adding another would both duplicate it
+and spend a signal.
 
 - [ ] **Step 6: Add assertions**
 
@@ -472,11 +514,13 @@ This task moves code and deletes the localStorage interest logic. It adds no beh
 
 - [ ] **Step 1: Create ui.js with the nav and scroll logic only**
 
-Create `site/assets/js/ui.js`, copying the mobile-nav and smooth-scroll sections from `app.js` verbatim into an exported function. The interest-toggle section is **not** copied — it is replaced in Task 5:
+Create `site/assets/js/ui.js`, moving the mobile-nav, smooth-scroll, and slam sections from `app.js` **verbatim** into an exported function. Only the interest-toggle section is left behind — Task 5 replaces it.
+
+This is a move, not a rewrite. The nav includes Escape-key handling and the slam is the redesign's motion system; dropping either is a regression, and `check.sh` will not catch it.
 
 ```javascript
-// Mobile nav and smooth scrolling. Moved verbatim from the former app.js
-// IIFE; behavior is unchanged.
+// Mobile nav, smooth scrolling, and the slam. Moved verbatim from the former
+// app.js IIFE; behavior is unchanged.
 
 export function initUI() {
   const menuToggle = document.querySelector('.menu-toggle');
@@ -494,6 +538,14 @@ export function initUI() {
         menuToggle.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // The nav covers the page on mobile, so Escape must get out of it.
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !siteNav.classList.contains('open')) return;
+      siteNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus();
+    });
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -508,8 +560,35 @@ export function initUI() {
       }
     });
   });
+
+  // The wall's native motion: a poster goes up in one beat. Content is
+  // visible by default — the hiding class is only added once we know both
+  // IntersectionObserver and a non-reduced motion preference are in play,
+  // so no-JS and reduced-motion readers never see a blank column.
+  const wantsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (wantsMotion && 'IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('.section-heading, .bill, .alert, .daylight');
+
+    if (targets.length > 0) {
+      document.documentElement.classList.add('js-slam');
+      targets.forEach(function (el) { el.classList.add('slam-in'); });
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('slammed');
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+      targets.forEach(function (el) { observer.observe(el); });
+    }
+  }
 }
 ```
+
+**One consequence to be aware of:** `app.js` was a classic script; `main.js` is a module, which is deferred by default. `initUI()` therefore runs after DOM parse rather than during it — which is safe here (every selector runs against a fully parsed document, and the slam adds `js-slam` before paint in practice). Confirm in Step 7 that headings still animate in and are never left invisible.
 
 - [ ] **Step 2: Delete the old file**
 
@@ -541,10 +620,15 @@ In `site/_layouts/default.html`, remove the legacy script tag so only the module
 
 - [ ] **Step 5: Update the assertions**
 
-In `script/check.sh`, the old `app.js` assertions now refer to a deleted file. Replace these three lines:
+In `script/check.sh`, the old `app.js` assertions now refer to a deleted file. The redesign added font assertions between them, so edit by content rather than by line number. Replace `assert_file "$SITE_OUT/assets/js/app.js"` (around line 59) with:
 
 ```bash
-assert_file "$SITE_OUT/assets/js/app.js"
+assert_file "$SITE_OUT/assets/js/ui.js"
+```
+
+and replace the two `assert_absent` lines that follow the font assertions:
+
+```bash
 assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
 assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
 ```
@@ -552,7 +636,6 @@ assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
 with:
 
 ```bash
-assert_file "$SITE_OUT/assets/js/ui.js"
 assert_absent "$SITE_OUT/assets/js/ui.js" "countdown"
 assert_absent "$SITE_OUT/assets/js/ui.js" "serviceWorker"
 # app.js is gone; a stale copy in _site would still be served.
@@ -564,7 +647,7 @@ else
 fi
 ```
 
-Also delete this now-obsolete line, which asserted the localStorage key that this task removes:
+Also delete this now-obsolete line (around line 129), which asserted the localStorage key that this task removes:
 
 ```bash
 assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"
@@ -579,7 +662,7 @@ Expected: `ALL CHECKS PASSED`
 
 - [ ] **Step 7: Verify no behavior changed**
 
-Serve the site and confirm the mobile menu still opens and closes and anchor links still scroll smoothly. The interest buttons are now inert — expected; Task 5 rebuilds them.
+Serve the site and confirm all four moved behaviors still work: the mobile menu opens and closes, Escape closes it and returns focus to the toggle, anchor links scroll smoothly, and section headings and bills still slam into view on scroll (and are never left invisible). The interest buttons are now inert — expected; Task 5 rebuilds them.
 
 - [ ] **Step 8: Commit**
 
@@ -722,28 +805,40 @@ The markup contract: each city renders one `<div class="interest-row" data-inter
 
 - [ ] **Step 1: Replace the toggle markup on the city layout**
 
-In `site/_layouts/city.html`, replace the `<p>` containing the button and the `<p class="interest-note">` that follows it with:
+In `site/_layouts/city.html`, find the `<p class="day-header-action">` block containing the `.interest-toggle` button and the `<p class="interest-note">` beneath it (around lines 38–43). Replace both with:
 
 ```html
-  <div class="interest-row" data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"></div>
-  <p class="interest-note">Everyone's marks show here. Tap yours to change it.</p>
+      <div class="interest-row" data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"></div>
+      <p class="interest-note">Everyone&rsquo;s marks show here. Tap yours to change it.</p>
 ```
 
-- [ ] **Step 2: Replace the toggle markup on the cities index**
+This sits inside a `.wall` (yellow ground), so the CSS in Step 6 must give unset stamps a `--paper` field — see the design constraints.
 
-In `site/cities.md`, replace the `<button class="interest-toggle" ...>` element with:
+- [ ] **Step 2: Correct the city closing-wall copy**
+
+Still in `site/_layouts/city.html`, the closing wall currently reads "Marking it above only tells your own browser." This work makes that false. Replace the `standfirst` value with:
+
+```liquid
+   standfirst="Your mark above is visible to everyone. Saying <em>why</em> is what actually keeps a city on the list &mdash; or takes it off."
+```
+
+- [ ] **Step 3: Replace the toggle markup on the cities index**
+
+In `site/cities.md`, inside the `.bill` markup (around lines 57–59), replace the `<button type="button" class="interest-toggle" ...>` element with:
 
 ```html
-    <div class="interest-row" data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"></div>
+      <div class="interest-row" data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"></div>
 ```
 
-And replace the note above the list:
+And replace the note at line 30:
 
 ```html
-<p class="interest-note">Everyone's marks show below. Tap yours to change it — the same mark shows on the city's own page.</p>
+<p class="interest-note">Everyone&rsquo;s marks show below. Tap yours to change it &mdash; the same mark shows on the city&rsquo;s own page.</p>
 ```
 
-- [ ] **Step 3: Write the interests module**
+Bills reverse to a yellow ground on hover and focus (`.bill:hover .interest-toggle`), so the Step 6 CSS must carry that pattern across to `.interest-mark` or stamps will vanish on hover.
+
+- [ ] **Step 4: Write the interests module**
 
 Create `site/assets/js/interests.js`:
 
@@ -752,11 +847,14 @@ Create `site/assets/js/interests.js`:
 // both the city page and the cities index, because both key on the same
 // interest_key rather than on the page they appear on.
 
-import { getPerson, onPersonChange, PEOPLE, personLabel } from './identity.js';
+import { getPerson, onPersonChange, PEOPLE } from './identity.js';
 import { isConfigured, getInterests, setInterest, clearInterest } from './supabase.js';
 
 const CYCLE = ['unset', 'yes', 'no'];
-const MARK = { unset: '☆', yes: '★', no: '✕' };
+const MARK = { unset: '—', yes: '★', no: '✕' };
+// DESIGN.md: emoji may reinforce a state but may never be its only carrier,
+// so every stamp ships a word too. Names are short enough to sit inline.
+const WORD = { unset: '?', yes: 'Yes', no: 'No' };
 
 // interest_key -> { person -> state }
 let marks = {};
@@ -784,17 +882,22 @@ function renderRow(row) {
     const el = document.createElement(isMe ? 'button' : 'span');
     el.className = 'interest-mark' + (isMe ? ' is-me' : '');
     el.dataset.interestState = state;
-    el.textContent = person.emoji + MARK[state];
+    // Three carriers, deliberately: the person's emoji, the state glyph, and
+    // the state word. Color and glyph alone would fail DESIGN.md.
+    el.textContent = person.emoji + ' ' + MARK[state] + ' ' + WORD[state];
 
     if (isMe) {
       el.type = 'button';
       // Three states, so "no" maps to mixed rather than false — otherwise a
       // screen reader cannot tell "not marked" from "explicitly not interested".
       el.setAttribute('aria-pressed', state === 'yes' ? 'true' : (state === 'no' ? 'mixed' : 'false'));
-      el.setAttribute('aria-label', 'Your mark for this city: ' + state);
+      el.setAttribute('aria-label', 'Your mark, currently ' + state + '. Activate to change.');
       el.addEventListener('click', function () { cycle(row, key, person.key); });
     } else {
-      el.setAttribute('title', personLabel(person.key) + ': ' + state);
+      // A span carries no accessible name of its own, and the visible text is
+      // abbreviated, so state the whole thing for assistive tech.
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', person.name + ': ' + state);
     }
 
     row.appendChild(el);
@@ -876,7 +979,7 @@ export async function initInterests() {
 }
 ```
 
-- [ ] **Step 4: Wire it into the entry point**
+- [ ] **Step 5: Wire it into the entry point**
 
 Update `site/assets/js/main.js`:
 
@@ -893,78 +996,123 @@ initInterests();
 
 `initIdentity()` runs first because `initInterests()` reads `PEOPLE` from it.
 
-- [ ] **Step 5: Style the marks**
+- [ ] **Step 6: Style the marks**
 
-In `site/assets/css/style.css`, replace the `.interest-toggle` rules (the block starting at `.interest-toggle {` through `.itinerary-item .interest-toggle`) with:
+In `site/assets/css/style.css`, replace the entire existing interest block — `.interest-toggle` through the `.interest-note` rule (from roughly line 1107 to the end of `.interest-note`) — with the following. It keeps the stamped idiom of the block it replaces; `.interest-note` is carried over unchanged in spirit:
 
 ```css
-/* ============================================
-   Shared interest marks
-   ============================================ */
+/* ----------------------------------------------------- Interest marks --- */
+
+/* Four stamps in a row: every family member's mark on this city, on both the
+   city page and the index, because both key on the same interest_key. Your
+   own is a button; the other three are read-only marks. */
 .interest-row {
   display: flex;
-  gap: 0.3rem;
   align-items: center;
+  gap: var(--space-xs);
   flex-wrap: wrap;
-  margin: 0.4rem 0;
+  margin: var(--space-sm) 0 0;
 }
 
 .interest-mark {
-  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  min-height: 44px;
+  padding: 0.5rem 0.6rem;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 900;
+  font-stretch: 86%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   line-height: 1;
-  padding: 0.25rem 0.4rem;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  background: #f3f5f7;
+  color: var(--ink);
+  background: transparent;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+}
+
+/* Only your own stamp is interactive, and it is the one that carries the
+   3px frame at full strength. The other three read as a record, so their
+   frame drops to a hairline rule and they lose the pointer affordance. */
+.interest-mark:not(.is-me) {
+  border-color: var(--ink-mute);
+  color: var(--ink-mute);
 }
 
 .interest-mark.is-me {
   cursor: pointer;
-  border-color: #bfd3e0;
-  background: #fff;
-  font: inherit;
-  font-size: 0.95rem;
+  transition: background var(--slam), color var(--slam), transform var(--slam);
 }
 
-.interest-mark.is-me:hover {
-  background: #e8f1f7;
-}
+.interest-mark.is-me:hover { transform: rotate(var(--tilt-c)); }
 
-.interest-mark.is-me:focus-visible {
-  outline: 2px solid #1d6a96;
-  outline-offset: 2px;
-}
-
+/* State is carried by the mark glyph and the aria-label; the fill only
+   reinforces it. "yes" takes ink rather than signal — the page already
+   spends its one signal on the closing wall, and four marks per row would
+   multiply it eleven times over on the index. */
 .interest-mark[data-interest-state="yes"] {
-  background: #e6f4ea;
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
 }
 
 .interest-mark[data-interest-state="no"] {
-  background: #f7e9e9;
+  background: var(--paper-deep);
+  color: var(--ink-mute);
+  text-decoration: line-through;
+}
+
+/* On yellow ground — the city page's header wall, and a bill on hover — an
+   unset stamp needs its own paper field or it disappears into the wall. */
+.wall .interest-mark,
+.bill:hover .interest-mark,
+.bill:focus-within .interest-mark {
+  background: var(--paper);
+}
+
+.wall .interest-mark[data-interest-state="yes"],
+.bill:hover .interest-mark[data-interest-state="yes"],
+.bill:focus-within .interest-mark[data-interest-state="yes"] {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .interest-hint,
 .interest-error {
-  font-size: 0.8rem;
-  color: #6b7c88;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink-mute);
 }
 
+/* A failed write is the one state that must not be quiet. It is a word, not
+   a color: the credit-block treatment plus an ink rule under it. */
 .interest-error {
-  color: #9c3b3b;
+  color: var(--ink);
+  border-bottom: 2px solid var(--signal);
 }
 
 .interest-note {
-  font-size: 0.85rem;
-  color: #6b7c88;
-  margin-top: 0.3rem;
+  margin-top: var(--space-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-mute);
 }
 ```
 
-- [ ] **Step 6: Update the assertions**
+Note the one deliberate `--signal` use: a 2px rule under a failed-write message. That is a *state*, not decoration, and only one can be visible at a time in practice. If a reviewer judges it a scarcity violation, drop it to `var(--ink)` — the word still carries the meaning.
 
-In `script/check.sh`, replace the three interest assertions from the old design:
+- [ ] **Step 7: Update the assertions**
+
+In `script/check.sh`, replace the four interest assertions at lines 129–132:
 
 ```bash
+assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"
 assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
@@ -980,21 +1128,25 @@ assert_file "$SITE_OUT/assets/js/interests.js"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
-# The old per-device copy must not survive anywhere.
+# The old per-device copy must not survive anywhere, including the city
+# page's closing wall.
 assert_absent "$SITE_OUT/cities/index.html" "not shared with anyone"
 assert_absent "$SITE_OUT/cities/athens/index.html" "nobody else sees this"
+assert_absent "$SITE_OUT/cities/athens/index.html" "only tells your own browser"
 ```
 
-- [ ] **Step 7: Run the checks**
+Note: the `euro-trip-interest` assertion was already deleted in Task 3 along with `app.js`. If it is still present, Task 3 was not completed correctly — stop and fix that first.
+
+- [ ] **Step 8: Run the checks**
 
 Run: `./script/check.sh`
 Expected: `ALL CHECKS PASSED`
 
-- [ ] **Step 8: Verify the unconfigured path**
+- [ ] **Step 9: Verify the unconfigured path**
 
 With `supabase.url` still empty, serve the site and confirm every city row reads "Marks turn on once Supabase is configured." and nothing throws in the console. This is the degradation path from Global Constraints.
 
-- [ ] **Step 9: Commit**
+- [ ] **Step 10: Commit**
 
 ```bash
 git add site/assets/js/interests.js site/assets/js/main.js site/_layouts/city.html site/cities.md site/assets/css/style.css script/check.sh
@@ -1022,27 +1174,32 @@ git commit -m "feat: shared interest marks backed by Supabase"
 
 - [ ] **Step 1: Create the include**
 
-Create `site/_includes/comments.html`, preserving the heading and prompt from the Giscus version:
+Create `site/_includes/comments.html`, preserving the heading and prompt from the Giscus version. Note the Post button is `.action-quiet`, **not** `.action` — every page already spends its one signal element on the closing wall below:
 
 ```html
+{%- comment -%}
+  Replaces giscus.html. The Post button is .action-quiet (ink) rather than
+  .action (signal): DESIGN.md allows one signal element per region, and this
+  page's is the closing wall's call to action immediately below.
+{%- endcomment -%}
 <section class="day-comments" data-comments data-page-path="{{ page.url }}">
   <h2>Family Notes</h2>
-  <p class="comments-prompt">Reactions, objections, and "please no" all welcome.</p>
+  <p class="comments-prompt">Reactions, objections, and &ldquo;please no&rdquo; all welcome.</p>
   <div class="comments-thread" data-comments-thread></div>
   <form class="comment-form" data-comment-form hidden>
     <label class="visually-hidden" for="comment-body">Your note</label>
     <textarea id="comment-body" data-comment-body rows="3" maxlength="2000"
-              placeholder="Say what you actually think…"></textarea>
+              placeholder="Say what you actually think&hellip;"></textarea>
     <div class="comment-form-row">
-      <button type="submit" class="comment-submit">Post</button>
-      <span class="comment-status" data-comment-status></span>
+      <button type="submit" class="action action-quiet comment-submit">Post</button>
+      <span class="comment-status" data-comment-status role="status"></span>
     </div>
   </form>
   <p class="comment-locked" data-comment-locked hidden>Pick who you are to join in.</p>
 </section>
 ```
 
-`data-page-path` uses `page.url`, which is the same `pathname` value Giscus keyed on.
+`data-page-path` uses `page.url`, which is the same `pathname` value Giscus keyed on. `role="status"` makes post failures reach a screen reader without stealing focus.
 
 - [ ] **Step 2: Delete the Giscus include**
 
@@ -1063,6 +1220,8 @@ with:
 ```liquid
 {% include comments.html %}
 ```
+
+In all three files the `{% include close-wall.html ... %}` block follows immediately after. Leave it exactly where it is — DESIGN.md requires every page to end on a closing wall, so the thread sits above it, never after it.
 
 - [ ] **Step 4: Write the comments module**
 
@@ -1215,72 +1374,88 @@ initComments();
 
 - [ ] **Step 6: Style the thread**
 
-Append to `site/assets/css/style.css`:
+Append to `site/assets/css/style.css`. `.comment-submit` inherits its stamp from `.action .action-quiet` in the markup, so only its size is adjusted here — do not restate its colors:
 
 ```css
-/* ============================================
-   Comment threads
-   ============================================ */
-.comments-thread {
-  margin: 1rem 0;
-}
+/* ------------------------------------------------------ Comment threads --- */
 
+.comments-thread { margin: var(--space-lg) 0; }
+
+/* Notes hang off a top rule, the way the site sets a running order —
+   not a bordered card. */
 .comment {
-  border-top: 1px solid #e4eaee;
-  padding: 0.75rem 0;
+  border-top: var(--rule);
+  padding: var(--space-md) 0;
 }
 
 .comment-meta {
-  font-size: 0.8rem;
-  color: #6b7c88;
-  margin: 0 0 0.25rem;
+  margin: 0 0 var(--space-xs);
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink-mute);
 }
 
 .comment-body {
   margin: 0;
+  max-width: var(--read);
   white-space: pre-wrap;
 }
 
 .comments-empty,
 .comment-locked {
-  color: #6b7c88;
-  font-size: 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-mute);
 }
+
+.comment-form { margin-top: var(--space-lg); }
 
 .comment-form textarea {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #bfd3e0;
-  border-radius: 6px;
-  font: inherit;
+  max-width: var(--read);
+  padding: var(--space-sm);
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 0;
   resize: vertical;
 }
 
 .comment-form-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
 }
 
+/* .action sizes itself for a closing wall; in a reading column it needs to
+   sit down to control scale. Colors come from .action-quiet. */
 .comment-submit {
-  background: #1d6a96;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 1rem;
-  font: inherit;
+  margin-top: 0;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8rem;
+  font-stretch: 86%;
+  letter-spacing: 0.08em;
   cursor: pointer;
 }
 
 .comment-submit:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: default;
 }
 
 .comment-status {
-  font-size: 0.85rem;
-  color: #9c3b3b;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink);
 }
 
 .visually-hidden {
@@ -1288,10 +1463,12 @@ Append to `site/assets/css/style.css`:
   width: 1px;
   height: 1px;
   overflow: hidden;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
 }
 ```
+
+Before appending, check whether `.visually-hidden` already exists — the redesign added a `.skip-link`, and a duplicate definition should be omitted rather than repeated.
 
 - [ ] **Step 7: Update the assertions**
 
@@ -1399,13 +1576,13 @@ these five steps by hand:
 
 - [ ] **Step 2: Update the structure diagram**
 
-In `README.md`, in the `## Structure` block, replace the two stale lines:
+In `README.md`, in the `## Structure` block, replace the two stale lines (99 and 106):
 
 ```
 ├── _config.yml       # Site config, family members, Giscus keys
 ```
 ```
-│   └── app.js        # Mobile nav, smooth scroll, interest toggles
+│   └── js/app.js     # Mobile nav, smooth scroll, interest toggles
 ```
 
 with:
@@ -1414,29 +1591,84 @@ with:
 ├── _config.yml       # Site config, family members, Supabase keys
 ```
 ```
-│   └── *.js          # main, ui, identity, supabase, interests, comments
+│   └── js/*.js       # main, ui, identity, supabase, interests, comments
 ```
 
 - [ ] **Step 3: Update the "Deliberately not here" section**
 
 Append to that section's list in `README.md`: `comment editing and deletion (SQL console instead), notifications, and threaded replies.`
 
-- [ ] **Step 4: Run the full checks**
+- [ ] **Step 4: Correct PRODUCT.md**
+
+`PRODUCT.md` is checked in as a source of truth and documents the behavior this work replaces. Three edits:
+
+Under **Operating Context**, replace the Giscus bullet:
+
+```markdown
+- Comments run on Giscus, backed by GitHub Discussions. `giscus.repo_id` is
+  currently empty, so a placeholder note renders in place of the widget and the
+  site builds fine without it.
+```
+
+with:
+
+```markdown
+- Comments and interest marks run on Supabase, keyed to a family member name
+  picked once per device — no accounts and no GitHub. While `supabase.url` is
+  empty a placeholder note renders in place of both and the site builds fine
+  without it.
+```
+
+Under **Capabilities and Constraints**, replace the interest-toggle bullet:
+
+```markdown
+- **Interest toggles** — a three-state (unset / interested / not for me) marker
+  on each city, stored in `localStorage` only. Explicitly per-device and private;
+  the site tells the reader nobody else sees it. Shared opinion goes in comments.
+```
+
+with:
+
+```markdown
+- **Interest marks** — a three-state (unset / interested / not for me) marker on
+  each city, shared across devices and visible to the whole family. Every
+  member's mark shows on both the city page and the cities index, because both
+  key on the city rather than the page. `localStorage` holds only which family
+  member this device belongs to.
+```
+
+Under **Evidence on Hand**, replace:
+
+```markdown
+- Comments are not yet live (`repo_id` empty); the site must keep working and
+  reading well in that state.
+```
+
+with:
+
+```markdown
+- Comments and marks are not live until `supabase.url` is filled in; the site
+  must keep working and reading well in that state.
+```
+
+The **Accessibility & Inclusion** section's description of the three-way `aria-pressed` mapping and the 44px target stays accurate and needs no edit.
+
+- [ ] **Step 5: Run the full checks**
 
 Run: `rm -rf site/_site && ./script/check.sh`
 Expected: `ALL CHECKS PASSED`
 
-- [ ] **Step 5: Run the manual verification**
+- [ ] **Step 6: Run the manual verification**
 
 If a real Supabase project has been configured, run all five steps from the
 README section written in Step 1. If it has not, confirm instead that every
 interest row and comment thread shows its placeholder note and the console is
 free of errors — and say plainly in the commit that the live path is unverified.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add README.md site/_config.yml
+git add README.md PRODUCT.md site/_config.yml
 git commit -m "docs: Supabase setup and manual verification script"
 ```
 
