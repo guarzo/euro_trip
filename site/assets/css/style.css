@@ -1298,3 +1298,79 @@ td strong { font-weight: 800; }
   .day-hero { filter: grayscale(1); mix-blend-mode: normal; height: 180px; }
   .bill-stack { display: block; background: none; }
 }
+
+/* ------------------------------------------------------ Identity banner --- */
+
+/* A stamped strip under the nav: the wall's "who's pasting this up" line.
+   Ink on paper-deep so it reads as a separate pasted band from the header
+   above it, not as chrome. */
+.identity-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding: var(--space-sm) var(--gutter);
+  background: var(--paper-deep);
+  border-top: var(--rule);
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink);
+}
+
+.identity-choices {
+  display: inline-flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.identity-choice,
+.identity-switch {
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 900;
+  font-stretch: 86%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background var(--slam), color var(--slam), transform var(--slam);
+}
+
+.identity-choice:hover,
+.identity-switch:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(var(--tilt-c));
+}
+
+.identity-current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* The switch is secondary to the choices, so it sits as a rule-underlined
+   word rather than a second stamp competing with the identity it follows. */
+.identity-switch {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 0.2rem;
+  color: var(--ink-mute);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.identity-switch:hover {
+  background: transparent;
+  color: var(--ink);
+}
