@@ -4,9 +4,22 @@ title: Ruled Out
 permalink: /ruled-out/
 ---
 
-<section class="hero">
-  <h1 class="hero-title">Ruled Out</h1>
-  <p class="hero-subtitle">Great places, wrong season — with reasons, so we don't relitigate them</p>
+<section class="wall wall-hero full">
+  <div class="wall-inner">
+    <h1 class="shout">
+      <span class="line">Great</span>
+      <span class="line line-small line-out">Places</span>
+      <span class="line">Wrong Season</span>
+    </h1>
+
+    <p class="wall-standfirst">Everything here is worth going to. None of it is worth going to in December or January &mdash; and the reasons are written down so they can be challenged.</p>
+
+    <p class="wall-credit credit">
+      <span>Not &ldquo;bad places&rdquo;</span>
+      <span>Reasons given</span>
+      <span>Argue one back in</span>
+    </p>
+  </div>
 </section>
 
 <div class="alert alert-info">
@@ -69,3 +82,10 @@ permalink: /ruled-out/
   <p class="alert-title">Want to argue one back in?</p>
   <p>Do. These were ruled out on reasoning that is written down precisely so it can be challenged. Say so on <a href="{{ '/feedback/' | relative_url }}">the feedback page</a>.</p>
 </div>
+
+{% include close-wall.html
+   shout_a="Argue"
+   shout_b="One Back"
+   standfirst="These were ruled out on reasoning written down precisely so it could be challenged. If one of them is the whole trip for you, say so."
+   action="Make the case"
+   href="/feedback/" %}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1d6a96">
+  <meta name="theme-color" content="#131110">
   {%- comment -%}
     City and question pages title themselves from their own front matter
     rather than a `title` key. The city and question layouts nest inside this
@@ -17,6 +17,12 @@
     {%- assign head_title = page.title -%}
   {%- endif -%}
   <title>{% if head_title %}{{ head_title }} | {% endif %}{{ site.title }}</title>
+  {%- comment -%}
+    The display face is the whole design, so it is preloaded rather than
+    discovered two round trips deep inside the stylesheet.
+  {%- endcomment -%}
+  <link rel="preload" href="{{ '/assets/fonts/archivo-latin.woff2' | relative_url }}"
+        as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {%- comment -%}
     title=false: we set <title> above. Without it jekyll-seo-tag emits a
@@ -25,9 +31,11 @@
   {% seo title=false %}
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   {% include header.html %}
 
-  <main class="container{% if page.city or page.question %} day-page{% endif %}">
+  <main id="main" class="container{% if page.city %} day-page day-page-city{% elsif page.question %} day-page day-page-question{% endif %}">
     {{ content }}
   </main>
 

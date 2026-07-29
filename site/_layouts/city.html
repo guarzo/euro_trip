@@ -1,38 +1,64 @@
 ---
 layout: default
 ---
-<nav class="day-nav">
+<nav class="day-nav full" aria-label="Section">
   <a href="{{ '/cities/' | relative_url }}" class="day-nav-link prev">&larr; All cities</a>
   <span class="day-nav-current">
     <strong>{{ page.country }}</strong>
-    <small>suggest {{ page.suggested_nights }} nights</small>
+    <small class="credit">Suggest {{ page.suggested_nights }} nights</small>
   </span>
-  <span class="day-nav-link next disabled"></span>
 </nav>
 
-<header class="day-header">
-  <h1>{{ page.city }}</h1>
-  <p class="day-location">
-    {% if page.winter_viability == 'good' %}☀️ Good in winter
-    {% elsif page.winter_viability == 'mixed' %}🌧️ Mixed in winter
-    {% else %}❄️ Largely closed in winter{% endif %}
-  </p>
-  {% if page.highlights %}
-  <div class="day-highlights">
-    {% for highlight in page.highlights %}
-    <span class="highlight-tag">{{ highlight }}</span>
-    {% endfor %}
-  </div>
-  {% endif %}
-  <p>
-    <button class="interest-toggle"
-            data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"
-            aria-pressed="false">☆ Interested?</button>
-  </p>
-  <p class="interest-note">Saved in your browser only — nobody else sees this. For opinions that count, use the comments below.</p>
-</header>
+{%- comment -%}
+  The city name is the poster's shout, and winter viability is the credit line
+  directly beneath it — winter is the entire premise of the site, so it is not
+  buried in the prose. The viability WORD carries the meaning; weight and color
+  only reinforce it.
+{%- endcomment -%}
+<section class="wall full" style="--name-len: {{ page.city | size }};">
+  <div class="wall-inner">
+    <header class="day-header">
+      <h1>{{ page.city }}</h1>
+      <p class="day-location">
+        {% if page.winter_viability == 'good' %}Good in winter
+        {% elsif page.winter_viability == 'mixed' %}Mixed in winter
+        {% else %}Largely closed in winter{% endif %}
+        &nbsp;&middot;&nbsp; {{ page.country }}
+        &nbsp;&middot;&nbsp; {{ page.suggested_nights }} nights
+      </p>
 
-<img src="{{ page.hero_image }}" alt="{{ page.hero_alt }}" class="day-hero">
+      {% if page.highlights %}
+      <div class="day-highlights">
+        {% for highlight in page.highlights %}
+        <span class="highlight-tag">{{ highlight }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <p class="day-header-action">
+        <button type="button" class="interest-toggle"
+                data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"
+                aria-pressed="false">Interested?</button>
+      </p>
+      <p class="interest-note">Saved in your browser only &mdash; nobody else sees this. For opinions that count, use the comments below.</p>
+    </header>
+  </div>
+</section>
+
+<figure class="day-hero-frame full">
+  {%- comment -%}
+    The caption repeats the alt text verbatim, so it is hidden from assistive
+    tech: a screen reader would otherwise announce the same sentence twice,
+    once as the image and once as its caption.
+
+    Eager, not lazy: this is the only image on the page and it is the LCP
+    candidate on a phone, where 97% of it sits in the first viewport. Lazy
+    loading deferred the request out of the initial fetch entirely.
+  {%- endcomment -%}
+  <img src="{{ page.hero_image }}" alt="{{ page.hero_alt }}" class="day-hero"
+       loading="eager" fetchpriority="high" decoding="async">
+  <figcaption class="day-hero-caption" aria-hidden="true">{{ page.hero_alt }}</figcaption>
+</figure>
 
 <article class="day-content">
   {{ content }}
@@ -41,3 +67,10 @@ layout: default
 {% include winter-disclaimer.html %}
 
 {% include giscus.html %}
+
+{% include close-wall.html
+   shout_a="Want"
+   shout_b=page.city
+   standfirst="Marking it above only tells your own browser. Saying so where the family can read it is what actually keeps a city on the list &mdash; or takes it off."
+   action="Weigh in"
+   href="/feedback/" %}
