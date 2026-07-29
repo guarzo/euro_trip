@@ -1,0 +1,12 @@
+{%- comment -%}
+  The single source of runtime config. Emitted as JSON rather than
+  interpolated into JS so that a stray quote in a config value cannot
+  break the parse. Both values are empty when unconfigured, which every
+  module treats as "not set up" rather than as an error.
+{%- endcomment -%}
+<script>
+  window.SUPABASE_CONFIG = {
+    url: {{ site.supabase.url | default: "" | jsonify }},
+    anonKey: {{ site.supabase.anon_key | default: "" | jsonify }}
+  };
+</script>

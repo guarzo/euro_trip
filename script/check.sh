@@ -57,6 +57,10 @@ else
   echo "ok    no 'countdown' anywhere in the built site"
 fi
 assert_file "$SITE_OUT/assets/js/app.js"
+# Runtime config must reach every page, even while unconfigured — the empty
+# string is what the modules read as "Supabase is not set up".
+assert_contains "$SITE_OUT/index.html" "window.SUPABASE_CONFIG"
+assert_contains "$SITE_OUT/cities/athens/index.html" "window.SUPABASE_CONFIG"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
 # The homepage's quick-link tile grid was replaced by the poster bill stack.
 assert_contains "$SITE_OUT/assets/css/style.css" ".bill-stack"
