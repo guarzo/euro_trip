@@ -1,6 +1,11 @@
 // Who is using this device. This is the only thing localStorage still holds —
 // the opinions themselves live in Supabase. Losing this value costs a tap,
 // not data.
+//
+// Contract: initIdentity() must run before getPerson(), personLabel(), or
+// PEOPLE are read elsewhere — until then PEOPLE is empty, so those calls see
+// no one. main.js calls initIdentity() first, guaranteeing this for its
+// imports.
 
 const STORAGE_KEY = 'euro-trip-person';
 
