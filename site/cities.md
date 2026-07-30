@@ -27,7 +27,7 @@ permalink: /cities/
   <p>No trip visits all eleven. Two weeks realistically covers three or four bases. Read what appeals, and see <a href="{{ '/questions/which-arc/' | relative_url }}">Which arc?</a> for how they group into actual trips. Places that <em>don't</em> work in winter are on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>, with reasons.</p>
 </div>
 
-<p class="interest-note">Tap <strong>Interested?</strong> to mark a city. Picks are saved in your own browser and are not shared with anyone.</p>
+<p class="interest-note">Everyone&rsquo;s marks show below. Tap yours to change it &mdash; the same mark shows on the city&rsquo;s own page.</p>
 
 {% assign countries = site.cities | group_by: "country" | sort: "name" %}
 {% for group in countries %}
@@ -54,9 +54,7 @@ permalink: /cities/
           {%- else -%}Largely closed in winter{%- endif -%}
         </span>
       </span>
-      <button type="button" class="interest-toggle"
-              data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"
-              aria-pressed="false">Interested?</button>
+      <div class="interest-row" data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"></div>
     </div>
   {%- endfor -%}
   </div>

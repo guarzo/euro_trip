@@ -144,9 +144,18 @@ assert_contains "$SITE_OUT/index.html" "<table"
 assert_absent "$SITE_OUT/index.html" "|---|"
 assert_contains "$SITE_OUT/questions/trains-vs-flights/index.html" "<table"
 assert_file "$SITE_OUT/feedback/index.html"
-assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
+assert_contains "$SITE_OUT/assets/css/style.css" ".interest-mark"
+assert_file "$SITE_OUT/assets/js/interests.js"
+# The same interest_key must appear on both the city page and the index —
+# that shared key is what makes them two views of one mark.
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
+assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
+# The old per-device copy must not survive anywhere, including the city
+# page's closing wall.
+assert_absent "$SITE_OUT/cities/index.html" "not shared with anyone"
+assert_absent "$SITE_OUT/cities/athens/index.html" "nobody else sees this"
+assert_absent "$SITE_OUT/cities/athens/index.html" "only tells your own browser"
 
 echo "== checking internal links =="
 # External links are deliberately not checked: the site links to dozens of
