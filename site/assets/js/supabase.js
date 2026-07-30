@@ -30,6 +30,11 @@ function db() {
   if (!clientPromise) {
     clientPromise = import(CDN).then(function (mod) {
       return mod.createClient(config.url, config.anonKey);
+    }).catch(function (err) {
+      // A cached rejection would disable marks and comments for the rest of
+      // the page session. Drop the memo so the next call retries the CDN.
+      clientPromise = null;
+      throw err;
     });
   }
   return clientPromise;
