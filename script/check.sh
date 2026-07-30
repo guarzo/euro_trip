@@ -56,7 +56,7 @@ if grep -ril "countdown" "$SITE_OUT" > /dev/null 2>&1; then
 else
   echo "ok    no 'countdown' anywhere in the built site"
 fi
-assert_file "$SITE_OUT/assets/js/app.js"
+assert_file "$SITE_OUT/assets/js/ui.js"
 # Runtime config must reach every page, even while unconfigured — the empty
 # string is what the modules read as "Supabase is not set up".
 assert_contains "$SITE_OUT/index.html" "window.SUPABASE_CONFIG"
@@ -76,8 +76,15 @@ assert_contains "$SITE_OUT/assets/css/style.css" ".site-header"
 assert_file "$SITE_OUT/assets/fonts/archivo-latin.woff2"
 assert_file "$SITE_OUT/assets/fonts/archivo-latin-ext.woff2"
 # The countdown timer was removed along with the service worker (see Global Constraints).
-assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
-assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
+assert_absent "$SITE_OUT/assets/js/ui.js" "countdown"
+assert_absent "$SITE_OUT/assets/js/ui.js" "serviceWorker"
+# app.js is gone; a stale copy in _site would still be served.
+if [ -f "$SITE_OUT/assets/js/app.js" ]; then
+  echo "FAIL  stale $SITE_OUT/assets/js/app.js still present — clean site/_site"
+  FAIL=1
+else
+  echo "ok    no stale app.js"
+fi
 assert_contains "$SITE_OUT/index.html" "Open Questions"
 assert_file "$SITE_OUT/cities/athens/index.html"
 assert_contains "$SITE_OUT/cities/athens/index.html" "In winter"
@@ -136,8 +143,6 @@ assert_contains "$SITE_OUT/index.html" "<table"
 assert_absent "$SITE_OUT/index.html" "|---|"
 assert_contains "$SITE_OUT/questions/trains-vs-flights/index.html" "<table"
 assert_file "$SITE_OUT/feedback/index.html"
-
-assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"
 assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'

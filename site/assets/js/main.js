@@ -1,5 +1,6 @@
-// Module entry point. Task 3 folds the legacy app.js IIFE into ui.js, after
-// which this is the only script the layout loads.
+// Module entry point — the only script the layout loads.
+import { initUI } from './ui.js';
 import { initIdentity } from './identity.js';
 
+initUI();
 initIdentity();
