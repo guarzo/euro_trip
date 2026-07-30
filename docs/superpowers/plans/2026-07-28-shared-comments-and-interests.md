@@ -691,6 +691,8 @@ git commit -m "refactor: split app.js into ES modules, drop localStorage interes
 
   Every call rejects on failure. Callers are responsible for rendering the failure; this module never touches the DOM.
 
+  The Supabase client library is loaded via a **dynamic** `import()` inside `db()`, not a static top-level import. This is deliberate and load-bearing: a static import would fetch the CDN on every page load for every reader — even when Supabase is unconfigured — and a blocked CDN would reject the whole module graph, taking `initUI()` and `initIdentity()` down with it. Do not "simplify" it back to a static import. A CDN outage must read as "couldn't load marks", not as a site with no navigation.
+
 - [ ] **Step 1: Write the module**
 
 Create `site/assets/js/supabase.js`:
@@ -701,25 +703,40 @@ Create `site/assets/js/supabase.js`:
 //
 // The anon key is public by design and ships in the page. The database CHECK
 // constraints and RLS policies are the real guardrails, not secrecy.
-
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+//
+// The client library is imported DYNAMICALLY, inside the configured-check.
+// A static top-level `import ... from 'https://esm.sh/...'` would fetch the
+// CDN on every page load for every reader — including readers who never
+// interact, and including the unconfigured state — and a blocked or slow CDN
+// would reject the whole module graph, taking `initUI()` and `initIdentity()`
+// down with it. A static site must not lose its nav because a CDN is
+// unreachable.
 
 const config = window.SUPABASE_CONFIG || { url: '', anonKey: '' };
 
-let client = null;
+const CDN = 'https://esm.sh/@supabase/supabase-js@2';
+
+let clientPromise = null;
 
 export function isConfigured() {
   return Boolean(config.url && config.anonKey);
 }
 
+// Resolves to a client, or rejects. Callers already handle rejection by
+// rendering their failure state, so a CDN outage reads as "couldn't load"
+// rather than as a broken page.
 function db() {
-  if (!isConfigured()) throw new Error('Supabase is not configured');
-  if (!client) client = createClient(config.url, config.anonKey);
-  return client;
+  if (!isConfigured()) return Promise.reject(new Error('Supabase is not configured'));
+  if (!clientPromise) {
+    clientPromise = import(CDN).then(function (mod) {
+      return mod.createClient(config.url, config.anonKey);
+    });
+  }
+  return clientPromise;
 }
 
 export async function getInterests() {
-  const { data, error } = await db()
+  const { data, error } = await (await db())
     .from('interests')
     .select('interest_key, person, state');
   if (error) throw error;
@@ -727,7 +744,7 @@ export async function getInterests() {
 }
 
 export async function setInterest(interestKey, person, state) {
-  const { error } = await db()
+  const { error } = await (await db())
     .from('interests')
     .upsert(
       { interest_key: interestKey, person: person, state: state, updated_at: new Date().toISOString() },
@@ -739,7 +756,7 @@ export async function setInterest(interestKey, person, state) {
 export async function clearInterest(interestKey, person) {
   // Unset is a row delete, not a stored state, so the table only ever holds
   // actual opinions.
-  const { error } = await db()
+  const { error } = await (await db())
     .from('interests')
     .delete()
     .eq('interest_key', interestKey)
@@ -748,7 +765,7 @@ export async function clearInterest(interestKey, person) {
 }
 
 export async function getComments(pagePath) {
-  const { data, error } = await db()
+  const { data, error } = await (await db())
     .from('comments')
     .select('id, person, body, created_at')
     .eq('page_path', pagePath)
@@ -758,7 +775,7 @@ export async function getComments(pagePath) {
 }
 
 export async function addComment(pagePath, person, body) {
-  const { error } = await db()
+  const { error } = await (await db())
     .from('comments')
     .insert({ page_path: pagePath, person: person, body: body });
   if (error) throw error;
