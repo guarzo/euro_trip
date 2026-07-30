@@ -67,6 +67,7 @@ assert_contains "$SITE_OUT/index.html" "data-identity-banner"
 assert_contains "$SITE_OUT/index.html" '"key":"papa"'
 assert_contains "$SITE_OUT/index.html" '"key":"gaby"'
 assert_file "$SITE_OUT/assets/js/identity.js"
+assert_file "$SITE_OUT/assets/js/supabase.js"
 assert_file "$SITE_OUT/assets/js/main.js"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
 # The homepage's quick-link tile grid was replaced by the poster bill stack.
