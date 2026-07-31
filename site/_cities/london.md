@@ -126,6 +126,12 @@ The honest counterpoint, beyond the dark: London is large and spread out in a wa
 
 </div>
 
+## Where to stay
+
+**South Kensington** sits right on the Natural History Museum and the V&amp;A from Day 4, is residential and quiet, and has Kensington Gardens for downtime. The trade is real Underground time getting to and from the West End each evening.
+
+**Covent Garden** puts theatre nights and Day 2's plan on foot, at the cost of being busy and touristy, and noisier late at night near Leicester Square. Either works; the choice is really about whether the day or the evening matters more to walk home from.
+
 ## Eat
 
 - **Sunday roast** — beef, Yorkshire pudding, gravy. Book a pub that takes it seriously.

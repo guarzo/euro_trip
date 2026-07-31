@@ -78,6 +78,12 @@ Renaissance art at a density that exists nowhere else, in a city compact enough 
 
 </div>
 
+## Where to stay
+
+**Oltrarno**, across the river around Santo Spirito, is where Florentines actually eat — quieter and safer than the main tourist strip, and a walkable distance from the Duomo and the Uffizi, if a longer one than it looks on a map.
+
+**San Lorenzo / San Marco**, near the Duomo and the Accademia, keeps everything in this page's two-day sketch within a ten-minute walk, at the cost of the market district's daytime noise and crowds.
+
 ## Eat
 
 - **Bistecca alla fiorentina** — a thick T-bone, grilled rare, sold by weight and meant to be shared. The city's signature dish.

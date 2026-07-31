@@ -118,6 +118,12 @@ The honest counterpoint: Rome is busy, loud, and relentlessly hard-surfaced. The
 
 </div>
 
+## Where to stay
+
+**Monti**, the neighborhood already recommended for Day 1's dinner, doubles as the best base: one Metro stop from Termini, and a short walk to the Forum and Colosseum in the morning before the day's crowds arrive. It has been discovered in the last decade and some streets get loud with bar traffic at night, but it is still quieter and more walkable than staying inside the ancient center itself.
+
+**Trastevere** is the alternative, across the river — more atmosphere after dark, a genuine neighborhood rather than a hotel district, and a tram connects it to the Colosseum and Termini without a long walk. It is livelier and noisier at night than Monti, which is either the appeal or the drawback depending on who's sharing a wall with it.
+
 ## Eat
 
 - **Cacio e pepe and carbonara** — Roman pasta is four dishes done perfectly. Order them where the menu is short.

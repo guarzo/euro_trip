@@ -70,6 +70,12 @@ No other city on this list is built the way Venice is built. There are no cars, 
 
 </div>
 
+## Where to stay
+
+**Cannaregio** is the quieter, more local-feeling sestiere, walkable to the train station without a boat, and better value than the center — the trade is a longer walk to St. Mark's Square from its far end.
+
+**Dorsoduro** sits closer to San Marco and to the Accademia, this page's rainy-day fallback, and is grounded by two university campuses rather than purely tourist traffic. It's livelier and pricier than Cannaregio, and — like anywhere low-lying near the water — carries the higher end of the acqua alta risk this page already discusses.
+
 ## Eat
 
 - **Cicchetti** — Venice's version of tapas: small plates at a standing bar, usually with a glass of wine, in the bars around Rialto and Cannaregio.

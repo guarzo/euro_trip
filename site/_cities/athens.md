@@ -98,6 +98,12 @@ The honest counterpoint: Athens is also the geographic outlier. Every other cand
 
 </div>
 
+## Where to stay
+
+**Koukaki**, just south of the Acropolis, is the calmer, more residential choice, and it's a short walk to the Acropolis Museum — most guides call it the easy family pick.
+
+**Plaka**, the old town this page's Day 1 already wanders through, is the more atmospheric option and the closest to the Acropolis itself, at the cost of being touristy and pricier. Either way, avoid basing near Omonia or Exarchia after dark.
+
 ## Eat
 
 - **Souvlaki** — the default cheap meal, and Athens does it better than anywhere.

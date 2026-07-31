@@ -83,6 +83,12 @@ The honest counterpoint: two days covers Seville comfortably, and it is a long w
 
 </div>
 
+## Where to stay
+
+**Barrio Santa Cruz**, already this page's Day 1 neighborhood, puts the Alcázar, cathedral, and Giralda a few minutes' walk away, and is genuinely atmospheric after dark — a few streets get quiet enough at night to feel like they should be avoided alone.
+
+**El Arenal**, nearer the river and Triana, is the other commonly recommended base — safe and central, though less picturesque than Santa Cruz's tangle of lanes.
+
 ## Eat
 
 - **Jamón ibérico de bellota** — acorn-fed, aged for years, and the version worth the ceremony.

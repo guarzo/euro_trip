@@ -85,6 +85,12 @@ The honest counterpoint: Granada is small, and once the Alhambra is done the cit
 
 </div>
 
+## Where to stay
+
+**The Albaicín**, the old Moorish quarter this page's Day 1 already walks through, is the most atmospheric base and puts the Mirador de San Nicolás and the Alhambra entrance five to ten minutes away. It is also steep, cobbled, and genuinely hard with luggage, and some lanes feel isolated after dark.
+
+**Centro**, near Plaza Nueva and Calle Navas, is flat, practical, and sits right on the tapas crawl this page already recommends — the easier choice for two nights with bags in tow, at the cost of some of the Albaicín's charm.
+
 ## Eat
 
 - **Free tapas** — the city's defining custom. What arrives is the bar's choice, which is half the fun.

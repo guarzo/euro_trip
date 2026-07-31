@@ -24,7 +24,7 @@ audited.
 | RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | fixed |
 | RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | fixed |
 | RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
-| RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
+| RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | fixed |
 | RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | fixed |
 | RN-09 | City pages | design | low | Only the first activity card per page has a "Get Directions" link | no change needed |
 | RN-10 | City pages | content | med | Pages argue against each other without ever linking to each other | fixed |
@@ -324,11 +324,24 @@ corrected sunset times (2h17m).
 Verified with a clean `jekyll build`; spot-checked that "Twelve cities,"
 "Eleven decisions," and "11 open" all render correctly from the new content.
 
-### 5. The big content asks (do after batch 1)
+### 5. The big content asks
 
-- **RN-07** — add depth to every city page.
-- **RN-06** — write the draft itinerary page, framed as "what the split arc
-  would actually look like."
+- **RN-07 — fixed.** Re-inspected first: the "Why go" sections already had a
+  real argument and an honest counterpoint on every page — thinner than
+  assumed during the sweep. Asked what depth was actually wanted; answer was
+  a "Where to stay" section (missing on all twelve pages) plus more day-sketch
+  detail. Researched real neighborhoods per city (walkability to what each
+  page already recommends, safety, honest caveats) and added a "Where to
+  stay" section to all twelve city pages, tying each recommendation back to
+  that page's own Day 1/Day 3/etc. content rather than generic advice. Also
+  found and fixed the same suggested-nights/day-blocks mismatch as RN-08 on
+  Athens (3 nights, 2 day blocks) — added a third day (Cape Sounion, or an
+  explicitly open day).
+- **RN-06** — still open. Write the draft itinerary page, framed as "what the
+  split arc would actually look like."
+
+Verified with a clean `jekyll build` and confirmed all twelve city pages
+render a "Where to stay" section.
 
 ### 6. Design (independent, needs a front-end look)
 

@@ -107,6 +107,12 @@ The honest counterpoint: Madrid has no single unmissable landmark. There is no C
 
 </div>
 
+## Where to stay
+
+**Barrio de las Letras**, between Sol and the Prado, sits inside Day 1's art-triangle walk and stays pedestrian and central without feeling as frantic as Sol itself — though the restaurant-heavy streets get loud in the evening.
+
+**Salamanca** is quieter and residential, with wide avenues and good metro coverage, but it's more of a metro-in base than a walk-everywhere one — the Prado, Retiro, and Plaza Mayor cluster is a real trip from here, not a stroll.
+
 ## Eat
 
 - **Cocido madrileño** — a long-simmered chickpea stew served in courses. A winter dish, in season now.
