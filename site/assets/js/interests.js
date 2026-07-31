@@ -15,6 +15,14 @@ const WORD = { unset: '?', yes: 'Yes', no: 'No' };
 let marks = {};
 let rows = [];
 
+// interest_key -> promise for the write currently in flight for that mark.
+// Taps render optimistically and instantly, but the network writes they
+// trigger are chained rather than raced: two taps in quick succession would
+// otherwise each capture the same `previous` state, and a failure handler for
+// the first could revert to a value the second had already moved past,
+// leaving the displayed mark disagreeing with the stored one until reload.
+let pendingWrites = {};
+
 function stateFor(key, person) {
   return (marks[key] && marks[key][person]) || 'unset';
 }
@@ -77,7 +85,7 @@ function showRowError(row, message) {
   row.appendChild(err);
 }
 
-async function cycle(row, key, person) {
+function cycle(row, key, person) {
   const previous = stateFor(key, person);
   const next = CYCLE[(CYCLE.indexOf(previous) + 1) % CYCLE.length];
 
@@ -86,14 +94,32 @@ async function cycle(row, key, person) {
   setLocal(key, person, next);
   renderRow(row);
 
-  try {
-    if (next === 'unset') await clearInterest(key, person);
-    else await setInterest(key, person, next);
-  } catch (e) {
-    setLocal(key, person, previous);
-    renderRow(row);
-    showRowError(row, "Didn't save — try again");
-  }
+  // Chain behind any write already in flight for this mark, so the server
+  // sees the same order the reader tapped.
+  const prior = pendingWrites[key] || Promise.resolve();
+  const write = prior.catch(function () {}).then(function () {
+    // `next` is what this tap intended, and the chain guarantees every earlier
+    // tap has already been sent, so it is safe to send as-is.
+    return next === 'unset' ? clearInterest(key, person) : setInterest(key, person, next);
+  }).catch(function (e) {
+    // Only revert if no later tap has queued behind this one. Otherwise that
+    // tap is about to write and owns what the row should show — reverting here
+    // would drop the display back to a state the server is moving away from,
+    // which is the desync this whole chain exists to prevent.
+    if (pendingWrites[key] === write) {
+      setLocal(key, person, previous);
+      renderRow(row);
+      showRowError(row, "Didn't save — try again");
+    }
+    throw e;
+  });
+
+  // Keep the chain alive for the next tap, then drop it once this mark is
+  // idle so a failed write cannot poison later attempts.
+  pendingWrites[key] = write;
+  write.catch(function () {}).then(function () {
+    if (pendingWrites[key] === write) delete pendingWrites[key];
+  });
 }
 
 export async function initInterests() {
