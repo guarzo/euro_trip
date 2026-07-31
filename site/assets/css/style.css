@@ -1380,12 +1380,6 @@ td strong { font-weight: 800; }
   color: var(--ink);
 }
 
-.identity-choices {
-  display: inline-flex;
-  gap: var(--space-xs);
-  flex-wrap: wrap;
-}
-
 .auth-form {
   display: flex;
   flex-wrap: wrap;
