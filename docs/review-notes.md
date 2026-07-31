@@ -231,4 +231,62 @@ unless something changes.
 
 ## Triage
 
-_Filled in at the end: open findings ordered into work._
+22 findings, ordered into six batches of work. Order matters: batch 1 gates
+batches 4 and 5, and everything else is independent.
+
+### 1. Settle the arc/pace/countries contradiction (gates batches 4–5)
+
+- **RN-13, RN-14.** `which-arc`, `pace`, and `how-many-countries` currently
+  give three recommendations that don't agree with each other (split arc /
+  four bases vs. three-bases-four-nights vs. two countries). Needs an actual
+  decision — probably pace and countries get an explicit carve-out for the
+  split arc, the way countries already carves out the northern arc — before
+  RN-06's itinerary page or RN-07's depth pass can be written without baking
+  in the contradiction.
+
+### 2. Quick content/structure fixes (small, independent, do anytime)
+
+- **RN-03** — drop the "are Bubu and Gaby coming" framing from
+  `what-kids-want.md` and `feedback.md`.
+- **RN-08** — give Rome a fourth day block, or drop it to 3 suggested nights.
+- **RN-09** — decide the map-link pattern: one per card, or one per day. Apply
+  consistently across all eleven pages.
+- **RN-10** — add the missing cross-links where city pages argue against each
+  other (Florence↔Naples, Seville↔Granada, Madrid↔Barcelona).
+- **RN-11** — add a line on the cities hub framing "suggested nights" as
+  per-city, not additive.
+- **RN-12** — move Florence's "most skippable stop" out of the highlights
+  tagline and into the page body.
+- **RN-15** — make the "N cities / M countries" copy on `index.md` and
+  `cities.md` derive from `site.cities` instead of hardcoding; fix
+  `feedback.md`'s hardcoded "Ten decisions" once RN-02 lands.
+- **RN-16** — optional/backlog: no page currently needs this to function;
+  revisit only if question count keeps growing.
+
+### 3. Fact corrections (small, independent)
+
+- **RN-17, RN-18** — correct Athens/Seville/Granada sunset times by ~10 min
+  each.
+- **RN-19, RN-20** — correct Florence, Barcelona, Madrid January highs by
+  ~1 °C each.
+- **RN-21** — soften the Athens winter-ticket-discount claim to acknowledge it
+  may change by 2028/29, rather than stating it as settled fact.
+- **RN-22** — correct the Barcelona↔Paris train time to 6h45–7h typical.
+
+### 4. New candidate content (depends on batch 1 only for tone/consistency, not blocking)
+
+- **RN-04** — write a Venice city page; remove it from `ruled-out.md`.
+- **RN-05** — add Toledo as a day-trip section inside `madrid.md`.
+- **RN-02** — write the new meta question page ("Is winter break the right
+  choice?"), as a peer to the other ten.
+
+### 5. The big content asks (do after batch 1)
+
+- **RN-07** — add depth to every city page.
+- **RN-06** — write the draft itinerary page, framed as "what the split arc
+  would actually look like."
+
+### 6. Design (independent, needs a front-end look)
+
+- **RN-01** — hero images overflow the viewport on desktop. Out of this
+  review's scope to diagnose further, but flagged as a real bug to fix.
