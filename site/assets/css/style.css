@@ -1390,7 +1390,7 @@ td strong { font-weight: 800; }
   font: inherit;
   font-size: 0.9rem;
   padding: 0.3rem 0.6rem;
-  border: 1px solid var(--rule);
+  border: var(--rule);
   background: var(--paper);
   color: var(--ink);
   min-width: 14rem;
