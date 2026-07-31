@@ -131,6 +131,14 @@ function cycle(row, key) {
   // sees the same order the reader tapped.
   const prior = pendingWrites[key] || Promise.resolve();
   const write = prior.catch(function () {}).then(function () {
+    // The session can change while this write sits in the queue — a sign-out
+    // or a switch to another family member. The row's optimistic state
+    // belongs to whoever tapped it, and the database would attribute the
+    // write to whoever holds the session now, so drop it rather than post
+    // one person's opinion under another's name. renderAll() via
+    // onAuthChange has already redrawn the row for the new session.
+    const now = getUser();
+    if (!now || now.id !== me.id) return;
     // `next` is what this tap intended, and the chain guarantees every earlier
     // tap has already been sent, so it is safe to send as-is.
     return next === 'unset' ? clearInterest(key) : setInterest(key, next);
@@ -199,6 +207,20 @@ export async function initInterests() {
     return;
   }
 
-  // Signing in or out re-renders which mark is yours.
-  onAuthChange(renderAll);
+  // Signing in or out re-renders which mark is yours. Re-fetch rather than
+  // just re-render: `marks` may hold optimistic state from the previous
+  // session, including a tap whose write was dropped because the session
+  // changed underneath it. The server is the only authority on what was
+  // actually stored.
+  onAuthChange(function () {
+    getInterests().then(function (data) {
+      marks = {};
+      data.forEach(function (r) { setLocal(r.interest_key, r.user_id, r.state); });
+      renderAll();
+    }).catch(function () {
+      rows.forEach(function (row) {
+        showRowError(row, "Couldn't load marks — reload to try again");
+      });
+    });
+  });
 }

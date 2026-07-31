@@ -45,8 +45,14 @@ function render() {
   if (user && label) label.textContent = personLabel(user.id);
 }
 
+// Two status regions, because render() hides whichever half of the banner
+// does not match the current state: a message written to the signed-out
+// form would be invisible to a signed-in user, which is exactly the case
+// that matters for a failed sign-out.
 function setStatus(message) {
-  const el = banner.querySelector('[data-auth-status]');
+  const el = banner.querySelector(
+    user ? '[data-auth-status-signed-in]' : '[data-auth-status]'
+  );
   if (el) el.textContent = message;
 }
 
