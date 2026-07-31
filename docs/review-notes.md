@@ -21,9 +21,9 @@ audited.
 | RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
 | RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | open |
 | RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | open |
-| RN-04 | Cities / Ruled out | content | med | Add Venice back as a candidate city; remove from ruled-out | open |
-| RN-05 | Cities | content | med | Add Toledo, Spain as a candidate | open |
-| RN-06 | New page | content | high | Draft itinerary page built on the split ("hybrid") arc | open |
+| RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | open |
+| RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | open |
+| RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
 | RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
 
 ---
@@ -54,11 +54,12 @@ audited.
 ### Walkthrough notes
 
 - **RN-04 — put Venice back on the table.** Currently in `ruled-out.md` as "the
-  closest call on this page," on cold, damp, and *acqua alta*. It needs a real
-  city page and removal from ruled-out.
-- **RN-05 — add Toledo, Spain.** Not currently anywhere on the site. Likely a
-  day trip from Madrid rather than a base — worth deciding which the page
-  claims it is.
+  closest call on this page," on cold, damp, and *acqua alta*. **Decided:** it
+  gets a normal city page and comes off ruled-out, but it is not being pushed
+  as a contender — just no longer dismissed.
+- **RN-05 — add Toledo, Spain.** Not currently anywhere on the site.
+  **Decided:** it belongs inside the Madrid page as a day trip, not as its own
+  city page.
 - **RN-07 — add depth to each city page.** The current pages are a claim plus a
   facts table plus a day sketch. Deeper, more specific content would help the
   group actually buy in.
@@ -111,9 +112,10 @@ audited.
 
 - **RN-06 — build a draft itinerary page.** Uses the split arc (option 3 in
   `which-arc`), day by day, deep on each city. The point is persuasion: make
-  the trip concrete enough that people can get on board with it. Note the
-  tension — the site's premise is that nothing is decided, so this page has to
-  read as a *proposal*, not a settled plan.
+  the trip concrete enough that people can get on board with it.
+  **Decided:** frame it as *"what option 3 would actually look like"* — an
+  argument for the recommendation, not a settled plan. That keeps it consistent
+  with the site's premise that nothing is decided.
 
 ### Content findings
 
