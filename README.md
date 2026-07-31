@@ -62,11 +62,18 @@ whether the email exists, and Supabase's own `signInWithOtp` behavior (with
 add a more specific error message here later; it would reopen exactly what
 disabling signups closed.
 
-The built-in mailer is rate-limited to a few messages per hour and is not
-meant for production. Four people logging in once per device sit well inside
-that, but it bites during setup when everyone tests at once — a throttled send
-looks exactly like broken auth. Configuring SMTP is a settings change if it
-becomes a nuisance.
+Mail is sent through **Resend** over custom SMTP, configured in Project
+Settings → Authentication → SMTP Settings. The sender domain is `dpao.la`, so
+magic links arrive from an address the family recognizes rather than from a
+shared provider domain — which matters more than usual for a link people are
+being asked to click.
+
+Supabase's built-in mailer is rate-limited to a few messages per hour and is
+not meant for production; it was hit during setup, where a throttled send looks
+exactly like broken auth. If mail stops arriving, check Resend's Emails tab
+(did it reach Resend at all?) and Supabase's Auth Logs (did Supabase fail to
+hand it over?) — between the two you can tell which side failed. Note that
+Authentication → Rate Limits applies its own cap independently of SMTP.
 
 ## Verifying
 
