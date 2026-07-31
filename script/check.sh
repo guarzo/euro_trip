@@ -61,12 +61,24 @@ assert_file "$SITE_OUT/assets/js/ui.js"
 # string is what the modules read as "Supabase is not set up".
 assert_contains "$SITE_OUT/index.html" "window.SUPABASE_CONFIG"
 assert_contains "$SITE_OUT/cities/athens/index.html" "window.SUPABASE_CONFIG"
-# The roster is defined once, in _config.yml. If this attribute stops being
-# rendered, every identity-dependent feature silently disables itself.
-assert_contains "$SITE_OUT/index.html" "data-identity-banner"
-assert_contains "$SITE_OUT/index.html" '"key":"papa"'
-assert_contains "$SITE_OUT/index.html" '"key":"gaby"'
-assert_file "$SITE_OUT/assets/js/identity.js"
+# The sign-in form is the only way to write. If this markup stops rendering,
+# the site silently becomes read-only.
+assert_contains "$SITE_OUT/index.html" "data-auth-banner"
+assert_contains "$SITE_OUT/index.html" "data-auth-email"
+assert_contains "$SITE_OUT/index.html" "data-auth-signin"
+# The roster is no longer baked into the page — it comes from the profiles
+# table, so the browser cannot be the source of who someone is.
+assert_absent "$SITE_OUT/index.html" '"key":"papa"'
+assert_absent "$SITE_OUT/index.html" "data-identity-banner"
+assert_file "$SITE_OUT/assets/js/auth.js"
+# identity.js is gone; a stale copy in _site would still be served and would
+# still offer the picker.
+if [ -f "$SITE_OUT/assets/js/identity.js" ]; then
+  echo "FAIL  stale $SITE_OUT/assets/js/identity.js still present — clean site/_site"
+  FAIL=1
+else
+  echo "ok    no stale identity.js"
+fi
 assert_file "$SITE_OUT/assets/js/supabase.js"
 assert_file "$SITE_OUT/assets/js/main.js"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"

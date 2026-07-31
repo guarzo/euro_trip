@@ -49,48 +49,84 @@ function db() {
   return clientPromise;
 }
 
-export async function getInterests() {
+export async function getSession() {
+  const { data } = await (await db()).auth.getSession();
+  return data.session;
+}
+
+// shouldCreateUser: false is belt-and-braces. The dashboard's "allow new
+// users to sign up" toggle is the real control, but a setting that lives only
+// in a dashboard is invisible in a diff; this makes the intent reviewable.
+export async function signIn(email, redirectTo) {
+  const { error } = await (await db()).auth.signInWithOtp({
+    email: email,
+    options: { shouldCreateUser: false, emailRedirectTo: redirectTo }
+  });
+  if (error) throw error;
+}
+
+export async function signOut() {
+  const { error } = await (await db()).auth.signOut();
+  if (error) throw error;
+}
+
+export async function onAuthStateChange(fn) {
+  (await db()).auth.onAuthStateChange(function (_event, session) {
+    fn(session ? session.user : null);
+  });
+}
+
+export async function getProfiles() {
   const { data, error } = await (await db())
-    .from('interests')
-    .select('interest_key, person, state');
+    .from('profiles')
+    .select('user_id, name, emoji');
   if (error) throw error;
   return data || [];
 }
 
-export async function setInterest(interestKey, person, state) {
+export async function getInterests() {
+  const { data, error } = await (await db())
+    .from('interests')
+    .select('interest_key, user_id, state');
+  if (error) throw error;
+  return data || [];
+}
+
+// user_id is omitted deliberately: the column defaults to auth.uid(), so the
+// author is whoever holds the session and cannot be spoofed by the caller.
+export async function setInterest(interestKey, state) {
   const { error } = await (await db())
     .from('interests')
     .upsert(
-      { interest_key: interestKey, person: person, state: state, updated_at: new Date().toISOString() },
-      { onConflict: 'interest_key,person' }
+      { interest_key: interestKey, state: state, updated_at: new Date().toISOString() },
+      { onConflict: 'interest_key,user_id' }
     );
   if (error) throw error;
 }
 
-export async function clearInterest(interestKey, person) {
-  // Unset is a row delete, not a stored state, so the table only ever holds
-  // actual opinions.
+// No .eq('user_id', ...) is needed or wanted: the delete policy already scopes
+// this to auth.uid(), so a missing filter deletes only your own row.
+export async function clearInterest(interestKey) {
   const { error } = await (await db())
     .from('interests')
     .delete()
-    .eq('interest_key', interestKey)
-    .eq('person', person);
+    .eq('interest_key', interestKey);
   if (error) throw error;
 }
 
 export async function getComments(pagePath) {
   const { data, error } = await (await db())
     .from('comments')
-    .select('id, person, body, created_at')
+    .select('id, user_id, body, created_at')
     .eq('page_path', pagePath)
     .order('created_at', { ascending: true });
   if (error) throw error;
   return data || [];
 }
 
-export async function addComment(pagePath, person, body) {
+export async function addComment(pagePath, body) {
   const { error } = await (await db())
     .from('comments')
-    .insert({ page_path: pagePath, person: person, body: body });
+    .insert({ page_path: pagePath, body: body });
   if (error) throw error;
 }

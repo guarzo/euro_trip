@@ -1379,6 +1379,28 @@ td strong { font-weight: 800; }
   flex-wrap: wrap;
 }
 
+.auth-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-form input[type="email"] {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  min-width: 14rem;
+}
+
+.auth-status {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
 .identity-choice,
 .identity-switch {
   min-height: 44px;
