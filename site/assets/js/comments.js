@@ -5,9 +5,11 @@
 import { getPerson, onPersonChange, personLabel } from './identity.js';
 import { isConfigured, getComments, addComment } from './supabase.js';
 
-// Mirrors the database CHECK on comments.body. Enforced here too so an
-// over-long note fails as a readable message instead of an opaque
-// constraint violation that looks identical to a network error.
+// Mirrors the database CHECK on comments.body. The textarea's maxlength
+// already caps typed input, so this guard only catches paths that bypass it
+// (paste handling differences, autofill, a future caller). It exists so an
+// over-long note fails as a readable message rather than an opaque
+// constraint violation indistinguishable from a network error.
 const MAX_BODY = 2000;
 
 let section = null;
@@ -83,14 +85,20 @@ async function reload() {
 
 async function onSubmit(e) {
   e.preventDefault();
-  const me = getPerson();
-  const body = bodyEl.value.trim();
-  if (!me || body === '') return;
 
   const submit = form.querySelector('.comment-submit');
   // Re-entry guard: a double-tap on a touch device would otherwise fire two
   // posts of the same text before the first disabled the button.
   if (submit.disabled) return;
+
+  // Clear any message left by a previous attempt before deciding anything, so
+  // a stale "Didn't post" cannot outlive the text it referred to — including
+  // on the empty-body path below, where we return without posting.
+  statusEl.textContent = '';
+
+  const me = getPerson();
+  const body = bodyEl.value.trim();
+  if (!me || body === '') return;
 
   if (body.length > MAX_BODY) {
     statusEl.textContent = 'Too long — ' + body.length + ' of ' + MAX_BODY + ' characters.';
