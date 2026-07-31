@@ -26,6 +26,33 @@ bundle exec jekyll serve
 # http://localhost:4000
 ```
 
+## Supabase setup
+
+Comments and interest marks require a Supabase project. `supabase/schema.sql`
+is applied by hand in the SQL editor — there is no migration tooling.
+
+Auth is magic-link only, for four known addresses:
+
+1. Authentication → Providers → Email: enabled, with **"Allow new users to
+   sign up" disabled**. This is what stops a stranger who guesses the URL from
+   creating an account. It lives only in the dashboard, so no test can catch
+   it being wrong — check it by hand.
+2. Authentication → Users → Add user, four times, email only, "Auto Confirm
+   User" checked.
+3. Insert a matching row in `profiles` for each, with name and emoji.
+4. Authentication → URL Configuration: allow `https://eu.dpao.la/**` and
+   `http://localhost:4000/**`.
+
+Disabling signups blocks user *creation*, not link delivery. Each person types
+their own address into the site's sign-in form and Supabase mails them a link.
+Nobody hands out links by hand.
+
+The built-in mailer is rate-limited to a few messages per hour and is not
+meant for production. Four people logging in once per device sit well inside
+that, but it bites during setup when everyone tests at once — a throttled send
+looks exactly like broken auth. Configuring SMTP is a settings change if it
+becomes a nuisance.
+
 ## Verifying
 
 One command builds the site and asserts every expected page exists, contains its
@@ -77,87 +104,6 @@ The custom domain requires:
   absent from `_config.yml`'s `exclude:` list; `check.sh` asserts
   `_site/CNAME` exists so an `exclude:` edit cannot silently unpublish it.
 - The domain set under Settings → Pages → Custom domain.
-
-## Enabling comments and shared marks
-
-Both features are backed by one Supabase project. The site builds and deploys
-fine without it — while `supabase.url` is empty, the interest rows and comment
-threads render a short placeholder note instead.
-
-1. Create a project at [supabase.com](https://supabase.com).
-2. Open the SQL editor and run `supabase/schema.sql` from this repo. It creates
-   both tables, the constraints, and the RLS policies.
-3. From Project Settings → API, copy the **Project URL** and the **anon public**
-   key.
-4. Paste them into the `supabase:` block in `site/_config.yml`.
-5. Commit and push.
-
-The anon key is meant to be public and ships in the page — that is what it is
-designed for. The `CHECK` constraints and the comment length limit are the real
-guardrails.
-
-**Accepted risk:** the site is public, so anyone who finds it could pick a name
-and post as that person. The audience is four people who live together, and the
-remedy is deleting rows from the SQL console. This was a deliberate trade
-against making everyone hold an account.
-
-Comments cannot be edited or deleted from the browser by design. To remove one:
-
-```sql
-delete from comments where id = '<uuid>';
-```
-
-## Verifying the shared features
-
-`script/check.sh` asserts the markup is present but cannot exercise Supabase.
-After changing anything under `site/assets/js/` or the Supabase config, run
-these five steps by hand:
-
-1. Open the site, pick a name in the header banner, and confirm the toggles
-   and comment form become active.
-2. On a city page, tap your mark until it reads ★.
-3. Open the same page in a different browser (or a private window), pick a
-   *different* name, and confirm the first person's ★ is visible.
-4. Open `/cities/` and confirm that city shows the same ★ there. This is what
-   the `interest_key` schema exists for — the index and the city page are two
-   views of one mark.
-5. Post a comment, reload, and confirm it survives. Then clear your mark and
-   confirm it disappears in both browsers and on the index.
-
-### Failure paths
-
-The five steps above only prove the happy path. These cover the behaviors that
-are easy to break silently, because nothing renders differently until they are
-provoked. Each has been verified at least once; re-run the relevant ones after
-touching `supabase.js`, `interests.js`, or `comments.js`.
-
-6. **CDN unreachable.** Block `esm.sh` (DevTools → Network → block request
-   domain) and reload. Nav, smooth scroll, the slam animation, and the identity
-   picker must all still work, with no uncaught exceptions in the console. This
-   is why the Supabase client is a dynamic `import()` — a static one would take
-   the whole module graph down with it.
-7. **No in-session CDN recovery.** With `esm.sh` still blocked, marks and notes
-   report a load failure. Unblock it and interact again *without reloading*:
-   they stay failed. That is expected — the browser caches a failed module
-   resolution against its URL for the life of the page, so the retry never hits
-   the network. A reload fixes it. If you ever want true in-session recovery,
-   it needs a cache-busted URL; that was deliberately not done.
-8. **Failed write on a mark.** With the network throttled to offline, tap your
-   mark. It must snap back to its previous state and show "Didn't save — try
-   again" — and that message must survive, since it lives in a live region
-   outside the row rather than inside the part that gets re-rendered.
-9. **Rapid repeated taps.** Tap one mark four times fast. The mark shown must
-   match what is stored — reload and confirm it did not change. Writes are
-   chained per mark precisely so a double-tap cannot strand a stale value; this
-   is the check that catches a regression there.
-10. **Failed comment post.** Offline again, post a note. It must report
-    "Didn't post — try again" *and leave your text in the box*. Clear the box
-    and submit: the stale error must disappear rather than linger.
-11. **Identity spoofing is possible by design.** In the console, run
-    `localStorage.setItem('euro-trip-person','papa')` and reload — you are now
-    posting as Papa. This is the accepted trade against making everyone hold an
-    account. The database `CHECK` bounds it to the four real names, so a made-up
-    name is rejected; the remedy for a bad row is the SQL console.
 
 ## Structure
 
