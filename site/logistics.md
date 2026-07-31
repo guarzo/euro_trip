@@ -66,7 +66,7 @@ permalink: /logistics/
 
 </div>
 
-<p>Greece has no useful rail link to the rest of Europe, and Italy to Spain is a sea crossing — those legs are flights regardless of preference. Barcelona &rarr; Paris is the exception: a direct train exists at ~6h45, which is a real option rather than a fallback. See <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for that trade-off.</p>
+<p>Greece has no useful rail link to the rest of Europe, and Rome to Barcelona by rail means several changes up through France and the better part of a day — those legs are flights regardless of preference. Barcelona &rarr; Paris is the exception: a direct train exists at ~6h45, which is a real option rather than a fallback. See <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for that trade-off.</p>
 
 <h2 class="section-heading">✈️ Getting there and home</h2>
 

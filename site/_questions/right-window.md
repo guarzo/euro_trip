@@ -37,4 +37,4 @@ The honest case for winter is that it was chosen for a reason before this site e
 
 - **If the 2028/29 school calendar makes winter break unusually short** — everything here assumes something like the usual two-to-three-week window. If it's cut down, revisit this before anything else.
 - **If summer becomes genuinely open** — no camp, no job, no conflicting plans — the weather argument for summer is real and would justify rebuilding this site's recommendations from scratch rather than patching them.
-- **If Bubu or Gaby would rather skip a long trip during the school year entirely** — see [What do Bubu and Gaby want?]({{ '/questions/what-kids-want/' | relative_url }})
+- **If Bubu or Gaby would rather skip a long trip during the school year entirely** — that objection belongs on this page, in the comments below. [What do Bubu and Gaby want?]({{ '/questions/what-kids-want/' | relative_url }}) assumes the trip is happening and asks what they want out of it; it does not ask whether the window is right.

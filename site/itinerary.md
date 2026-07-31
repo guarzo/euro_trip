@@ -36,23 +36,33 @@ permalink: /itinerary/
 
 <h2 class="section-heading">The calendar</h2>
 
+{%- comment -%}
+  The URLs are resolved before the table rather than inline: a `|` inside a
+  Liquid filter reads as a cell separator to Markdown linters (MD056), even
+  though Liquid resolves it away before kramdown ever parses the row.
+{%- endcomment -%}
+{%- assign rome_url = '/cities/rome/' | relative_url -%}
+{%- assign barcelona_url = '/cities/barcelona/' | relative_url -%}
+{%- assign paris_url = '/cities/paris/' | relative_url -%}
+{%- assign london_url = '/cities/london/' | relative_url -%}
+
 <div class="table-wrapper" markdown="1">
 
 | Days | City | What | Getting there |
 |---|---|---|---|
 | 1 | Rome | Arrive (transatlantic), settle in | — |
-| 2–4 | Rome | Ancient Rome, Vatican, centro storico, Appian Way / open day — see [Rome's day sketch]({{ '/cities/rome/' | relative_url }}) | — |
+| 2–4 | Rome | Ancient Rome, Vatican, centro storico, Appian Way / open day — see [Rome's day sketch]({{ rome_url }}) | — |
 | 5 | Rome → Barcelona | Fly Rome → Barcelona, arrive evening | ~2h flight |
-| 6–7 | Barcelona | Sagrada Família, Gothic Quarter, Montjuïc — see [Barcelona's day sketch]({{ '/cities/barcelona/' | relative_url }}) | — |
+| 6–7 | Barcelona | Sagrada Família, Gothic Quarter, Montjuïc — see [Barcelona's day sketch]({{ barcelona_url }}) | — |
 | 8 | Paris | Barcelona → Paris, arrive evening | ~2h flight, or 6h45 direct train |
-| 9–10 | Paris | Louvre, Orsay, Sainte-Chapelle, Le Marais — see [Paris's day sketch]({{ '/cities/paris/' | relative_url }}) | — |
+| 9–10 | Paris | Louvre, Orsay, Sainte-Chapelle, Le Marais — see [Paris's day sketch]({{ paris_url }}) | — |
 | 11 | London | Paris → London, arrive same afternoon | 2h20 Eurostar |
-| 12–14 | London | Westminster, British Museum, Tower, museums — see [London's day sketch]({{ '/cities/london/' | relative_url }}) | — |
+| 12–14 | London | Westminster, British Museum, Tower, museums — see [London's day sketch]({{ london_url }}) | — |
 | 15 | — | Fly home | Transatlantic |
 
 </div>
 
-<p>The two intra-European legs worth a second look: <strong>Rome→Barcelona</strong> is a flight because there is no useful rail across that stretch of the Mediterranean (see <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a>). <strong>Barcelona→Paris</strong> is the one genuine judgment call on the whole route — 6h45 by direct train, or about 2 hours in the air. This draft assumes the flight to protect a full day in Barcelona; taking the train instead is a real option and would mean losing half a day somewhere to make room for it.</p>
+<p>The two intra-European legs worth a second look: <strong>Rome→Barcelona</strong> is a flight because rail between Italy and Spain means routing up through France with several changes (see <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a>). <strong>Barcelona→Paris</strong> is the one genuine judgment call on the whole route — 6h45 by direct train, or about 2 hours in the air. This draft assumes the flight to protect a full day in Barcelona; taking the train instead is a real option and would mean losing half a day somewhere to make room for it.</p>
 
 <h2 class="section-heading">What this costs, plainly</h2>
 

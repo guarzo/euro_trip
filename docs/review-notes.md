@@ -364,3 +364,70 @@ in the nav.
   Out of this review's scope to diagnose, so it was handed off and landed on
   `main` in its own PR (#4, "desktop hero photos crop into a panoramic
   sliver") before this branch was rebased.
+
+---
+
+## Code review round (PR #5)
+
+Findings raised in review of this branch rather than by the walkthrough
+above. Numbered `CR-nn` to keep them separate from the `RN` sweep.
+
+### Corrections to this branch's own new content
+
+- **CR-01 — fixed.** `script/check.sh` still asserted the Ruled Out page
+  contains "Venice", which RN-04 deliberately removed. Inverted, and Venice
+  and `right-window` added to the city and question loops they were missing
+  from. Also added a `Where to stay` assertion so a missing section on any
+  city fails the build.
+- **CR-02 — fixed.** The homepage daylight strip claims to publish the
+  Logistics figures but still carried the pre-correction values for Seville,
+  Granada, **and Athens** — RN-17's correction had been applied to the city
+  page and Logistics but not here. All three corrected and the bars rescaled
+  against the new 6:10 PM top.
+- **CR-03 — fixed.** Venice was missing from the Logistics climate table and
+  the homepage daylight strip; both listed the eleven pre-Venice cities.
+- **CR-04 — fixed.** Florence claimed "the coldest in Italy on this list",
+  which stopped being true the moment Venice (~7 °C) was added.
+- **CR-05 — fixed.** `right-window.md` sent readers to `what-kids-want` for
+  the "would rather skip a long trip" decision, but RN-03 had just removed
+  that framing from the target page. The link now says what that page
+  actually covers and keeps the timing objection here.
+- **CR-06 — fixed.** The itinerary table's Liquid `relative_url` filters ran
+  inside table cells, where the `|` reads as a cell separator to Markdown
+  linters. Hoisted to `assign` statements above the table; the rendered
+  output is unchanged.
+
+### Unsourced or overstated claims (mostly pre-existing)
+
+- **CR-07 — fixed.** "Where to stay" carried unsourced safety verdicts on six
+  pages (Seville, Barcelona, Naples, Paris, Florence, Athens). Replaced with
+  observable guidance — foot traffic, lighting, noise, distance — rather than
+  a safe/unsafe judgment the site cannot source.
+- **CR-08 — fixed.** Bounded three distance claims that depended on the exact
+  address: Gràcia → Park Güell (uphill), the Albaicín → Alhambra entrance
+  (opposite hill, not "five to ten minutes"), and Toledo's Cristo de la Luz,
+  which is about a kilometer from the two synagogues rather than "a block".
+- **CR-09 — fixed.** Naples' "Centro Storico, near Piazza del Plebiscito"
+  named two different areas; re-anchored on Spaccanapoli and Piazza Dante.
+- **CR-10 — fixed.** Rome's Appian Way card said "no timed ticket", which is
+  true of the road and false of the catacombs — those are guided-tour only,
+  with their own hours and closing days. Separated the two.
+- **CR-11 — fixed.** Rome's Trastevere base claimed a tram direct to the
+  Colosseum and Termini. Line 8 runs to Piazza Venezia and has been
+  bus-replaced for track works; the claim is now that public transport
+  connects it and the routes are worth checking.
+- **CR-12 — fixed.** "Italy to Spain is a sea crossing" (Logistics,
+  `trains-vs-flights`, `itinerary`) was the wrong reason for the right
+  conclusion. Rail exists, routed up through France with several changes and
+  most of a day gone. The conclusion — fly it — is unchanged.
+
+### Rejected
+
+- **CR-13 — no change.** Review flagged the "6h45 direct train"
+  Barcelona↔Paris claim as unverifiable, on the grounds that no direct
+  service currently runs. That conflates two things: Renfe suspended its
+  *own planned* Barcelona–Paris high-speed service in April 2026 over
+  French certification delays, but SNCF's TGV INOUI direct service is
+  separate and still runs, roughly twice daily at about 6h45. The claim
+  stands. It remains worth re-checking closer to booking, since 2028/29
+  timetables are not published.
