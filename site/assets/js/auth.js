@@ -50,6 +50,38 @@ function setStatus(message) {
   if (el) el.textContent = message;
 }
 
+// Supabase reports a failed magic-link redirect (expired, already used,
+// tampered) as error params in the URL FRAGMENT, e.g.
+// "#error=access_denied&error_code=otp_expired&error_description=...". A
+// *successful* redirect also arrives via the fragment (access_token /
+// refresh_token), which the Supabase client itself consumes to establish the
+// session — this function only ever acts on the error keys, so it cannot
+// interfere with that path. See the call site in initAuth() for why it is
+// safe to run after getSession() has resolved.
+function consumeAuthErrorFromHash() {
+  const hash = window.location.hash;
+  if (!hash || hash.length < 2) return;
+
+  const params = new URLSearchParams(hash.slice(1));
+  const errorCode = params.get('error_code');
+  if (!params.get('error') && !errorCode) return;
+
+  // Never render error_description: it arrives in the URL, so a crafted link
+  // could put arbitrary attacker-chosen wording in front of a family member.
+  // Map to our own copy instead — setStatus() uses textContent, so this is a
+  // social-engineering precaution, not an injection one.
+  setStatus(
+    errorCode === 'otp_expired'
+      ? 'That link expired — request a new one below.'
+      : "That sign-in link didn't work — request a new one below."
+  );
+
+  // Drop the fragment so a reload doesn't re-show a stale error.
+  // replaceState, not location.hash = '', so this doesn't add a history entry
+  // or trigger a scroll jump.
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
 async function onSubmit(e) {
   e.preventDefault();
 
@@ -121,6 +153,18 @@ export async function initAuth() {
   } catch (e) {
     user = null;
   }
+
+  // Runs after getSession() has resolved: supabase-js's client detects a
+  // session in the URL (the success case: access_token/refresh_token) as
+  // part of its own initialization, which happens no later than the first
+  // call into the client — awaiting db() inside getSession() above is that
+  // first call. By the time we're here, the client has already had its
+  // chance to consume a success fragment, so inspecting/clearing the hash
+  // now cannot race or interfere with it. This function only acts when the
+  // fragment carries error params, which the client does not consume, so
+  // even if that reasoning were wrong for some edge case, the success path
+  // is untouched by construction.
+  consumeAuthErrorFromHash();
   render();
 
   try {
