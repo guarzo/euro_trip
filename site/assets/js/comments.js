@@ -2,7 +2,7 @@
 // deleted from the browser — that is a SQL console job, which is the right
 // level of friction for four people who live together.
 
-import { getPerson, onPersonChange, personLabel } from './identity.js';
+import { getUser, onAuthChange, personLabel } from './auth.js';
 import { isConfigured, getComments, addComment } from './supabase.js';
 
 // Mirrors the database CHECK on comments.body. The textarea's maxlength
@@ -47,7 +47,7 @@ function renderThread(comments) {
 
     const meta = document.createElement('p');
     meta.className = 'comment-meta';
-    meta.textContent = personLabel(c.person) + ' · ' + formatDate(c.created_at);
+    meta.textContent = personLabel(c.user_id) + ' · ' + formatDate(c.created_at);
 
     const body = document.createElement('p');
     body.className = 'comment-body';
@@ -62,7 +62,7 @@ function renderThread(comments) {
 }
 
 function renderFormVisibility() {
-  const me = getPerson();
+  const me = getUser();
   form.hidden = me === null;
   lockedEl.hidden = me !== null;
 }
@@ -96,7 +96,7 @@ async function onSubmit(e) {
   // on the empty-body path below, where we return without posting.
   statusEl.textContent = '';
 
-  const me = getPerson();
+  const me = getUser();
   const body = bodyEl.value.trim();
   if (!me || body === '') return;
 
@@ -109,7 +109,7 @@ async function onSubmit(e) {
   statusEl.textContent = 'Posting…';
 
   try {
-    await addComment(pagePath, me, body);
+    await addComment(pagePath, body);
     bodyEl.value = '';
     statusEl.textContent = '';
     await reload();
@@ -132,6 +132,12 @@ export async function initComments() {
   lockedEl = section.querySelector('[data-comment-locked]');
   pagePath = section.dataset.pagePath || window.location.pathname;
 
+  // Fail closed if the template has drifted from these selectors, the same
+  // trap auth.js's initAuth() guards against: dereferencing a missing
+  // element here would throw and initComments() would never finish setting
+  // up the thread.
+  if (!thread || !form || !bodyEl || !statusEl || !lockedEl) return;
+
   if (!isConfigured()) {
     showThreadMessage('Notes turn on once Supabase is configured.');
     lockedEl.hidden = true;
@@ -140,7 +146,7 @@ export async function initComments() {
 
   showThreadMessage('Loading notes…');
   renderFormVisibility();
-  onPersonChange(renderFormVisibility);
+  onAuthChange(renderFormVisibility);
   form.addEventListener('submit', onSubmit);
 
   await reload();

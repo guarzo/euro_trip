@@ -97,6 +97,13 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* JS modules show/hide elements by toggling the `hidden` attribute. Any
+   component rule that declares `display` on the same element (e.g. a
+   flex/grid layout) overrides the UA default `display: none` for `[hidden]`
+   and silently defeats it — the element stays visible no matter what the JS
+   sets. This keeps `hidden` authoritative everywhere in the document. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -1373,10 +1380,26 @@ td strong { font-weight: 800; }
   color: var(--ink);
 }
 
-.identity-choices {
-  display: inline-flex;
-  gap: var(--space-xs);
+.auth-form {
+  display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-form input[type="email"] {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  border: var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  min-width: 14rem;
+}
+
+.auth-status {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
 }
 
 .identity-choice,

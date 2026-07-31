@@ -2,7 +2,7 @@
 // both the city page and the cities index, because both key on the same
 // interest_key rather than on the page they appear on.
 
-import { getPerson, onPersonChange, PEOPLE } from './identity.js';
+import { getUser, onAuthChange, PEOPLE } from './auth.js';
 import { isConfigured, getInterests, setInterest, clearInterest } from './supabase.js';
 
 const CYCLE = ['unset', 'yes', 'no'];
@@ -11,7 +11,7 @@ const MARK = { unset: '—', yes: '★', no: '✕' };
 // so every stamp ships a word too. Names are short enough to sit inline.
 const WORD = { unset: '?', yes: 'Yes', no: 'No' };
 
-// interest_key -> { person -> state }
+// interest_key -> { userId -> state }
 let marks = {};
 let rows = [];
 
@@ -23,24 +23,25 @@ let rows = [];
 // leaving the displayed mark disagreeing with the stored one until reload.
 let pendingWrites = {};
 
-function stateFor(key, person) {
-  return (marks[key] && marks[key][person]) || 'unset';
+function stateFor(key, userId) {
+  return (marks[key] && marks[key][userId]) || 'unset';
 }
 
-function setLocal(key, person, state) {
+function setLocal(key, userId, state) {
   if (!marks[key]) marks[key] = {};
-  if (state === 'unset') delete marks[key][person];
-  else marks[key][person] = state;
+  if (state === 'unset') delete marks[key][userId];
+  else marks[key][userId] = state;
 }
 
 function renderRow(row) {
   const key = row.dataset.interestKey;
-  const me = getPerson();
+  const me = getUser();
+  const myId = me ? me.id : null;
   row.textContent = '';
 
   PEOPLE.forEach(function (person) {
-    const state = stateFor(key, person.key);
-    const isMe = person.key === me;
+    const state = stateFor(key, person.user_id);
+    const isMe = person.user_id === myId;
 
     const el = document.createElement(isMe ? 'button' : 'span');
     el.className = 'interest-mark' + (isMe ? ' is-me' : '');
@@ -55,7 +56,7 @@ function renderRow(row) {
       // screen reader cannot tell "not marked" from "explicitly not interested".
       el.setAttribute('aria-pressed', state === 'yes' ? 'true' : (state === 'no' ? 'mixed' : 'false'));
       el.setAttribute('aria-label', 'Your mark, currently ' + state + '. Activate to change.');
-      el.addEventListener('click', function () { cycle(row, key, person.key); });
+      el.addEventListener('click', function () { cycle(row, key); });
     } else {
       // A span carries no accessible name of its own, and the visible text is
       // abbreviated, so state the whole thing for assistive tech.
@@ -66,10 +67,10 @@ function renderRow(row) {
     row.appendChild(el);
   });
 
-  if (!me) {
+  if (!myId) {
     const hint = document.createElement('span');
     hint.className = 'interest-hint';
-    hint.textContent = 'Pick who you are to join in';
+    hint.textContent = 'Sign in to join in';
     row.appendChild(hint);
   }
 }
@@ -109,13 +110,18 @@ function showRowError(row, message) {
   setRowStatus(row, message, true);
 }
 
-function cycle(row, key, person) {
-  const previous = stateFor(key, person);
+function cycle(row, key) {
+  const me = getUser();
+  // Only the signed-in person's mark renders as a button, so this is a
+  // belt-and-braces guard against a stale listener firing after sign-out.
+  if (!me) return;
+
+  const previous = stateFor(key, me.id);
   const next = CYCLE[(CYCLE.indexOf(previous) + 1) % CYCLE.length];
 
   // Optimistic: render immediately, revert if the write fails. A star that
   // was never saved is worse than a slow one.
-  setLocal(key, person, next);
+  setLocal(key, me.id, next);
   renderRow(row);
   // Clear any error from a previous attempt: the row now shows this tap's
   // state, so a stale "Didn't save" would be describing something else.
@@ -125,16 +131,24 @@ function cycle(row, key, person) {
   // sees the same order the reader tapped.
   const prior = pendingWrites[key] || Promise.resolve();
   const write = prior.catch(function () {}).then(function () {
+    // The session can change while this write sits in the queue — a sign-out
+    // or a switch to another family member. The row's optimistic state
+    // belongs to whoever tapped it, and the database would attribute the
+    // write to whoever holds the session now, so drop it rather than post
+    // one person's opinion under another's name. renderAll() via
+    // onAuthChange has already redrawn the row for the new session.
+    const now = getUser();
+    if (!now || now.id !== me.id) return;
     // `next` is what this tap intended, and the chain guarantees every earlier
     // tap has already been sent, so it is safe to send as-is.
-    return next === 'unset' ? clearInterest(key, person) : setInterest(key, person, next);
+    return next === 'unset' ? clearInterest(key) : setInterest(key, next);
   }).catch(function (e) {
     // Only revert if no later tap has queued behind this one. Otherwise that
     // tap is about to write and owns what the row should show — reverting here
     // would drop the display back to a state the server is moving away from,
     // which is the desync this whole chain exists to prevent.
     if (pendingWrites[key] === write) {
-      setLocal(key, person, previous);
+      setLocal(key, me.id, previous);
       renderRow(row);
       showRowError(row, "Didn't save — try again");
     }
@@ -172,7 +186,17 @@ export async function initInterests() {
   try {
     const data = await getInterests();
     marks = {};
-    data.forEach(function (r) { setLocal(r.interest_key, r.person, r.state); });
+    data.forEach(function (r) { setLocal(r.interest_key, r.user_id, r.state); });
+    if (PEOPLE.length === 0) {
+      // The profiles fetch in auth.js failed, so there is no roster to
+      // render marks against — an empty row would look like a rendering
+      // glitch rather than a fetch failure, including for a signed-in user.
+      rows.forEach(function (row) {
+        row.textContent = '';
+        showRowError(row, "Couldn't load marks — reload to try again");
+      });
+      return;
+    }
     renderAll();
     rows.forEach(function (row) { setRowStatus(row, '', false); });
   } catch (e) {
@@ -183,6 +207,20 @@ export async function initInterests() {
     return;
   }
 
-  // Switching identity re-renders which button is yours.
-  onPersonChange(renderAll);
+  // Signing in or out re-renders which mark is yours. Re-fetch rather than
+  // just re-render: `marks` may hold optimistic state from the previous
+  // session, including a tap whose write was dropped because the session
+  // changed underneath it. The server is the only authority on what was
+  // actually stored.
+  onAuthChange(function () {
+    getInterests().then(function (data) {
+      marks = {};
+      data.forEach(function (r) { setLocal(r.interest_key, r.user_id, r.state); });
+      renderAll();
+    }).catch(function () {
+      rows.forEach(function (row) {
+        showRowError(row, "Couldn't load marks — reload to try again");
+      });
+    });
+  });
 }

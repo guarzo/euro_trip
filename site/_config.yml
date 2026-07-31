@@ -7,18 +7,6 @@ url: "https://eu.dpao.la"
 trip_season: "Winter break 2028/29"
 trip_length_target: "~2 weeks"
 
-family_members:
-  - name: "Papa"
-    emoji: "👨"
-  - name: "Mama"
-    emoji: "👩"
-  - name: "Bubu"
-    emoji: "👦"
-    age: 18
-  - name: "Gaby"
-    emoji: "👧"
-    age: 17
-
 # Supabase backs the shared interest marks and comment threads. Both values
 # are public by design — the anon key is meant to ship in the client. Fill
 # them in after creating the project and applying supabase/schema.sql.

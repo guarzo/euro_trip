@@ -1,18 +1,19 @@
 {%- comment -%}
-  The roster lives in _config.yml's family_members and is handed to JS as
-  JSON here, so the four names are defined in exactly one place. The stored
-  key is the lowercased display name; the name and emoji are for display.
+  The roster used to be handed to JS as JSON here. It now comes from the
+  profiles table, because a list of who may post that ships in the page is a
+  list the page can edit.
 {%- endcomment -%}
-{%- capture people_json -%}
-[{% for m in site.family_members %}{"key":{{ m.name | downcase | jsonify }},"name":{{ m.name | jsonify }},"emoji":{{ m.emoji | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
-{%- endcapture -%}
-<div class="identity-banner" data-identity-banner data-people='{{ people_json | strip }}' hidden>
-  <div class="identity-picker" data-identity-picker>
-    <span class="identity-prompt">Who's this?</span>
-    <span class="identity-choices" data-identity-choices></span>
-  </div>
-  <div class="identity-current" data-identity-current aria-live="polite" hidden>
-    <span data-identity-label></span>
-    <button type="button" class="identity-switch" data-identity-switch>not you?</button>
+<div class="identity-banner" data-auth-banner hidden>
+  <form class="auth-form" data-auth-form>
+    <label class="visually-hidden" for="auth-email">Your email</label>
+    <input type="email" id="auth-email" data-auth-email required
+           autocomplete="email" placeholder="you@example.com">
+    <button type="submit" class="identity-choice" data-auth-signin>Send me a link</button>
+    <span class="auth-status" data-auth-status role="status" aria-live="polite"></span>
+  </form>
+  <div class="identity-current" data-auth-current aria-live="polite" hidden>
+    <span data-auth-label></span>
+    <button type="button" class="identity-switch" data-auth-signout>sign out</button>
+    <span class="auth-status" data-auth-status-signed-in role="status" aria-live="polite"></span>
   </div>
 </div>
