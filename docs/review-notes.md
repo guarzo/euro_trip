@@ -34,12 +34,12 @@ audited.
 | RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | fixed |
 | RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | fixed |
 | RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
-| RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | open |
-| RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | open |
-| RN-19 | Florence | content | low | January high claimed ~10 °C, actually ~11.2 °C | open |
-| RN-20 | Barcelona / Madrid | content | low | January highs off by ~1 °C each (Barcelona 15→14, Madrid 11→10) | open |
-| RN-21 | Athens | content | med | Winter reduced-rate archaeological ticket claim may be outdated — sources conflict on whether the discount still exists | open |
-| RN-22 | Barcelona / Paris | content | low | Barcelona↔Paris train claimed ~6h30, typical journey is closer to 6h45–7h | open |
+| RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | fixed |
+| RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | fixed |
+| RN-19 | Florence | content | low | January high claimed ~10 °C, actually ~11.2 °C | fixed |
+| RN-20 | Barcelona / Madrid | content | low | January highs off by ~1 °C each (Barcelona 15→14, Madrid 11→10) | fixed |
+| RN-21 | Athens | content | med | Winter reduced-rate archaeological ticket claim may be outdated — sources conflict on whether the discount still exists | fixed |
+| RN-22 | Barcelona / Paris | content | low | Barcelona↔Paris train claimed ~6h30, typical journey is closer to 6h45–7h | fixed |
 
 ---
 
@@ -275,15 +275,29 @@ batches 4 and 5, and everything else is independent.
 Verified with a clean `jekyll build` and spot-checked rendered output
 (dynamic counts render correctly, Rome shows 4 day blocks).
 
-### 3. Fact corrections (small, independent)
+### 3. Fact corrections — done
 
-- **RN-17, RN-18** — correct Athens/Seville/Granada sunset times by ~10 min
-  each.
-- **RN-19, RN-20** — correct Florence, Barcelona, Madrid January highs by
-  ~1 °C each.
-- **RN-21** — soften the Athens winter-ticket-discount claim to acknowledge it
-  may change by 2028/29, rather than stating it as settled fact.
-- **RN-22** — correct the Barcelona↔Paris train time to 6h45–7h typical.
+- **RN-17 — fixed.** Athens sunset corrected to ~5:10 PM (from ~5:20 PM) in
+  `_cities/athens.md` (both mentions) and `logistics.md`; the "fifty minutes
+  later than Amsterdam" comparison recalculated to "forty."
+- **RN-18 — fixed.** Seville sunset corrected to ~6:10 PM, Granada to ~6:05 PM
+  (both were ~6:00 PM), in the respective city pages (both mentions each) and
+  `logistics.md`.
+- **RN-19, RN-20 — fixed.** Florence 10→11 °C, Barcelona 15→14 °C, Madrid
+  11→10 °C, in each city page and `logistics.md`. This flips Florence and
+  Madrid's relative order in the logistics climate table (Florence is now
+  warmer than Madrid) — reordered the table to match. Florence's "coldest in
+  Italy on this list" claim still holds at 11 °C.
+- **RN-21 — fixed.** Athens's winter-ticket-discount claim now says the
+  reduced rate has "historically" applied and flags that pricing has been in
+  flux, rather than stating the discount as settled fact.
+- **RN-22 — fixed.** Barcelona↔Paris train time corrected from ~6h30 to
+  ~6h45 in all four mentions (`_cities/barcelona.md`, `_cities/paris.md`,
+  `trains-vs-flights.md`, `logistics.md`).
+
+Verified with a clean `jekyll build`; the "Seville gets more than two extra
+hours than London" comparison in `logistics.md` still holds against the
+corrected sunset times (2h17m).
 
 ### 4. New candidate content (depends on batch 1 only for tone/consistency, not blocking)
 

@@ -62,7 +62,7 @@ permalink: /logistics/
 | Athens → Barcelona | ~3h |
 | Athens → London | ~3h30 |
 | Rome → Barcelona | ~2h |
-| Barcelona → Paris | ~2h (or ~6h30 by train) |
+| Barcelona → Paris | ~2h (or ~6h45 by train) |
 
 </div>
 
@@ -93,14 +93,14 @@ permalink: /logistics/
 
 | City | January high | Sunset in late December |
 |---|---|---|
-| Seville | ~16 °C / 61 °F | ~6:00 PM |
-| Barcelona | ~15 °C / 59 °F | ~5:30 PM |
-| Athens | ~13 °C / 55 °F | ~5:20 PM |
+| Seville | ~16 °C / 61 °F | ~6:10 PM |
+| Barcelona | ~14 °C / 57 °F | ~5:30 PM |
+| Athens | ~13 °C / 55 °F | ~5:10 PM |
 | Naples | ~13 °C / 55 °F | ~4:45 PM |
-| Granada | ~12 °C / 54 °F | ~6:00 PM |
+| Granada | ~12 °C / 54 °F | ~6:05 PM |
 | Rome | ~12 °C / 54 °F | ~4:40 PM |
-| Madrid | ~11 °C / 52 °F | ~5:55 PM |
-| Florence | ~10 °C / 50 °F | ~4:45 PM |
+| Florence | ~11 °C / 52 °F | ~4:45 PM |
+| Madrid | ~10 °C / 50 °F | ~5:55 PM |
 | London | ~8 °C / 47 °F | ~3:53 PM |
 | Paris | ~7 °C / 45 °F | ~4:55 PM |
 | Amsterdam | ~6 °C / 43 °F | ~4:29 PM |

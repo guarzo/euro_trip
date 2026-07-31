@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are around 10&nbsp;°C (50&nbsp;°F) — the coldest in Italy on this list — and it is damp and grey more often than not. Florence sits in a river basin ringed by hills, which traps the chill and the fog.
+January highs are around 11&nbsp;°C (52&nbsp;°F) — the coldest in Italy on this list — and it is damp and grey more often than not. Florence sits in a river basin ringed by hills, which traps the chill and the fog.
 
 The compensation is specific and large: the Uffizi and the Accademia in January are a different experience from the same rooms in July. In summer you shuffle past the Botticellis in a press of people. In winter you can stand in front of the *Birth of Venus* for as long as you want. If the art is why you would go to Florence, winter is unambiguously the better time.
 

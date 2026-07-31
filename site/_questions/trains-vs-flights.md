@@ -37,11 +37,11 @@ All city center to city center. All comfortably better than flying.
 |---|---|
 | Athens → anywhere | 2h+ |
 | Rome → Barcelona | ~2h |
-| Barcelona → Paris | ~2h (or ~6h30 by train) |
+| Barcelona → Paris | ~2h (or ~6h45 by train) |
 
 Greece has no useful rail connection to the rest of Europe, and the Italy–Spain crossing is a sea crossing. Those are flights, and no amount of preference changes it.
 
-Barcelona → Paris is the one genuine judgment call: 6h30 by direct train versus about 2 hours in the air. The train is roughly a wash on door-to-door time and considerably more pleasant; the flight wins if the day is tight.
+Barcelona → Paris is the one genuine judgment call: 6h45 by direct train versus about 2 hours in the air. The train is roughly a wash on door-to-door time and considerably more pleasant; the flight wins if the day is tight.
 
 ## My recommendation
 

@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are around 16&nbsp;°C (61&nbsp;°F) and the sun does not set until about 6:00&nbsp;PM. **This is the warmest and brightest option anywhere in this plan** — roughly two more hours of usable afternoon per day than London, and shirtsleeves weather by midday more often than not.
+January highs are around 16&nbsp;°C (61&nbsp;°F) and the sun does not set until about 6:10&nbsp;PM. **This is the warmest and brightest option anywhere in this plan** — roughly two more hours of usable afternoon per day than London, and shirtsleeves weather by midday more often than not.
 
 Seville's problem is the opposite season: summer here regularly passes 40&nbsp;°C (104&nbsp;°F) and the city empties out at midday. Winter is simply when this city is at its best, with no qualification.
 

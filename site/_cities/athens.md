@@ -14,9 +14,9 @@ highlights:
 
 ## In winter
 
-Athens is the one Greek destination that genuinely works in December and January. Daytime highs sit around 13&nbsp;°C (55&nbsp;°F) — jacket weather, not parka weather — and the sun sets around 5:20&nbsp;PM, about fifty minutes later than in Amsterdam.
+Athens is the one Greek destination that genuinely works in December and January. Daytime highs sit around 13&nbsp;°C (55&nbsp;°F) — jacket weather, not parka weather — and the sun sets around 5:10&nbsp;PM, about forty minutes later than in Amsterdam.
 
-Two things get *better* in winter. The Acropolis in July is a slow shuffle in punishing heat; in January you can walk up and actually look at it. And entry to the state archaeological sites drops to a reduced winter rate from 1 November through 31 March.
+Two things get *better* in winter. The Acropolis in July is a slow shuffle in punishing heat; in January you can walk up and actually look at it. And the state archaeological sites have historically dropped to a reduced winter rate from 1 November through 31 March, though Greek ministry pricing has been in flux — worth a live check closer to booking rather than counting on it.
 
 The tradeoff is rain — January is one of the wetter months — and shorter site hours, typically closing around 5&nbsp;PM instead of 8&nbsp;PM. Plan ruins for the morning and neighborhoods for the afternoon.
 
@@ -75,7 +75,7 @@ The honest counterpoint: Athens is also the geographic outlier. Every other cand
 
 <div class="activity-card">
 <h3>Sunset from Lycabettus Hill</h3>
-<p>The highest point in the city, reached by funicular. In winter, sunset lands around 5:20&nbsp;PM, so this works as an early-evening stop rather than a late one.</p>
+<p>The highest point in the city, reached by funicular. In winter, sunset lands around 5:10&nbsp;PM, so this works as an early-evening stop rather than a late one.</p>
 </div>
 
 </div>

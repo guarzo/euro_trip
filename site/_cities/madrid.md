@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are around 11&nbsp;°C (52&nbsp;°F), colder than coastal Spain — Madrid sits on a plateau at roughly 650&nbsp;m, and the air is thin and dry. What that buys you is sunshine: it is frequently bright and clear when [Barcelona]({{ '/cities/barcelona/' | relative_url }}) is grey, and sunset is not until about 5:55&nbsp;PM. Cold in the shade, pleasant in the sun, and almost never wet for long.
+January highs are around 10&nbsp;°C (50&nbsp;°F), colder than coastal Spain — Madrid sits on a plateau at roughly 650&nbsp;m, and the air is thin and dry. What that buys you is sunshine: it is frequently bright and clear when [Barcelona]({{ '/cities/barcelona/' | relative_url }}) is grey, and sunset is not until about 5:55&nbsp;PM. Cold in the shade, pleasant in the sun, and almost never wet for long.
 
 The Plaza Mayor Christmas market runs through early January. The bigger draw is **New Year's Eve at Puerta del Sol**, where the entire country watches the clock and eats twelve grapes on the twelve strokes of midnight — one of the few genuinely distinctive holiday experiences available on this trip. It is also extremely crowded; the square fills hours ahead.
 

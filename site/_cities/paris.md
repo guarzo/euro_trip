@@ -118,4 +118,4 @@ The honest counterpoint: beyond the darkness, Paris in January is the least atmo
 
 Charles de Gaulle (CDG) has extensive direct US service year-round; Orly handles more European and domestic traffic. The RER B from CDG reaches the center in about 35 minutes.
 
-Onward by rail: London 2h20 and Amsterdam about 3h20, both by Eurostar, both city center to city center. Barcelona is about 6h30 by direct train — long, but competitive with flying once airport time is counted. By air: Rome about 2 hours, Athens about 3h30.
+Onward by rail: London 2h20 and Amsterdam about 3h20, both by Eurostar, both city center to city center. Barcelona is about 6h45 by direct train — long, but competitive with flying once airport time is counted. By air: Rome about 2 hours, Athens about 3h30.
