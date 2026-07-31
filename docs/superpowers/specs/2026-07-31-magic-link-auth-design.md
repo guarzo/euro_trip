@@ -37,6 +37,16 @@ Supabase email OTP, with **signups disabled** in the dashboard and the four
 users created by hand. An unknown address that requests a link gets nothing —
 no account is created, no link is sent.
 
+Disabling signups blocks user *creation*, not link delivery. Nobody hands out
+links: each person types their own address into the form and Supabase mails
+them a link, as often as they need one. Setup is a one-time manual step —
+Authentication → Users → Add user, email only, no password, four times, with a
+matching `profiles` row for each.
+
+The client passes `shouldCreateUser: false` to `signInWithOtp` as well. The
+dashboard toggle is the real control, but a setting that lives only in a
+dashboard is invisible in a diff; the option makes the intent reviewable.
+
 No passwords, because a password four family members hold is a password every
 family member holds within a week. The mail round-trip is one-time friction
 per device and requires access to an inbox, which is precisely the property
@@ -44,6 +54,17 @@ that makes it unforgeable by a sibling.
 
 All four people have their own inbox on the device they browse from. This
 design depends on that and does not otherwise hold.
+
+### Mail delivery is the built-in sender, for now
+
+Supabase's default mailer is rate-limited to a small number of messages per
+hour and is not intended for production traffic. Four people logging in once
+per device sit well inside that.
+
+It matters during setup, when everyone tests at once: hitting the cap looks
+exactly like auth being broken. If it turns into a real nuisance, configuring
+an SMTP provider is a settings change, not a code change, and is out of scope
+here.
 
 ### Identity is Supabase's, not the site's
 
@@ -135,6 +156,10 @@ two users:
 5. Signed out, insert into `comments`. Rejected.
 6. Request a link for an address that is not one of the four. No account
    created, no mail sent.
+
+Step 6 is the one to actually run rather than assume: it is the check that the
+signups toggle is set correctly, and no automated test on a static site can
+cover it.
 
 ## Excluded
 
