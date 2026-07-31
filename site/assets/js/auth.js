@@ -40,9 +40,9 @@ function render() {
   const currentEl = banner.querySelector('[data-auth-current]');
   const label = banner.querySelector('[data-auth-label]');
 
-  form.hidden = user !== null;
-  currentEl.hidden = user === null;
-  if (user) label.textContent = personLabel(user.id);
+  if (form) form.hidden = user !== null;
+  if (currentEl) currentEl.hidden = user === null;
+  if (user && label) label.textContent = personLabel(user.id);
 }
 
 function setStatus(message) {
@@ -83,7 +83,10 @@ async function onSignOut() {
   try {
     await signOut();
   } catch (e) {
-    // onAuthStateChange still fires locally, so the UI returns to the form.
+    // onAuthStateChange still fires locally for a client-side failure, but a
+    // network failure can leave the session ambiguous — say so rather than
+    // leaving the user unsure whether they're still signed in.
+    setStatus("Couldn't sign out — try again.");
   }
 }
 
@@ -91,8 +94,16 @@ export async function initAuth() {
   banner = document.querySelector('[data-auth-banner]');
   if (!banner || !isConfigured()) return;
 
-  banner.querySelector('[data-auth-form]').addEventListener('submit', onSubmit);
-  banner.querySelector('[data-auth-signout]').addEventListener('click', onSignOut);
+  // Required children of the banner markup. If the template drifts and one
+  // of these selectors stops matching, fail closed (banner stays hidden)
+  // rather than throwing out of initAuth() and taking initInterests() /
+  // initComments() down with it in main.js's .then() chain.
+  const form = banner.querySelector('[data-auth-form]');
+  const signoutButton = banner.querySelector('[data-auth-signout]');
+  if (!form || !signoutButton) return;
+
+  form.addEventListener('submit', onSubmit);
+  signoutButton.addEventListener('click', onSignOut);
   banner.hidden = false;
 
   try {
