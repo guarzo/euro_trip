@@ -11,7 +11,7 @@ const MARK = { unset: '—', yes: '★', no: '✕' };
 // so every stamp ships a word too. Names are short enough to sit inline.
 const WORD = { unset: '?', yes: 'Yes', no: 'No' };
 
-// interest_key -> { person -> state }
+// interest_key -> { userId -> state }
 let marks = {};
 let rows = [];
 
@@ -23,14 +23,14 @@ let rows = [];
 // leaving the displayed mark disagreeing with the stored one until reload.
 let pendingWrites = {};
 
-function stateFor(key, person) {
-  return (marks[key] && marks[key][person]) || 'unset';
+function stateFor(key, userId) {
+  return (marks[key] && marks[key][userId]) || 'unset';
 }
 
-function setLocal(key, person, state) {
+function setLocal(key, userId, state) {
   if (!marks[key]) marks[key] = {};
-  if (state === 'unset') delete marks[key][person];
-  else marks[key][person] = state;
+  if (state === 'unset') delete marks[key][userId];
+  else marks[key][userId] = state;
 }
 
 function renderRow(row) {
