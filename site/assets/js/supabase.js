@@ -31,8 +31,17 @@ function db() {
     clientPromise = import(CDN).then(function (mod) {
       return mod.createClient(config.url, config.anonKey);
     }).catch(function (err) {
-      // A cached rejection would disable marks and comments for the rest of
-      // the page session. Drop the memo so the next call retries the CDN.
+      // Drop the memo so a later call can attempt the import again.
+      //
+      // Note what this does NOT buy: if the CDN fetch itself failed, the
+      // browser has cached that failure in the module map against this URL
+      // for the life of the page, so the retried import() resolves to the
+      // same rejection without touching the network. Recovery from a CDN
+      // outage is a page reload, which is what the failure copy tells the
+      // reader to do. Only a failure inside createClient() genuinely retries.
+      // Cache-busting the URL would make in-session recovery work, and was
+      // deliberately not done: it complicates the one file that must stay
+      // simple for a case a refresh already handles.
       clientPromise = null;
       throw err;
     });
