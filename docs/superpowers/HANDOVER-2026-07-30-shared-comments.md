@@ -172,9 +172,6 @@ on a touch device, which is how the teenagers this site is for will use it.
 **Worth fixing before this ships**, either in Task 6 or as a follow-up: guard
 `cycle()` against re-entry per row, or serialize writes per `interest_key`.
 
-**Task 5's review is still in flight** and its verdict has not landed. Its
-findings are not yet reflected here.
-
 ---
 
 ## Deferred minors (for the final review to triage)
