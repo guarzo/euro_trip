@@ -21,6 +21,10 @@ audited.
 | RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
 | RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | open |
 | RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | open |
+| RN-04 | Cities / Ruled out | content | med | Add Venice back as a candidate city; remove from ruled-out | open |
+| RN-05 | Cities | content | med | Add Toledo, Spain as a candidate | open |
+| RN-06 | New page | content | high | Draft itinerary page built on the split ("hybrid") arc | open |
+| RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
 
 ---
 
@@ -48,6 +52,16 @@ audited.
 ## City pages
 
 ### Walkthrough notes
+
+- **RN-04 — put Venice back on the table.** Currently in `ruled-out.md` as "the
+  closest call on this page," on cold, damp, and *acqua alta*. It needs a real
+  city page and removal from ruled-out.
+- **RN-05 — add Toledo, Spain.** Not currently anywhere on the site. Likely a
+  day trip from Madrid rather than a base — worth deciding which the page
+  claims it is.
+- **RN-07 — add depth to each city page.** The current pages are a claim plus a
+  facts table plus a day sketch. Deeper, more specific content would help the
+  group actually buy in.
 
 ### Content findings
 
@@ -88,6 +102,18 @@ audited.
 ## Feedback
 
 ### Walkthrough notes
+
+### Content findings
+
+## Draft itinerary (new page)
+
+### Walkthrough notes
+
+- **RN-06 — build a draft itinerary page.** Uses the split arc (option 3 in
+  `which-arc`), day by day, deep on each city. The point is persuasion: make
+  the trip concrete enough that people can get on board with it. Note the
+  tension — the site's premise is that nothing is decided, so this page has to
+  read as a *proposal*, not a settled plan.
 
 ### Content findings
 
