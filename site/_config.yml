@@ -25,8 +25,8 @@ family_members:
 # While url is empty the site builds and deploys fine: the widgets render a
 # short placeholder note instead, exactly as the old Giscus block did.
 supabase:
-  url: ""
-  anon_key: ""
+  url: "https://upfjamolpteckqryrjgu.supabase.co"
+  anon_key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZmphbW9scHRlY2txcnlyamd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0NjUwMzIsImV4cCI6MjEwMTA0MTAzMn0.Bq3DHmpcLVZAGieKVe5mAlQzGGDFexrCr1cGbo-PE-4"
 
 markdown: kramdown
 highlighter: rouge
