@@ -16,7 +16,7 @@ highlights:
 
 January highs are around 7&nbsp;°C (45&nbsp;°F) — the coldest city in Italy on this list by a wide margin — and sunset is around 4:40&nbsp;PM. It is damp, foggy, and often raw in a way that the drier Mediterranean cities are not.
 
-**This is the one Italian city here rated mixed rather than good, and the honest reason is flooding.** Winter is peak *acqua alta* season, the periodic high tide that pushes water into St. Mark's Square and the lowest-lying streets. The city's MOSE flood barriers, fully operational since 2020, now close the lagoon inlets ahead of the highest tides and have meaningfully cut how often the square actually floods — but they are not a guarantee, and a bad week can still put raised walkways across the piazza. Pack boots you don't mind getting wet.
+**This is the one Italian city here rated mixed rather than good, and the honest reason is flooding.** Winter is peak *acqua alta* season, the periodic high tide that pushes water into St. Mark's Square and the lowest-lying streets. The city's MOSE flood barriers, in operation since 2020, now close the lagoon inlets ahead of the highest tides and have meaningfully cut how often the square actually floods — but they are not a guarantee, and a bad week can still put raised walkways across the piazza. Pack boots you don't mind getting wet.
 
 The counterweight is real: winter fog rolling off the canals at dawn is one of the more atmospheric things on this entire list, and the crowds and the cruise-ship traffic that overwhelm Venice in summer are simply gone. You can stand in an empty campo in January that would be shoulder to shoulder in July.
 
@@ -42,7 +42,7 @@ No other city on this list is built the way Venice is built. There are no cars, 
 
 <div class="activity-card">
 <h3>Grand Canal by vaporetto</h3>
-<p>Vaporetto Line 1 runs the full length of the canal and is the cheapest gondola ride in the city — ride it end to end at least once, ideally toward dusk when the palazzo facades catch the last light.</p>
+<p>Vaporetto Line 1 runs the full length of the canal and is the closest thing to a cheap gondola ride in the city — ride it end to end at least once, ideally toward dusk when the palazzo facades catch the last light.</p>
 </div>
 
 <div class="activity-card">

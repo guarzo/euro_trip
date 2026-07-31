@@ -15,7 +15,7 @@ permalink: /questions/
       <span class="line">Me</span>
     </h1>
 
-    <p class="wall-standfirst">{{ site.questions | size }} decisions stand between this and a real trip. Each one has options, a recommendation, and a section on what would change its mind.</p>
+    <p class="wall-standfirst">{{ open_questions | size }} decisions stand between this and a real trip. Each one has options, a recommendation, and a section on what would change its mind.</p>
 
     <p class="wall-credit credit">
       <span>{{ open_questions | size }} open</span>

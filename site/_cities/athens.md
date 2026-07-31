@@ -102,7 +102,7 @@ The honest counterpoint: Athens is also the geographic outlier. Every other cand
 
 **Koukaki**, just south of the Acropolis, is the calmer, more residential choice, and it's a short walk to the Acropolis Museum — most guides call it the easy family pick.
 
-**Plaka**, the old town this page's Day 1 already wanders through, is the more atmospheric option and the closest to the Acropolis itself, at the cost of being touristy and pricier. Either way, avoid basing near Omonia or Exarchia after dark.
+**Plaka**, the old town this page's Day 1 already wanders through, is the more atmospheric option and the closest to the Acropolis itself, at the cost of being touristy and pricier. Either way, the cheaper listings around Omonia and Exarchia are cheaper for a reason: both sit further from the sights, and both are noisier and scruffier at night than the walk back from dinner wants to be.
 
 ## Eat
 

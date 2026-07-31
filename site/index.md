@@ -44,56 +44,61 @@ title: Home
   <li class="daylight-row" data-extreme="light">
     <span class="daylight-city">Seville</span>
     <span class="daylight-bar" aria-hidden="true"><span style="width:100%"></span></span>
-    <span class="daylight-time">6:00 PM</span>
+    <span class="daylight-time">6:10 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Granada</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:100%"></span></span>
-    <span class="daylight-time">6:00 PM</span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:97%"></span></span>
+    <span class="daylight-time">6:05 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Madrid</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:97%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:92%"></span></span>
     <span class="daylight-time">5:55 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Barcelona</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:83%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:79%"></span></span>
     <span class="daylight-time">5:30 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Athens</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:77%"></span></span>
-    <span class="daylight-time">5:20 PM</span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:68%"></span></span>
+    <span class="daylight-time">5:10 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Paris</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:63%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:61%"></span></span>
     <span class="daylight-time">4:55 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Naples</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:58%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:55%"></span></span>
     <span class="daylight-time">4:45 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Florence</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:58%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:55%"></span></span>
     <span class="daylight-time">4:45 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Rome</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:56%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:53%"></span></span>
+    <span class="daylight-time">4:40 PM</span>
+  </li>
+  <li class="daylight-row">
+    <span class="daylight-city">Venice</span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:53%"></span></span>
     <span class="daylight-time">4:40 PM</span>
   </li>
   <li class="daylight-row">
     <span class="daylight-city">Amsterdam</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:50%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:47%"></span></span>
     <span class="daylight-time">4:29 PM</span>
   </li>
   <li class="daylight-row" data-extreme="dark">
     <span class="daylight-city">London</span>
-    <span class="daylight-bar" aria-hidden="true"><span style="width:29%"></span></span>
+    <span class="daylight-bar" aria-hidden="true"><span style="width:28%"></span></span>
     <span class="daylight-time">3:53 PM</span>
   </li>
 </ol>
@@ -107,7 +112,12 @@ title: Home
 
 <h2 class="section-heading">The big one: which arc?</h2>
 
-<p>The southern countries and the northern cities are two coherent trips, not one. Cramming all six countries into two weeks means about a third of the trip in transit. Pick a lane:</p>
+{%- comment -%}
+  Same count as the hero, lowercased for body copy — a hardcoded numeral here
+  would contradict the hero the first time a city from a new country is added.
+{%- endcomment -%}
+{%- capture arc_country_count -%}{% include number-word.html num=country_count %}{%- endcapture -%}
+<p>The southern countries and the northern cities are two coherent trips, not one. Cramming all {{ arc_country_count | strip | downcase }} countries into two weeks means about a third of the trip in transit. Pick a lane:</p>
 
 <div class="table-wrapper" markdown="1">
 
@@ -123,7 +133,7 @@ title: Home
 
 <h2 class="section-heading">Open Questions</h2>
 
-<p>{{ site.questions | size }} decisions are on the table, from exact dates to whether we take trains or budget flights. Each has its own page with options, a recommendation, and a section on what would change its mind.</p>
+<p>{{ site.questions | where: "status", "open" | size }} decisions are on the table, from exact dates to whether we take trains or budget flights. Each has its own page with options, a recommendation, and a section on what would change its mind.</p>
 
 {%- comment -%}
   The highest-impact questions that are still open, pasted up as bills. The

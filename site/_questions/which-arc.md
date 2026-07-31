@@ -33,7 +33,7 @@ The catch is darkness and weather. Late-December sunsets: London **3:53&nbsp;PM*
 
 ### 3. Split arc — e.g. Rome · Barcelona · Paris · London
 
-Covers both moods: Mediterranean light at the start, northern cities at the end, finishing with an easy English-speaking base and a straightforward flight home. Rome to Barcelona is a 2-hour flight, Barcelona to Paris a 2-hour flight or 6.5-hour train, Paris to London 2h20 by train.
+Covers both moods: Mediterranean light at the start, northern cities at the end, finishing with an easy English-speaking base and a straightforward flight home. Rome to Barcelona is a 2-hour flight, Barcelona to Paris a 2-hour flight or 6h45 train, Paris to London 2h20 by train.
 
 It drops Greece — the geographic outlier — and spends the most days moving. Four bases in fourteen days is a brisk pace with a lot of packing.
 

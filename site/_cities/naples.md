@@ -78,7 +78,7 @@ Pizza was invented here and is still better here than anywhere. The Archaeologic
 
 ## Where to stay
 
-**Chiaia** is the calm, safe, seafront choice, with the Villa Comunale gardens as a buffer from the noise — but it is a bus ride or a 20-minute walk from Spaccanapoli and Via San Gregorio Armeno, which are most of this page's Day 1.
+**Chiaia** is the calm, residential seafront choice, with the Villa Comunale gardens as a buffer from the noise — but it is a bus ride or a 20-minute walk from Spaccanapoli and Via San Gregorio Armeno, which are most of this page's Day 1.
 
 **Centro Storico**, near Piazza del Plebiscito, puts you on top of Spaccanapoli, the nativity workshops, and the Archaeological Museum, at the cost of the noise and grit this page already admits is part of Naples. For two nights, staying inside the chaos rather than commuting to it is usually the better trade.
 

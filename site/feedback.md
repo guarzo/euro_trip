@@ -43,8 +43,14 @@ permalink: /feedback/
 
 {% include comments.html %}
 
-{% capture question_count_word %}{% include number-word.html num=site.questions.size %}{% endcapture %}
-{% capture feedback_standfirst %}{{ question_count_word | strip }} decisions, none of them made. Reading one and disagreeing with it is worth more than agreeing with all of them.{% endcapture %}
+{%- comment -%}
+  Count only what is still open: a decided question stays in the collection
+  (see questions.md), so site.questions.size would keep claiming decisions
+  that have already been made.
+{%- endcomment -%}
+{%- assign open_questions = site.questions | where: "status", "open" -%}
+{% capture question_count_word %}{% include number-word.html num=open_questions.size %}{% endcapture %}
+{% capture feedback_standfirst %}{{ question_count_word | strip }} decisions still open. Reading one and disagreeing with it is worth more than agreeing with all of them.{% endcapture %}
 {% include close-wall.html
    shout_a="Still"
    shout_b="Open"

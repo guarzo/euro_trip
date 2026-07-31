@@ -41,8 +41,8 @@ permalink: /itinerary/
 | Days | City | What | Getting there |
 |---|---|---|---|
 | 1 | Rome | Arrive (transatlantic), settle in | — |
-| 2–5 | Rome | Ancient Rome, Vatican, centro storico, Appian Way / open day — see [Rome's day sketch]({{ '/cities/rome/' | relative_url }}) | — |
-| 5 | Barcelona | Fly Rome → Barcelona, arrive evening | ~2h flight |
+| 2–4 | Rome | Ancient Rome, Vatican, centro storico, Appian Way / open day — see [Rome's day sketch]({{ '/cities/rome/' | relative_url }}) | — |
+| 5 | Rome → Barcelona | Fly Rome → Barcelona, arrive evening | ~2h flight |
 | 6–7 | Barcelona | Sagrada Família, Gothic Quarter, Montjuïc — see [Barcelona's day sketch]({{ '/cities/barcelona/' | relative_url }}) | — |
 | 8 | Paris | Barcelona → Paris, arrive evening | ~2h flight, or 6h45 direct train |
 | 9–10 | Paris | Louvre, Orsay, Sainte-Chapelle, Le Marais — see [Paris's day sketch]({{ '/cities/paris/' | relative_url }}) | — |

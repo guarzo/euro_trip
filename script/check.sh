@@ -125,14 +125,15 @@ assert_contains "$SITE_OUT/feedback/index.html" "Family Notes"
 # The cities index has no thread; interests are city-keyed, threads are not.
 assert_absent "$SITE_OUT/cities/index.html" "data-comments"
 
-for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam; do
+for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam venice; do
   assert_file "$SITE_OUT/cities/$CITY/index.html"
   assert_contains "$SITE_OUT/cities/$CITY/index.html" "In winter"
   assert_contains "$SITE_OUT/cities/$CITY/index.html" "Draft day sketch"
 done
 assert_file "$SITE_OUT/cities/index.html"
 # Every city must be reachable from the index, not just a sampled few.
-for CITY in athens rome florence naples barcelona madrid seville granada paris london amsterdam; do
+for CITY in athens rome florence naples barcelona madrid seville granada paris london amsterdam \
+            venice; do
   assert_contains "$SITE_OUT/cities/index.html" "/cities/$CITY/"
 done
 # The northern cities' early sunsets are what the "which arc" decision turns on;
@@ -149,20 +150,24 @@ assert_contains "$SITE_OUT/questions/which-arc/index.html" "My recommendation"
 assert_contains "$SITE_OUT/questions/which-arc/index.html" "4:29"
 
 for Q in exact-dates how-many-countries open-jaw-flights trains-vs-flights pace \
-         christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports; do
+         christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports \
+         right-window; do
   assert_file "$SITE_OUT/questions/$Q/index.html"
   assert_contains "$SITE_OUT/questions/$Q/index.html" "Why it matters"
   assert_contains "$SITE_OUT/questions/$Q/index.html" "My recommendation"
 done
 assert_file "$SITE_OUT/questions/index.html"
 for Q in which-arc exact-dates how-many-countries open-jaw-flights trains-vs-flights \
-         pace christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports; do
+         pace christmas-and-new-years what-kids-want hotels-vs-apartments etias-and-passports \
+         right-window; do
   assert_contains "$SITE_OUT/questions/index.html" "/questions/$Q/"
 done
 
 assert_file "$SITE_OUT/ruled-out/index.html"
 assert_contains "$SITE_OUT/ruled-out/index.html" "Santorini"
-assert_contains "$SITE_OUT/ruled-out/index.html" "Venice"
+# Venice moved off this page into a candidate city page (RN-04); the city
+# loops above assert the other half of that move.
+assert_absent "$SITE_OUT/ruled-out/index.html" "Venice"
 assert_file "$SITE_OUT/logistics/index.html"
 assert_contains "$SITE_OUT/logistics/index.html" "Eurostar"
 # Markdown tables inside a block-level HTML wrapper need markdown="1", or

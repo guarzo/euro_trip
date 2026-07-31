@@ -14,16 +14,19 @@ Out of scope unless raised: Supabase/auth/JS internals, build config, and
 conformance to `DESIGN.md`. Technical problems hit in passing get noted, not
 audited.
 
-## Open findings
+## Findings
+
+Status values: `fixed`, `no change needed`, `backlog` (a real finding
+deliberately not acted on in this pass).
 
 | ID | Page | Type | Sev | Finding | Status |
 |---|---|---|---|---|---|
-| RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
+| RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | fixed |
 | RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | fixed |
 | RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | fixed |
 | RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | fixed |
 | RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | fixed |
-| RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
+| RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | fixed |
 | RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | fixed |
 | RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | fixed |
 | RN-09 | City pages | design | low | Only the first activity card per page has a "Get Directions" link | no change needed |
@@ -33,9 +36,9 @@ audited.
 | RN-13 | Questions | content | med | `pace.md` recommends 4 nights minimum; the split arc it endorses gives 3.5 | fixed |
 | RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | fixed |
 | RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | fixed |
-| RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
+| RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | backlog |
 | RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | fixed |
-| RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | fixed |
+| RN-18 | Seville / Granada | content | low | Both claimed ~6:00 PM; Seville is ~6:10 PM and Granada ~6:05 PM — understates the pages' own "warmest and brightest" claim | fixed |
 | RN-19 | Florence | content | low | January high claimed ~10 °C, actually ~11.2 °C | fixed |
 | RN-20 | Barcelona / Madrid | content | low | January highs off by ~1 °C each (Barcelona 15→14, Madrid 11→10) | fixed |
 | RN-21 | Athens | content | med | Winter reduced-rate archaeological ticket claim may be outdated — sources conflict on whether the discount still exists | fixed |
@@ -267,8 +270,9 @@ batches 4 and 5, and everything else is independent.
 - **RN-15 — fixed.** Added `_includes/number-word.html` (spells out small
   integers for poster-scale headline type) and wired `index.md` and
   `cities.md`'s city/country counts to `site.cities` instead of hardcoding.
-  `feedback.md`'s "Ten decisions" line is unaffected by this batch — RN-02
-  (batch 4) will need to update it when the new question is added.
+  `feedback.md`'s "Ten decisions" line was later wired to the same collection
+  — it now counts questions with `status: open`, so adding RN-02's new
+  question updated it without another hardcoded edit.
 - **RN-16 — left as backlog**, per the original triage note. No page
   currently needs it to function.
 
@@ -354,5 +358,7 @@ in the nav.
 
 ### 6. Design (independent, needs a front-end look)
 
-- **RN-01** — hero images overflow the viewport on desktop. Out of this
-  review's scope to diagnose further, but flagged as a real bug to fix.
+- **RN-01 — fixed separately.** Hero images overflow the viewport on desktop.
+  Out of this review's scope to diagnose, so it was handed off and landed on
+  `main` in its own PR (#4, "desktop hero photos crop into a panoramic
+  sliver") before this branch was rebased.

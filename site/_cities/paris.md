@@ -108,7 +108,7 @@ The honest counterpoint: beyond the darkness, Paris in January is the least atmo
 
 ## Where to stay
 
-**Saint-Germain-des-Prés**, in the 6th, is consistently the calmest, safest family base — close to the Louvre-Orsay-Latin Quarter loop and the Luxembourg Gardens, at a price that reflects it.
+**Saint-Germain-des-Prés**, in the 6th, is consistently the calmest, most walkable family base — close to the Louvre-Orsay-Latin Quarter loop and the Luxembourg Gardens, at a price that reflects it.
 
 **Le Marais**, in the 3rd and 4th, is this page's own Day 3 neighborhood, and staying there keeps that walk on foot rather than by Métro. Buildings here are old, though, and narrow stairs with no elevator are common — worth asking about before booking with heavy winter luggage.
 

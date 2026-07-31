@@ -52,7 +52,7 @@ permalink: /logistics/
 
 <p>All of these are city center to city center with no airport transfer and no security queue worth the name. <strong>A three-hour train usually beats a one-hour flight door to door</strong> — see <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for why.</p>
 
-<h3>Fly — no practical rail</h3>
+<h3>Fly — rail is impractical or slow</h3>
 
 <div class="table-wrapper" markdown="1">
 
@@ -66,7 +66,7 @@ permalink: /logistics/
 
 </div>
 
-<p>Greece has no useful rail link to the rest of Europe, and Italy to Spain is a sea crossing. Those legs are flights regardless of preference.</p>
+<p>Greece has no useful rail link to the rest of Europe, and Italy to Spain is a sea crossing — those legs are flights regardless of preference. Barcelona &rarr; Paris is the exception: a direct train exists at ~6h45, which is a real option rather than a fallback. See <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for that trade-off.</p>
 
 <h2 class="section-heading">✈️ Getting there and home</h2>
 
@@ -103,6 +103,7 @@ permalink: /logistics/
 | Madrid | ~10 °C / 50 °F | ~5:55 PM |
 | London | ~8 °C / 47 °F | ~3:53 PM |
 | Paris | ~7 °C / 45 °F | ~4:55 PM |
+| Venice | ~7 °C / 45 °F | ~4:40 PM |
 | Amsterdam | ~6 °C / 43 °F | ~4:29 PM |
 
 </div>

@@ -97,7 +97,7 @@ The honest counterpoint: Barcelona is heavily touristed even in January, and the
 
 ## Where to stay
 
-**L'Eixample** is the safe, grid-planned choice, and Passeig de Gràcia inside it puts Casa Batlló and La Pedrera on the walk home. It reads as more modern than charming, which some families prefer and others find flat.
+**L'Eixample** is the straightforward, grid-planned choice, and Passeig de Gràcia inside it puts Casa Batlló and La Pedrera on the walk home. It reads as more modern than charming, which some families prefer and others find flat.
 
 **Gràcia**, a genuine village folded into the city, has quieter squares at night and is still an easy walk to Park Güell and the center. The **Gothic Quarter** itself is charming but worth avoiding as a base — it's the most touristed part of the city and the one this page already warns about around La Rambla.
 
