@@ -1027,7 +1027,12 @@ td strong { font-weight: 800; }
 .day-hero {
   display: block;
   width: 100%;
-  height: clamp(210px, 40vw, 440px);
+  /* The 40vw slope keeps the crop ratio roughly constant with viewport width;
+     without a high enough ceiling here it locks at the low end's max and the
+     photo turns into an ever-wider panoramic sliver as desktop viewports get
+     wider (RN-01). 620px keeps that ratio sane out to ~1550px before the cap
+     bites, and even beyond that it degrades far more gently than 440px did. */
+  height: clamp(210px, 40vw, 620px);
   object-fit: cover;
   border-radius: 0;
   margin: 0;
