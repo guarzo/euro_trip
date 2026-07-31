@@ -41,7 +41,7 @@ permalink: /feedback/
 
 <p>Disagreeing with a recommendation is the most useful thing you can do here. Every recommendation on this site is one person's reasoning written down so that it can be argued with — including the ones on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>.</p>
 
-{% include giscus.html %}
+{% include comments.html %}
 
 {% include close-wall.html
    shout_a="Still"

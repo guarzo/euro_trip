@@ -93,7 +93,21 @@ assert_contains "$SITE_OUT/cities/athens/index.html" "Draft day sketch"
 assert_contains "$SITE_OUT/cities/athens/index.html" "Getting here"
 assert_contains "$SITE_OUT/cities/athens/index.html" "climate normals"
 # Giscus stays out of the markup until the real repo IDs are filled in.
-assert_absent "$SITE_OUT/cities/athens/index.html" "giscus.app/client.js"
+# Giscus is gone entirely — no page may reference it.
+if grep -rl "giscus" "$SITE_OUT" > /dev/null 2>&1; then
+  echo "FAIL  'giscus' still present in built site:"
+  grep -rl "giscus" "$SITE_OUT" | sed 's/^/      /'
+  FAIL=1
+else
+  echo "ok    no giscus references anywhere in the built site"
+fi
+assert_file "$SITE_OUT/assets/js/comments.js"
+assert_contains "$SITE_OUT/cities/athens/index.html" "Family Notes"
+assert_contains "$SITE_OUT/cities/athens/index.html" 'data-page-path="/cities/athens/"'
+assert_contains "$SITE_OUT/questions/pace/index.html" 'data-page-path="/questions/pace/"'
+assert_contains "$SITE_OUT/feedback/index.html" "Family Notes"
+# The cities index has no thread; interests are city-keyed, threads are not.
+assert_absent "$SITE_OUT/cities/index.html" "data-comments"
 
 for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam; do
   assert_file "$SITE_OUT/cities/$CITY/index.html"

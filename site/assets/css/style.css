@@ -1414,3 +1414,93 @@ td strong { font-weight: 800; }
   background: transparent;
   color: var(--ink);
 }
+
+/* ------------------------------------------------------ Comment threads --- */
+
+.comments-thread { margin: var(--space-lg) 0; }
+
+/* Notes hang off a top rule, the way the site sets a running order —
+   not a bordered card. */
+.comment {
+  border-top: var(--rule);
+  padding: var(--space-md) 0;
+}
+
+.comment-meta {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.64rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink-mute);
+}
+
+.comment-body {
+  margin: 0;
+  max-width: var(--read);
+  white-space: pre-wrap;
+}
+
+.comments-empty,
+.comment-locked {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-mute);
+}
+
+.comment-form { margin-top: var(--space-lg); }
+
+.comment-form textarea {
+  width: 100%;
+  max-width: var(--read);
+  padding: var(--space-sm);
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  resize: vertical;
+}
+
+.comment-form-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+/* .action sizes itself for a closing wall; in a reading column it needs to
+   sit down to control scale. Colors come from .action-quiet. */
+.comment-submit {
+  margin-top: 0;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8rem;
+  font-stretch: 86%;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.comment-submit:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.comment-status {
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-stretch: 88%;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--ink);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

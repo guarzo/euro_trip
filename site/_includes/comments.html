@@ -1,0 +1,20 @@
+{%- comment -%}
+  Replaces giscus.html. The Post button is .action-quiet (ink) rather than
+  .action (signal): DESIGN.md allows one signal element per region, and this
+  page's is the closing wall's call to action immediately below.
+{%- endcomment -%}
+<section class="day-comments" data-comments data-page-path="{{ page.url }}">
+  <h2>Family Notes</h2>
+  <p class="comments-prompt">Reactions, objections, and &ldquo;please no&rdquo; all welcome.</p>
+  <div class="comments-thread" data-comments-thread></div>
+  <form class="comment-form" data-comment-form hidden>
+    <label class="visually-hidden" for="comment-body">Your note</label>
+    <textarea id="comment-body" data-comment-body rows="3" maxlength="2000"
+              placeholder="Say what you actually think&hellip;"></textarea>
+    <div class="comment-form-row">
+      <button type="submit" class="action action-quiet comment-submit">Post</button>
+      <span class="comment-status" data-comment-status role="status"></span>
+    </div>
+  </form>
+  <p class="comment-locked" data-comment-locked hidden>Pick who you are to join in.</p>
+</section>
