@@ -1,0 +1,28 @@
+{%- comment -%}
+  Spells out a small integer for poster-scale headline type, which reads
+  better than a numeral at that size. Extend the case list if a count here
+  ever needs to go above twenty.
+{%- endcomment -%}
+{%- case include.num -%}
+  {%- when 1 -%}One
+  {%- when 2 -%}Two
+  {%- when 3 -%}Three
+  {%- when 4 -%}Four
+  {%- when 5 -%}Five
+  {%- when 6 -%}Six
+  {%- when 7 -%}Seven
+  {%- when 8 -%}Eight
+  {%- when 9 -%}Nine
+  {%- when 10 -%}Ten
+  {%- when 11 -%}Eleven
+  {%- when 12 -%}Twelve
+  {%- when 13 -%}Thirteen
+  {%- when 14 -%}Fourteen
+  {%- when 15 -%}Fifteen
+  {%- when 16 -%}Sixteen
+  {%- when 17 -%}Seventeen
+  {%- when 18 -%}Eighteen
+  {%- when 19 -%}Nineteen
+  {%- when 20 -%}Twenty
+  {%- else -%}{{ include.num }}
+{%- endcase -%}

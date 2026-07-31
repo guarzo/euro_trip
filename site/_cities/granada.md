@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are about 12&nbsp;°C (54&nbsp;°F) in the city, cooler than Seville because Granada sits higher and inland, against the mountains. Sunset is around 6:00&nbsp;PM — the same late southern light.
+January highs are about 12&nbsp;°C (54&nbsp;°F) in the city, cooler than [Seville]({{ '/cities/seville/' | relative_url }}) because Granada sits higher and inland, against the mountains. Sunset is around 6:00&nbsp;PM — the same late southern light.
 
 Winter is when Granada looks the way it does on postcards: **the Alhambra in the foreground and the Sierra Nevada behind it under snow.** That image is specifically a cold-weather one. In summer the mountains are bare and brown.
 

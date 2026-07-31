@@ -100,6 +100,24 @@ The honest counterpoint: Rome is busy, loud, and relentlessly hard-surfaced. The
 
 </div>
 
+<div class="activity-block">
+<div class="activity-time">🌲 Day 4 — Appian Way, and nothing scheduled</div>
+
+<div class="activity-card">
+<h3>Catacombs and the Appian Way</h3>
+<p>The ancient road south out of the city, pines overhead and 2,000-year-old paving underfoot, with several catacomb complexes open for guided tours along it. No timed ticket, no crowd — the quietest morning Rome offers.</p>
+<div class="activity-meta">
+<span>⏱️ 2–3 hours</span>
+</div>
+</div>
+
+<div class="activity-card">
+<h3>The rest of the day, deliberately open</h3>
+<p>Four nights is enough to leave one afternoon unplanned — return to whichever neighborhood or museum earned a second look, or just sit somewhere with coffee. This is the day people actually remember.</p>
+</div>
+
+</div>
+
 ## Eat
 
 - **Cacio e pepe and carbonara** — Roman pasta is four dishes done perfectly. Order them where the menu is short.

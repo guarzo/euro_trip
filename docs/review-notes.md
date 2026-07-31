@@ -20,19 +20,19 @@ audited.
 |---|---|---|---|---|---|
 | RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
 | RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | open |
-| RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | open |
+| RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | fixed |
 | RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | open |
 | RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | open |
 | RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
 | RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
-| RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | open |
-| RN-09 | City pages | design | low | Only the first activity card per page has a "Get Directions" link | open |
-| RN-10 | City pages | content | med | Pages argue against each other without ever linking to each other | open |
-| RN-11 | Cities hub | content | low | Suggested nights total 31 for a 14-day trip, with no framing | open |
-| RN-12 | Florence | copy | med | "The most skippable stop" is a highlight tag, shown as a poster bill | open |
+| RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | fixed |
+| RN-09 | City pages | design | low | Only the first activity card per page has a "Get Directions" link | no change needed |
+| RN-10 | City pages | content | med | Pages argue against each other without ever linking to each other | fixed |
+| RN-11 | Cities hub | content | low | Suggested nights total 31 for a 14-day trip, with no framing | fixed |
+| RN-12 | Florence | copy | med | "The most skippable stop" is a highlight tag, shown as a poster bill | fixed |
 | RN-13 | Questions | content | med | `pace.md` recommends 4 nights minimum; the split arc it endorses gives 3.5 | fixed |
 | RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | fixed |
-| RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | open |
+| RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | fixed |
 | RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
 | RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | open |
 | RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | open |
@@ -243,24 +243,37 @@ batches 4 and 5, and everything else is independent.
   links back to both, naming the trade-off explicitly. Verified with a clean
   `jekyll build`.
 
-### 2. Quick content/structure fixes (small, independent, do anytime)
+### 2. Quick content/structure fixes — done
 
-- **RN-03** — drop the "are Bubu and Gaby coming" framing from
-  `what-kids-want.md` and `feedback.md`.
-- **RN-08** — give Rome a fourth day block, or drop it to 3 suggested nights.
-- **RN-09** — decide the map-link pattern: one per card, or one per day. Apply
-  consistently across all eleven pages.
-- **RN-10** — add the missing cross-links where city pages argue against each
-  other (Florence↔Naples, Seville↔Granada, Madrid↔Barcelona).
-- **RN-11** — add a line on the cities hub framing "suggested nights" as
+- **RN-03 — fixed.** `what-kids-want.md`'s front-matter question is now "What
+  do Bubu and Gaby want out of it?"; the "Are you in?" question and the
+  choice-not-a-given framing are gone. `feedback.md` already used the new
+  title verbatim — no change needed there.
+- **RN-08 — fixed.** Added a fourth day block to Rome ("Appian Way, and
+  nothing scheduled") — a quiet catacombs morning plus a deliberately
+  unstructured afternoon, matching `pace.md`'s own argument for what a base
+  city's extra day should be.
+- **RN-09 — no change needed, finding corrected.** Re-inspected: every page's
+  map link sits on day 1's first card, consistently, across all eleven
+  cities — it marks the single headline attraction, not a random partial
+  pattern. The original finding was a misread during the sweep.
+- **RN-10 — fixed.** Added the missing links where a page argues against
+  another: Naples → Florence, Granada → Seville, Madrid → Barcelona.
+- **RN-11 — fixed.** Added a line to `cities.md` framing suggested nights as
   per-city, not additive.
-- **RN-12** — move Florence's "most skippable stop" out of the highlights
-  tagline and into the page body.
-- **RN-15** — make the "N cities / M countries" copy on `index.md` and
-  `cities.md` derive from `site.cities` instead of hardcoding; fix
-  `feedback.md`'s hardcoded "Ten decisions" once RN-02 lands.
-- **RN-16** — optional/backlog: no page currently needs this to function;
-  revisit only if question count keeps growing.
+- **RN-12 — fixed.** Florence's highlights tag changed from "The most
+  skippable stop" to "Duomo dome climb" — the actual argument already lived
+  properly in the page body; only the poster-bill tagline needed to change.
+- **RN-15 — fixed.** Added `_includes/number-word.html` (spells out small
+  integers for poster-scale headline type) and wired `index.md` and
+  `cities.md`'s city/country counts to `site.cities` instead of hardcoding.
+  `feedback.md`'s "Ten decisions" line is unaffected by this batch — RN-02
+  (batch 4) will need to update it when the new question is added.
+- **RN-16 — left as backlog**, per the original triage note. No page
+  currently needs it to function.
+
+Verified with a clean `jekyll build` and spot-checked rendered output
+(dynamic counts render correctly, Rome shows 4 day blocks).
 
 ### 3. Fact corrections (small, independent)
 

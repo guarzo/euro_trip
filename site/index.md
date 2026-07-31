@@ -18,9 +18,10 @@ title: Home
 
     <p class="wall-standfirst">Not the dates. Not the countries. Not how long. This site exists to change that &mdash; and you are one of the people who gets to decide.</p>
 
+    {%- assign country_count = site.cities | map: "country" | uniq | size -%}
     <p class="wall-credit credit">
-      <span>Six countries</span>
-      <span>Eleven cities</span>
+      <span>{% include number-word.html num=country_count %} countries</span>
+      <span>{% include number-word.html num=site.cities.size %} cities</span>
       <span>Fourteen days</span>
       <span>Winter 2028/29</span>
       <span>No plan</span>
@@ -149,7 +150,7 @@ title: Home
 
 <p><a href="{{ '/questions/' | relative_url }}">See all {{ site.questions | size }} questions &rarr;</a></p>
 
-<h2 class="section-heading">Eleven cities on the table</h2>
+<h2 class="section-heading">{% include number-word.html num=site.cities.size %} cities on the table</h2>
 
 <p>Nobody visits all of them. Two weeks realistically covers three or four bases. Read what appeals, mark what you want, and say so.</p>
 

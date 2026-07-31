@@ -9,7 +9,7 @@ highlights:
   - Uffizi without the line
   - Duomo
   - Compact and walkable
-  - The most skippable stop
+  - Duomo dome climb
 ---
 
 ## In winter
