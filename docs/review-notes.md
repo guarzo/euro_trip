@@ -34,6 +34,10 @@ audited.
 | RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | open |
 | RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | open |
 | RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
+| RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | open |
+| RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | open |
+| RN-19 | Florence | content | low | January high claimed ~10 °C, actually ~11.2 °C | open |
+| RN-20 | Barcelona / Madrid | content | low | January highs off by ~1 °C each (Barcelona 15→14, Madrid 11→10) | open |
 
 ---
 
@@ -144,6 +148,33 @@ audited.
 ### Walkthrough notes
 
 ### Content findings
+
+Cross-page fact-check pass (climate table in `logistics.md`, echoed on the
+relevant city pages). All discrepancies below are small — none flip a
+superlative claim the site makes (Amsterdam is still the coldest of the
+northern three; Seville is still the warmest and brightest overall) — but the
+numbers should be corrected:
+
+- **RN-17 — Athens sunset overstated by ~10 min.** Claimed ~5:20 PM
+  (`_cities/athens.md`, `logistics.md`), actual ~5:10 PM on Dec 21.
+- **RN-18 — Seville/Granada sunset understated by ~10 min.** Claimed ~6:00 PM
+  (`_cities/seville.md`, `_cities/granada.md`, `logistics.md`), actual
+  ~6:10–6:11 PM. Notably this error runs *against* the site's own argument —
+  Seville's page calls itself "the warmest and brightest option anywhere in
+  this plan," and the real number makes that case stronger, not weaker.
+- **RN-19 — Florence January high understated.** Claimed ~10 °C (50 °F),
+  actual ~11.2 °C (Florence Airport, 1991–2020 normal).
+- **RN-20 — Barcelona and Madrid January highs off by ~1 °C each.** Barcelona
+  claimed 15 °C / actual ~14 °C; Madrid claimed 11 °C / actual ~10 °C. Tightens
+  the margin between Madrid and Florence in the `logistics.md` ranking table,
+  though it doesn't invert it.
+
+**Not yet checked:** rail/flight durations (Eurostar figures spot-checked
+separately and confirmed accurate; the rest of `trains-vs-flights.md` and
+`logistics.md`'s route tables are unverified) and seasonal-event/opening-hours
+claims (Christmas market dates, Alhambra winter hours, Athens reduced-rate
+pricing window, various "largest X" superlatives). Flagged for a follow-up pass
+if wanted.
 
 ## Ruled out
 
