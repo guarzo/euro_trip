@@ -132,6 +132,12 @@ export async function initComments() {
   lockedEl = section.querySelector('[data-comment-locked]');
   pagePath = section.dataset.pagePath || window.location.pathname;
 
+  // Fail closed if the template has drifted from these selectors, the same
+  // trap auth.js's initAuth() guards against: dereferencing a missing
+  // element here would throw and initComments() would never finish setting
+  // up the thread.
+  if (!thread || !form || !bodyEl || !statusEl || !lockedEl) return;
+
   if (!isConfigured()) {
     showThreadMessage('Notes turn on once Supabase is configured.');
     lockedEl.hidden = true;
