@@ -98,3 +98,17 @@ Task 5: NOTE — while building the harness I confirmed the Task 2 reviewer's
   SECOND module instance with PEOPLE=[] (initIdentity never ran on it). Not a
   product bug (the page loads each module once), but it validates why the
   ordering contract comment matters.
+Task 5: review — spec OK, quality APPROVED. Findings:
+  IMPORTANT (deferred, reviewer non-blocking): cycle() has no in-flight guard.
+    Rapid double-tap fires two cycle() calls that each capture `previous`
+    independently; out-of-order network resolution can revert a later optimistic
+    write. Pre-existing class of optimistic-UI bug; brief did not ask for a mutex.
+  minor: renderRow() rebuild drops focus to body if onPersonChange fires while a
+    stamp is focused.
+  minor: showRowError() accumulates errors across repeated failures without an
+    intervening render (cleared on next renderRow()).
+  Confirmed SAFE by reviewer: unfiltered getInterests() (unmatched interest_key
+  rows stored but never rendered; unknown person values never iterated);
+  personLabel() is never called by interests.js, so the raw-key leak flagged in
+  Task 2 cannot surface here.
+Task 5: complete (commits ac47821..99e7a6a, review approved, 1 Important + 2 minors deferred)

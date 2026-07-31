@@ -41,7 +41,7 @@ only *who you are*, never the opinions.
 | 2 | Identity module and picker | `39c1d14` → `0c51f53` | 2 Important fixed |
 | 3 | Split `app.js` into ES modules | `25f6f62` | clean, zero findings |
 | 4 | Supabase data layer | `cfc121c` → `ac47821` | 1 Important fixed ⚠️ |
-| 5 | Shared interest marks | `99e7a6a` | **review in flight** |
+| 5 | Shared interest marks | `99e7a6a` | approved, 1 Important deferred |
 
 Plus two plan-correction commits: `79705e3` (rebase onto the Argument Wall
 redesign) and `3fc9399` (dynamic import — see Decisions).
@@ -161,6 +161,17 @@ a slow failing import does not strand a null on a newer successful one).
 I am confident the code is correct. I am less confident it has been
 *reviewed*.
 
+**Task 5 carries one deferred Important finding: `cycle()` has no in-flight
+guard.** A rapid double-tap fires two `cycle()` calls that each capture
+`previous` independently, so out-of-order network resolution can revert a
+later optimistic write — leaving the displayed mark disagreeing with the
+stored one until reload. The reviewer judged it non-blocking (a pre-existing
+hazard of this optimistic-UI pattern, and the brief did not ask for a mutex),
+and I agree it should not hold the branch. But it is a real user-visible bug
+on a touch device, which is how the teenagers this site is for will use it.
+**Worth fixing before this ships**, either in Task 6 or as a follow-up: guard
+`cycle()` against re-entry per row, or serialize writes per `interest_key`.
+
 **Task 5's review is still in flight** and its verdict has not landed. Its
 findings are not yet reflected here.
 
@@ -186,6 +197,17 @@ findings are not yet reflected here.
    `.interest-toggle` selector in the print stylesheet was updated to
    `.interest-row`. The second was a real catch — marks would otherwise
    have printed.
+5. **Task 5** — `renderRow()` rebuilds the row, so focus drops to `body` if
+   `onPersonChange` fires while a stamp is focused.
+6. **Task 5** — `showRowError()` appends, so errors accumulate across
+   repeated failures without an intervening render. Cleared on the next
+   `renderRow()`.
+
+The Task 5 reviewer separately **confirmed safe**: the unfiltered
+`getInterests()` (rows whose `interest_key` matches no element are stored but
+never rendered; unknown `person` values are never iterated), and that
+`interests.js` never calls `personLabel()` — so deferred minor #2 cannot
+surface there.
 
 ---
 
