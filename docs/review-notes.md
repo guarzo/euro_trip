@@ -445,3 +445,6 @@ above. Numbered `CR-nn` to keep them separate from the `RN` sweep.
 - **CR-16 — fixed.** `trains-vs-flights` still carried the "Fly — no
   practical rail" heading over a table containing the Barcelona → Paris
   train, the same contradiction already fixed in `logistics.md`.
+- **CR-17 — fixed.** Chiaia was described as a 20-minute walk from
+  Spaccanapoli; representative routes run closer to half an hour, and the
+  neighborhood is large enough that a single figure was too precise.
