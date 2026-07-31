@@ -49,9 +49,10 @@ serves the open half.
 
 - Static Jekyll site, deployed to GitHub Pages at `eu.dpao.la`.
 - Read overwhelmingly on phones, in short sessions, often at night.
-- Comments run on Giscus, backed by GitHub Discussions. `giscus.repo_id` is
-  currently empty, so a placeholder note renders in place of the widget and the
-  site builds fine without it.
+- Comments and interest marks run on Supabase, keyed to a family member name
+  picked once per device — no accounts and no GitHub. While `supabase.url` is
+  empty a placeholder note renders in place of both and the site builds fine
+  without it.
 - `script/check.sh` builds the site and asserts every expected page exists,
   contains its required sections, and has no broken internal links. It is the
   project's only test surface. External links, including hero images, are **not**
@@ -64,9 +65,11 @@ serves the open half.
 
 - **Content is settled and stays as written.** Eleven city pages, ten question
   pages, plus Logistics, Ruled Out, and Feedback. Prose is not up for redesign.
-- **Interest toggles** — a three-state (unset / interested / not for me) marker
-  on each city, stored in `localStorage` only. Explicitly per-device and private;
-  the site tells the reader nobody else sees it. Shared opinion goes in comments.
+- **Interest marks** — a three-state (unset / interested / not for me) marker on
+  each city, shared across devices and visible to the whole family. Every
+  member's mark shows on both the city page and the cities index, because both
+  key on the city rather than the page. `localStorage` holds only which family
+  member this device belongs to.
 - Six countries in play: Greece, Italy, Spain, France, UK, Netherlands.
 - Three candidate arcs: Mediterranean, Northern classics, Split.
 - The comparative facts the site turns on are **January high** and **late-December
@@ -98,8 +101,11 @@ serves the open half.
   in each city's front matter.
 - No budget figures, no bookings, no prices, no reservations — none exist, and
   none may be invented. No testimonials or third-party endorsements exist.
-- Comments are not yet live (`repo_id` empty); the site must keep working and
-  reading well in that state.
+- Comments and marks are live: `supabase.url` and `anon_key` are configured
+  and the schema is applied. Both features stay dependent on that project
+  remaining reachable with its tables, CHECK constraints, and RLS policies
+  intact — if the config is emptied or the schema is missing, each renders a
+  placeholder note and the site must keep working and reading well that way.
 
 ## Product Principles
 

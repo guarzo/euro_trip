@@ -17,7 +17,7 @@ permalink: /cities/
     <p class="wall-credit credit">
       <span>Tap a city to read it</span>
       <span>Mark what you want</span>
-      <span>Picks stay on your device</span>
+      <span>Everyone sees your picks</span>
     </p>
   </div>
 </section>
@@ -27,7 +27,7 @@ permalink: /cities/
   <p>No trip visits all eleven. Two weeks realistically covers three or four bases. Read what appeals, and see <a href="{{ '/questions/which-arc/' | relative_url }}">Which arc?</a> for how they group into actual trips. Places that <em>don't</em> work in winter are on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>, with reasons.</p>
 </div>
 
-<p class="interest-note">Tap <strong>Interested?</strong> to mark a city. Picks are saved in your own browser and are not shared with anyone.</p>
+<p class="interest-note">Everyone&rsquo;s marks show below. Tap yours to change it &mdash; the same mark shows on the city&rsquo;s own page.</p>
 
 {% assign countries = site.cities | group_by: "country" | sort: "name" %}
 {% for group in countries %}
@@ -54,9 +54,7 @@ permalink: /cities/
           {%- else -%}Largely closed in winter{%- endif -%}
         </span>
       </span>
-      <button type="button" class="interest-toggle"
-              data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"
-              aria-pressed="false">Interested?</button>
+      <div class="interest-row" data-interest-key="city:{{ city.city | downcase | replace: ' ', '-' }}"></div>
     </div>
   {%- endfor -%}
   </div>
@@ -66,6 +64,6 @@ permalink: /cities/
 {% include close-wall.html
    shout_a="Which"
    shout_b="Ones"
-   standfirst="Marking a city keeps it on your own device. Saying so out loud is what actually moves the trip &mdash; and the arc question is where that argument really happens."
+   standfirst="Your marks are visible to everyone. Saying so out loud is what actually moves the trip &mdash; and the arc question is where that argument really happens."
    action="Pick an arc"
    href="/questions/which-arc/" %}

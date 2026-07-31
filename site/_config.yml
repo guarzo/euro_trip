@@ -19,14 +19,14 @@ family_members:
     emoji: "👧"
     age: 17
 
-# Giscus. Fill these in AFTER creating the GitHub repo and enabling
-# Discussions + the Giscus app. Layouts omit the comment widget entirely
-# while repo_id is empty, so the site builds and deploys fine without them.
-giscus:
-  repo: "guarzo/euro_trip"
-  repo_id: ""
-  category: "General"
-  category_id: ""
+# Supabase backs the shared interest marks and comment threads. Both values
+# are public by design — the anon key is meant to ship in the client. Fill
+# them in after creating the project and applying supabase/schema.sql.
+# While url is empty the site builds and deploys fine: the widgets render a
+# short placeholder note instead, exactly as the old Giscus block did.
+supabase:
+  url: "https://upfjamolpteckqryrjgu.supabase.co"
+  anon_key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwZmphbW9scHRlY2txcnlyamd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0NjUwMzIsImV4cCI6MjEwMTA0MTAzMn0.Bq3DHmpcLVZAGieKVe5mAlQzGGDFexrCr1cGbo-PE-4"
 
 markdown: kramdown
 highlighter: rouge

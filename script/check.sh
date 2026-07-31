@@ -56,7 +56,19 @@ if grep -ril "countdown" "$SITE_OUT" > /dev/null 2>&1; then
 else
   echo "ok    no 'countdown' anywhere in the built site"
 fi
-assert_file "$SITE_OUT/assets/js/app.js"
+assert_file "$SITE_OUT/assets/js/ui.js"
+# Runtime config must reach every page, even while unconfigured — the empty
+# string is what the modules read as "Supabase is not set up".
+assert_contains "$SITE_OUT/index.html" "window.SUPABASE_CONFIG"
+assert_contains "$SITE_OUT/cities/athens/index.html" "window.SUPABASE_CONFIG"
+# The roster is defined once, in _config.yml. If this attribute stops being
+# rendered, every identity-dependent feature silently disables itself.
+assert_contains "$SITE_OUT/index.html" "data-identity-banner"
+assert_contains "$SITE_OUT/index.html" '"key":"papa"'
+assert_contains "$SITE_OUT/index.html" '"key":"gaby"'
+assert_file "$SITE_OUT/assets/js/identity.js"
+assert_file "$SITE_OUT/assets/js/supabase.js"
+assert_file "$SITE_OUT/assets/js/main.js"
 assert_contains "$SITE_OUT/assets/css/style.css" ".activity-card"
 # The homepage's quick-link tile grid was replaced by the poster bill stack.
 assert_contains "$SITE_OUT/assets/css/style.css" ".bill-stack"
@@ -65,8 +77,15 @@ assert_contains "$SITE_OUT/assets/css/style.css" ".site-header"
 assert_file "$SITE_OUT/assets/fonts/archivo-latin.woff2"
 assert_file "$SITE_OUT/assets/fonts/archivo-latin-ext.woff2"
 # The countdown timer was removed along with the service worker (see Global Constraints).
-assert_absent "$SITE_OUT/assets/js/app.js" "countdown"
-assert_absent "$SITE_OUT/assets/js/app.js" "serviceWorker"
+assert_absent "$SITE_OUT/assets/js/ui.js" "countdown"
+assert_absent "$SITE_OUT/assets/js/ui.js" "serviceWorker"
+# app.js is gone; a stale copy in _site would still be served.
+if [ -f "$SITE_OUT/assets/js/app.js" ]; then
+  echo "FAIL  stale $SITE_OUT/assets/js/app.js still present — clean site/_site"
+  FAIL=1
+else
+  echo "ok    no stale app.js"
+fi
 assert_contains "$SITE_OUT/index.html" "Open Questions"
 assert_file "$SITE_OUT/cities/athens/index.html"
 assert_contains "$SITE_OUT/cities/athens/index.html" "In winter"
@@ -74,7 +93,21 @@ assert_contains "$SITE_OUT/cities/athens/index.html" "Draft day sketch"
 assert_contains "$SITE_OUT/cities/athens/index.html" "Getting here"
 assert_contains "$SITE_OUT/cities/athens/index.html" "climate normals"
 # Giscus stays out of the markup until the real repo IDs are filled in.
-assert_absent "$SITE_OUT/cities/athens/index.html" "giscus.app/client.js"
+# Giscus is gone entirely — no page may reference it.
+if grep -rl "giscus" "$SITE_OUT" > /dev/null 2>&1; then
+  echo "FAIL  'giscus' still present in built site:"
+  grep -rl "giscus" "$SITE_OUT" | sed 's/^/      /'
+  FAIL=1
+else
+  echo "ok    no giscus references anywhere in the built site"
+fi
+assert_file "$SITE_OUT/assets/js/comments.js"
+assert_contains "$SITE_OUT/cities/athens/index.html" "Family Notes"
+assert_contains "$SITE_OUT/cities/athens/index.html" 'data-page-path="/cities/athens/"'
+assert_contains "$SITE_OUT/questions/pace/index.html" 'data-page-path="/questions/pace/"'
+assert_contains "$SITE_OUT/feedback/index.html" "Family Notes"
+# The cities index has no thread; interests are city-keyed, threads are not.
+assert_absent "$SITE_OUT/cities/index.html" "data-comments"
 
 for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam; do
   assert_file "$SITE_OUT/cities/$CITY/index.html"
@@ -125,11 +158,21 @@ assert_contains "$SITE_OUT/index.html" "<table"
 assert_absent "$SITE_OUT/index.html" "|---|"
 assert_contains "$SITE_OUT/questions/trains-vs-flights/index.html" "<table"
 assert_file "$SITE_OUT/feedback/index.html"
-
-assert_contains "$SITE_OUT/assets/js/app.js" "euro-trip-interest"
-assert_contains "$SITE_OUT/assets/css/style.css" ".interest-toggle"
+assert_contains "$SITE_OUT/assets/css/style.css" ".interest-mark"
+assert_file "$SITE_OUT/assets/js/interests.js"
+# The same interest_key must appear on both the city page and the index —
+# that shared key is what makes them two views of one mark.
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
+assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
+# The old per-device copy must not survive anywhere. These assert against the
+# exact phrases that were actually on the pre-Supabase pages — earlier versions
+# of this block guarded invented phrasings and so passed while the real stale
+# copy ("Picks stay on your device") shipped.
+assert_absent "$SITE_OUT/cities/index.html" "Picks stay on your device"
+assert_absent "$SITE_OUT/cities/index.html" "keeps it on your own device"
+assert_absent "$SITE_OUT/cities/index.html" "your device"
+assert_absent "$SITE_OUT/cities/athens/index.html" "your device"
 
 echo "== checking internal links =="
 # External links are deliberately not checked: the site links to dozens of

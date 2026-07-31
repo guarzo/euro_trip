@@ -35,12 +35,8 @@ layout: default
       </div>
       {% endif %}
 
-      <p class="day-header-action">
-        <button type="button" class="interest-toggle"
-                data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"
-                aria-pressed="false">Interested?</button>
-      </p>
-      <p class="interest-note">Saved in your browser only &mdash; nobody else sees this. For opinions that count, use the comments below.</p>
+      <div class="interest-row" data-interest-key="city:{{ page.city | downcase | replace: ' ', '-' }}"></div>
+      <p class="interest-note">Everyone&rsquo;s marks show here. Tap yours to change it.</p>
     </header>
   </div>
 </section>
@@ -66,11 +62,11 @@ layout: default
 
 {% include winter-disclaimer.html %}
 
-{% include giscus.html %}
+{% include comments.html %}
 
 {% include close-wall.html
    shout_a="Want"
    shout_b=page.city
-   standfirst="Marking it above only tells your own browser. Saying so where the family can read it is what actually keeps a city on the list &mdash; or takes it off."
+   standfirst="Your mark above is visible to everyone. Saying <em>why</em> is what actually keeps a city on the list &mdash; or takes it off."
    action="Weigh in"
    href="/feedback/" %}
