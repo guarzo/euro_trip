@@ -2,7 +2,7 @@
 // both the city page and the cities index, because both key on the same
 // interest_key rather than on the page they appear on.
 
-import { getPerson, onPersonChange, PEOPLE } from './identity.js';
+import { getUser, onAuthChange, PEOPLE } from './auth.js';
 import { isConfigured, getInterests, setInterest, clearInterest } from './supabase.js';
 
 const CYCLE = ['unset', 'yes', 'no'];
@@ -35,12 +35,13 @@ function setLocal(key, person, state) {
 
 function renderRow(row) {
   const key = row.dataset.interestKey;
-  const me = getPerson();
+  const me = getUser();
+  const myId = me ? me.id : null;
   row.textContent = '';
 
   PEOPLE.forEach(function (person) {
-    const state = stateFor(key, person.key);
-    const isMe = person.key === me;
+    const state = stateFor(key, person.user_id);
+    const isMe = person.user_id === myId;
 
     const el = document.createElement(isMe ? 'button' : 'span');
     el.className = 'interest-mark' + (isMe ? ' is-me' : '');
@@ -55,7 +56,7 @@ function renderRow(row) {
       // screen reader cannot tell "not marked" from "explicitly not interested".
       el.setAttribute('aria-pressed', state === 'yes' ? 'true' : (state === 'no' ? 'mixed' : 'false'));
       el.setAttribute('aria-label', 'Your mark, currently ' + state + '. Activate to change.');
-      el.addEventListener('click', function () { cycle(row, key, person.key); });
+      el.addEventListener('click', function () { cycle(row, key); });
     } else {
       // A span carries no accessible name of its own, and the visible text is
       // abbreviated, so state the whole thing for assistive tech.
@@ -66,10 +67,10 @@ function renderRow(row) {
     row.appendChild(el);
   });
 
-  if (!me) {
+  if (!myId) {
     const hint = document.createElement('span');
     hint.className = 'interest-hint';
-    hint.textContent = 'Pick who you are to join in';
+    hint.textContent = 'Sign in to join in';
     row.appendChild(hint);
   }
 }
@@ -109,13 +110,18 @@ function showRowError(row, message) {
   setRowStatus(row, message, true);
 }
 
-function cycle(row, key, person) {
-  const previous = stateFor(key, person);
+function cycle(row, key) {
+  const me = getUser();
+  // Only the signed-in person's mark renders as a button, so this is a
+  // belt-and-braces guard against a stale listener firing after sign-out.
+  if (!me) return;
+
+  const previous = stateFor(key, me.id);
   const next = CYCLE[(CYCLE.indexOf(previous) + 1) % CYCLE.length];
 
   // Optimistic: render immediately, revert if the write fails. A star that
   // was never saved is worse than a slow one.
-  setLocal(key, person, next);
+  setLocal(key, me.id, next);
   renderRow(row);
   // Clear any error from a previous attempt: the row now shows this tap's
   // state, so a stale "Didn't save" would be describing something else.
@@ -127,14 +133,14 @@ function cycle(row, key, person) {
   const write = prior.catch(function () {}).then(function () {
     // `next` is what this tap intended, and the chain guarantees every earlier
     // tap has already been sent, so it is safe to send as-is.
-    return next === 'unset' ? clearInterest(key, person) : setInterest(key, person, next);
+    return next === 'unset' ? clearInterest(key) : setInterest(key, next);
   }).catch(function (e) {
     // Only revert if no later tap has queued behind this one. Otherwise that
     // tap is about to write and owns what the row should show — reverting here
     // would drop the display back to a state the server is moving away from,
     // which is the desync this whole chain exists to prevent.
     if (pendingWrites[key] === write) {
-      setLocal(key, person, previous);
+      setLocal(key, me.id, previous);
       renderRow(row);
       showRowError(row, "Didn't save — try again");
     }
@@ -172,7 +178,7 @@ export async function initInterests() {
   try {
     const data = await getInterests();
     marks = {};
-    data.forEach(function (r) { setLocal(r.interest_key, r.person, r.state); });
+    data.forEach(function (r) { setLocal(r.interest_key, r.user_id, r.state); });
     renderAll();
     rows.forEach(function (row) { setRowStatus(row, '', false); });
   } catch (e) {
@@ -183,6 +189,6 @@ export async function initInterests() {
     return;
   }
 
-  // Switching identity re-renders which button is yours.
-  onPersonChange(renderAll);
+  // Signing in or out re-renders which mark is yours.
+  onAuthChange(renderAll);
 }

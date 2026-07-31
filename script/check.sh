@@ -181,6 +181,9 @@ assert_file "$SITE_OUT/assets/js/interests.js"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
+# The logged-out hint changed with the auth model.
+assert_contains "$SITE_OUT/assets/js/interests.js" "Sign in to join in"
+assert_absent "$SITE_OUT/assets/js/interests.js" "Pick who you are to join in"
 # The old per-device copy must not survive anywhere. These assert against the
 # exact phrases that were actually on the pre-Supabase pages — earlier versions
 # of this block guarded invented phrasings and so passed while the real stale
