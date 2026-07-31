@@ -78,32 +78,64 @@ The custom domain requires:
   `_site/CNAME` exists so an `exclude:` edit cannot silently unpublish it.
 - The domain set under Settings → Pages → Custom domain.
 
-## Enabling comments
+## Enabling comments and shared marks
 
-Comments use [Giscus](https://giscus.app/), backed by GitHub Discussions. The
-site builds and deploys fine without them — the widget is omitted entirely while
-`giscus.repo_id` is empty, and a short placeholder note renders instead. To turn
-comments on:
+Both features are backed by one Supabase project. The site builds and deploys
+fine without it — while `supabase.url` is empty, the interest rows and comment
+threads render a short placeholder note instead.
 
-1. Enable **Discussions** on this repository (Settings → General → Features).
-2. Install the [Giscus app](https://github.com/apps/giscus) for the repo.
-3. Visit [giscus.app](https://giscus.app/), enter `guarzo/euro_trip`, and copy
-   the generated `data-repo-id` and `data-category-id`.
-4. Paste them into the `giscus:` block in `site/_config.yml`.
+1. Create a project at [supabase.com](https://supabase.com).
+2. Open the SQL editor and run `supabase/schema.sql` from this repo. It creates
+   both tables, the constraints, and the RLS policies.
+3. From Project Settings → API, copy the **Project URL** and the **anon public**
+   key.
+4. Paste them into the `supabase:` block in `site/_config.yml`.
 5. Commit and push.
+
+The anon key is meant to be public and ships in the page — that is what it is
+designed for. The `CHECK` constraints and the comment length limit are the real
+guardrails.
+
+**Accepted risk:** the site is public, so anyone who finds it could pick a name
+and post as that person. The audience is four people who live together, and the
+remedy is deleting rows from the SQL console. This was a deliberate trade
+against making everyone hold an account.
+
+Comments cannot be edited or deleted from the browser by design. To remove one:
+
+```sql
+delete from comments where id = '<uuid>';
+```
+
+## Verifying the shared features
+
+`script/check.sh` asserts the markup is present but cannot exercise Supabase.
+After changing anything under `site/assets/js/` or the Supabase config, run
+these five steps by hand:
+
+1. Open the site, pick a name in the header banner, and confirm the toggles
+   and comment form become active.
+2. On a city page, tap your mark until it reads ★.
+3. Open the same page in a different browser (or a private window), pick a
+   *different* name, and confirm the first person's ★ is visible.
+4. Open `/cities/` and confirm that city shows the same ★ there. This is what
+   the `interest_key` schema exists for — the index and the city page are two
+   views of one mark.
+5. Post a comment, reload, and confirm it survives. Then clear your mark and
+   confirm it disappears in both browsers and on the index.
 
 ## Structure
 
 ```
 site/
-├── _config.yml       # Site config, family members, Giscus keys
+├── _config.yml       # Site config, family members, Supabase keys
 ├── _layouts/         # default; city and question nest inside it
-├── _includes/        # header, footer, giscus, winter-disclaimer
+├── _includes/        # header, footer, comments, identity-banner, winter-disclaimer
 ├── _cities/          # 11 city pages → /cities/:name/
 ├── _questions/       # 10 decision pages → /questions/:name/
 ├── assets/
 │   ├── css/style.css
-│   └── js/app.js     # Mobile nav, smooth scroll, interest toggles
+│   └── js/*.js       # main, ui, identity, supabase, interests, comments
 ├── index.md
 ├── cities.md         # /cities/
 ├── questions.md      # /questions/
@@ -120,7 +152,8 @@ the page title from `city`/`country`, `question`, or `title` accordingly.
 ## Deliberately not here
 
 Day-by-day itinerary pages, reservation tracking, packing lists, emergency info,
-offline/PWA support, and any cost or budget content. Those belong to a booked
+offline/PWA support, comment editing and deletion (SQL console instead),
+notifications, threaded replies, and any cost or budget content. Those belong to a booked
 trip. This site covers the phase before that one.
 
 ## A note on the content
