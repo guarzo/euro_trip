@@ -1,5 +1,5 @@
 // The only file that performs network I/O. Everything else in the app talks
-// to Supabase through these six functions and never sees a query.
+// to Supabase through these functions and never sees a query.
 //
 // The anon key is public by design and ships in the page. The database CHECK
 // constraints and RLS policies are the real guardrails, not secrecy.
@@ -8,9 +8,9 @@
 // A static top-level `import ... from 'https://esm.sh/...'` would fetch the
 // CDN on every page load for every reader — including readers who never
 // interact, and including the unconfigured state — and a blocked or slow CDN
-// would reject the whole module graph, taking `initUI()` and `initIdentity()`
-// down with it. A static site must not lose its nav because a CDN is
-// unreachable.
+// would reject the whole module graph, taking `initUI()`, `initInterests()`,
+// and `initComments()` down with it. A static site must not lose its nav
+// because a CDN is unreachable.
 
 const config = window.SUPABASE_CONFIG || { url: '', anonKey: '' };
 
