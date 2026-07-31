@@ -18,7 +18,18 @@ audited.
 
 | ID | Page | Type | Sev | Finding | Status |
 |---|---|---|---|---|---|
-| | | | | | |
+| RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
+| RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | open |
+| RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | open |
+
+---
+
+## Cross-cutting
+
+### Walkthrough notes
+
+- **RN-01 — hero images don't fit the screen on desktop.** Mobile looks right.
+  Reported on the live site.
 
 ---
 
@@ -49,6 +60,16 @@ audited.
 ## Question pages
 
 ### Walkthrough notes
+
+- **RN-02 — add a meta question: "Is winter break the right choice?"** Nothing
+  on the site questions the window itself; every other question assumes it.
+  Needs its own page with options (winter break / summer / spring / a different
+  break), a recommendation, and a comment thread.
+- **RN-03 — remove the "are Bubu and Gaby coming" question.** Treat their
+  attendance as settled. `what-kids-want.md` currently leads with it in the
+  front-matter question line. Their preferences stay; the attendance framing
+  goes. Also referenced from `feedback.md` (line 35) and inside
+  `what-kids-want.md`.
 
 ### Content findings
 
