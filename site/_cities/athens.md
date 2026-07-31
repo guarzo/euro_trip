@@ -80,6 +80,24 @@ The honest counterpoint: Athens is also the geographic outlier. Every other cand
 
 </div>
 
+<div class="activity-block">
+<div class="activity-time">🌊 Day 3 — Cape Sounion, or nothing scheduled</div>
+
+<div class="activity-card">
+<h3>Cape Sounion and the Temple of Poseidon</h3>
+<p>About 70&nbsp;km southeast along the coast road, 1.5 hours each way. The temple's Doric columns stand alone on a cliff over the Aegean, and Byron carved his name into one of them. Winter's early sunset actually helps here — leave after lunch and the light for the drive back is the same golden hour people pay tour operators to time.</p>
+<div class="activity-meta">
+<span>⏱️ Half day, with driving</span>
+</div>
+</div>
+
+<div class="activity-card">
+<h3>Or: nothing scheduled</h3>
+<p>Three nights is enough to leave one day open — return to Plaka for the shop you didn't have time for, or just sit in a café near the market. Sounion is the better story, but an open day is the one people actually rest on.</p>
+</div>
+
+</div>
+
 ## Eat
 
 - **Souvlaki** — the default cheap meal, and Athens does it better than anywhere.
