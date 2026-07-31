@@ -97,6 +97,13 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* JS modules show/hide elements by toggling the `hidden` attribute. Any
+   component rule that declares `display` on the same element (e.g. a
+   flex/grid layout) overrides the UA default `display: none` for `[hidden]`
+   and silently defeats it — the element stays visible no matter what the JS
+   sets. This keeps `hidden` authoritative everywhere in the document. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
