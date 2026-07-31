@@ -179,6 +179,16 @@ export async function initInterests() {
     const data = await getInterests();
     marks = {};
     data.forEach(function (r) { setLocal(r.interest_key, r.user_id, r.state); });
+    if (PEOPLE.length === 0) {
+      // The profiles fetch in auth.js failed, so there is no roster to
+      // render marks against — an empty row would look like a rendering
+      // glitch rather than a fetch failure, including for a signed-in user.
+      rows.forEach(function (row) {
+        row.textContent = '';
+        showRowError(row, "Couldn't load marks — reload to try again");
+      });
+      return;
+    }
     renderAll();
     rows.forEach(function (row) { setRowStatus(row, '', false); });
   } catch (e) {

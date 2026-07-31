@@ -109,7 +109,9 @@ export async function initAuth() {
   try {
     PEOPLE = await getProfiles();
   } catch (e) {
-    // Names are unavailable, but sign-in still works and marks still save.
+    // Sign-in still works, but every consumer of PEOPLE (interest rows,
+    // comment authorship labels) degrades to its own "couldn't load" state —
+    // an empty roster is not silently equivalent to a working one.
     PEOPLE = [];
   }
 
