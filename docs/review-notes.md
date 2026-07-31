@@ -25,6 +25,15 @@ audited.
 | RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | open |
 | RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
 | RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
+| RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | open |
+| RN-09 | City pages | design | low | Only the first activity card per page has a "Get Directions" link | open |
+| RN-10 | City pages | content | med | Pages argue against each other without ever linking to each other | open |
+| RN-11 | Cities hub | content | low | Suggested nights total 31 for a 14-day trip, with no framing | open |
+| RN-12 | Florence | copy | med | "The most skippable stop" is a highlight tag, shown as a poster bill | open |
+| RN-13 | Questions | content | med | `pace.md` recommends 4 nights minimum; the split arc it endorses gives 3.5 | open |
+| RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | open |
+| RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | open |
+| RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
 
 ---
 
@@ -66,6 +75,27 @@ audited.
 
 ### Content findings
 
+- **RN-08 — Rome's day sketch is one day short.** Every other city gets one
+  `activity-block` per suggested night; Rome suggests 4 nights and has 3 day
+  blocks. London (4 nights) has 4. Either add a Rome day 4 or drop it to 3
+  nights — and 3 nights contradicts `pace.md`'s "four nights minimum."
+- **RN-09 — only the first activity card on each page has a "Get Directions"
+  link.** All eleven pages have exactly one map link and 6–11 cards. It reads as
+  an unfinished pattern rather than a deliberate one.
+- **RN-10 — city pages barely link to each other.** Only 5 `/cities/*` links
+  exist across the whole site, all from `ruled-out.md`. Pages that argue about
+  each other (Florence "the most skippable stop", Naples "go to Florence
+  instead", Seville vs. Granada, Madrid vs. Barcelona) never link to the page
+  they are arguing against.
+- **RN-11 — suggested nights total 31 for a 14-day trip.** Fine in principle
+  (they are per-city suggestions, not a sum), but no page says so, and the
+  cities hub prints "N nights suggested" on every bill with no framing. A
+  reader adding them up gets a nonsense number.
+- **RN-12 — Florence's front matter markets it against itself.** `highlights`
+  ends with "The most skippable stop", which appears as a poster bill on the
+  cities hub with no context. Every other city's highlights are draws. If
+  Florence is skippable, the argument belongs in the body, not the tagline.
+
 ## Questions (hub)
 
 ### Walkthrough notes
@@ -87,6 +117,27 @@ audited.
   `what-kids-want.md`.
 
 ### Content findings
+
+- **RN-13 — the pace recommendation and the arc recommendation disagree.**
+  `pace.md` recommends "three bases, four nights minimum each" and calls four
+  bases "the reasonable stretch." `which-arc.md` recommends the four-base split
+  arc outright. Both are the site's own voice, both are "my recommendation,"
+  and neither acknowledges it is being overruled by the other. Since RN-06
+  builds the itinerary page on the split arc, this needs settling first.
+- **RN-14 — same problem on country count.** `how-many-countries.md`
+  recommends **two countries**; the split arc it defers to is Italy, Spain,
+  France, and the UK — four. The page's escape hatch covers the *northern* arc
+  only, not the split arc. As written, the site recommends an option its own
+  countries question argues against.
+- **RN-15 — "eleven cities, six countries" is hardcoded in four places**
+  (`index.md` ×2, `cities.md` ×2) while everything else counts from
+  `site.cities`. Adding Venice (RN-04) silently makes all four wrong. Question
+  count is already dynamic (`site.questions | size`) — cities should match,
+  except `feedback.md` line 49 hardcodes "Ten decisions," which RN-02 breaks.
+- **RN-16 — no question page states what it is blocked by.** Front matter has
+  `order` and `impact`, and pages cross-link in prose, but `which-arc` is
+  genuinely upstream of most others and nothing encodes that. Relevant now that
+  RN-02 adds a question that is arguably upstream of `which-arc` itself.
 
 ## Logistics
 
