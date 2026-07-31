@@ -31,7 +31,9 @@ The cost is obvious: you don't see the third country. On a trip this far from ho
 
 **Two countries, three or four bases.** The trip is fourteen days, not twenty-one, and the difference between "we saw Italy and Spain properly" and "we passed through Greece, Italy, and Spain" is mostly in favor of the first.
 
-The exception is the **northern arc**, where this calculus breaks down: London, Paris, and Amsterdam are three countries but the moves between them are 2–3 hour trains, city center to city center, with no airport overhead at all. Three countries costs about half a day of travel total. That is the one configuration where three countries is as relaxed as two would be elsewhere — which is a significant point in the northern arc's favor in [Which arc?]({{ '/questions/which-arc/' | relative_url }}).
+There are two exceptions, and they cost differently. The **northern arc** is where this calculus breaks down cheaply: London, Paris, and Amsterdam are three countries but the moves between them are 2–3 hour trains, city center to city center, with no airport overhead at all. Three countries costs about half a day of travel total.
+
+The **split arc** is the other exception, and it is not cheap — it is four countries (Italy, Spain, France, UK), and [Which arc?]({{ '/questions/which-arc/' | relative_url }}) says plainly that it "spends the most days moving." Its case does not rest on country-count discipline; it rests on being the one route that covers both the Mediterranean and the northern cities in a single trip. If that trade-off is not worth it to the family, this page's default of two countries stands.
 
 ## What would change my mind
 

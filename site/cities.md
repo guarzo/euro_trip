@@ -4,12 +4,13 @@ title: Cities
 permalink: /cities/
 ---
 
+{%- assign country_count = site.cities | map: "country" | uniq | size -%}
 <section class="wall wall-hero full">
   <div class="wall-inner">
     <h1 class="shout">
-      <span class="line">Eleven</span>
+      <span class="line">{% include number-word.html num=site.cities.size %}</span>
       <span class="line line-small line-out">Cities</span>
-      <span class="line">Six Countries</span>
+      <span class="line">{% include number-word.html num=country_count %} Countries</span>
     </h1>
 
     <p class="wall-standfirst">All workable in winter, some far more comfortably than others. No trip visits all of them &mdash; two weeks covers three or four bases.</p>
@@ -24,7 +25,8 @@ permalink: /cities/
 
 <div class="alert alert-info">
   <p class="alert-title">These are candidates, not a route</p>
-  <p>No trip visits all eleven. Two weeks realistically covers three or four bases. Read what appeals, and see <a href="{{ '/questions/which-arc/' | relative_url }}">Which arc?</a> for how they group into actual trips. Places that <em>don't</em> work in winter are on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>, with reasons.</p>
+  <p>No trip visits all of them. Two weeks realistically covers three or four bases. Read what appeals, and see <a href="{{ '/questions/which-arc/' | relative_url }}">Which arc?</a> for how they group into actual trips. Places that <em>don't</em> work in winter are on <a href="{{ '/ruled-out/' | relative_url }}">Ruled Out</a>, with reasons.</p>
+  <p>Each city's suggested nights are for <em>that city alone</em> — they don't sum to a trip length. A route uses three or four of these cities, not all of them.</p>
 </div>
 
 <p class="interest-note">Everyone&rsquo;s marks show below. Tap yours to change it &mdash; the same mark shows on the city&rsquo;s own page.</p>

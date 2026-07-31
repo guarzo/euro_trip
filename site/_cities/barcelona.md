@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are around 15&nbsp;°C (59&nbsp;°F) — among the mildest on this list — with sunset near 5:30&nbsp;PM. Walkable weather in a jacket, and considerably more usable afternoon than any of the northern cities.
+January highs are around 14&nbsp;°C (57&nbsp;°F) — among the mildest on this list — with sunset near 5:30&nbsp;PM. Walkable weather in a jacket, and considerably more usable afternoon than any of the northern cities.
 
 The Fira de Santa Llúcia, the Christmas market outside the cathedral, runs through most of December. The bigger event is the **Cavalcada dels Reis** on 5 January: the Three Kings arrive by sea and process through the city throwing sweets, and in Spain this is a larger deal for children than Christmas Day. If dates land near it, that is a reason to be here specifically.
 
@@ -95,6 +95,12 @@ The honest counterpoint: Barcelona is heavily touristed even in January, and the
 
 </div>
 
+## Where to stay
+
+**L'Eixample** is the straightforward, grid-planned choice, and Passeig de Gràcia inside it puts Casa Batlló and La Pedrera on the walk home. It reads as more modern than charming, which some families prefer and others find flat.
+
+**Gràcia**, a genuine village folded into the city, has quieter squares at night and sits between Park Güell and the center — though Park Güell is uphill from most of it, and how much of a walk that is depends on which end of Gràcia you book. The **Gothic Quarter** itself is charming but worth avoiding as a base — it's the most touristed part of the city and the one this page already warns about around La Rambla.
+
 ## Eat
 
 - **Pintxos** — small plates skewered on bread, taken from the bar and counted at the end.
@@ -107,4 +113,4 @@ The honest counterpoint: Barcelona is heavily touristed even in January, and the
 
 El Prat (BCN) has direct US service and extensive European connections; the airport train and metro both reach the center in about 30 minutes.
 
-Onward by rail: Madrid about 2.5 hours by AVE high-speed, and direct trains run into southern France. By air: Rome or Paris about 2 hours, Athens about 3. Paris is also reachable by train in roughly 6.5 hours — long, but city center to city center and worth weighing against the airport overhead.
+Onward by rail: Madrid about 2.5 hours by AVE high-speed, and direct trains run into southern France. By air: Rome or Paris about 2 hours, Athens about 3. Paris is also reachable by train in roughly 6h45 — long, but city center to city center and worth weighing against the airport overhead.

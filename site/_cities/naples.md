@@ -22,7 +22,7 @@ Winter suits Naples unusually well for two reasons. **Pompeii** is open year-rou
 
 Pizza was invented here and is still better here than anywhere. The Archaeological Museum holds the mosaics and frescoes actually lifted from Pompeii, which means the museum and the ruins are two halves of one thing — see both or the visit is incomplete.
 
-**The honest part: Naples is chaotic, grimy in places, and not to everyone's taste.** The traffic is anarchic, the street noise is constant, and parts of the center are visibly rundown. People who love it love it precisely for that; people who want an orderly, pretty Italian city should go to Florence instead. It is worth knowing which camp the family is in before committing two nights.
+**The honest part: Naples is chaotic, grimy in places, and not to everyone's taste.** The traffic is anarchic, the street noise is constant, and parts of the center are visibly rundown. People who love it love it precisely for that; people who want an orderly, pretty Italian city should go to [Florence]({{ '/cities/florence/' | relative_url }}) instead. It is worth knowing which camp the family is in before committing two nights.
 
 ## Draft day sketch
 
@@ -75,6 +75,12 @@ Pizza was invented here and is still better here than anywhere. The Archaeologic
 </div>
 
 </div>
+
+## Where to stay
+
+**Chiaia** is the calm, residential seafront choice, with the Villa Comunale gardens as a buffer from the noise — but it is a bus ride, or roughly half an hour on foot depending on the exact address, from Spaccanapoli and Via San Gregorio Armeno, which are most of this page's Day 2.
+
+**Centro Storico**, around Spaccanapoli and Piazza Dante, puts you on top of the nativity workshops and within walking distance of the Archaeological Museum, at the cost of the noise and grit this page already admits is part of Naples. For two nights, staying inside the chaos rather than commuting to it is usually the better trade.
 
 ## Eat
 

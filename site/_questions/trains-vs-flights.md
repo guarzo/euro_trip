@@ -31,21 +31,21 @@ This is not really a preference — it is a matter of which routes have usable r
 
 All city center to city center. All comfortably better than flying.
 
-### Fly — no practical rail
+### Fly — rail is impractical or slow
 
 | Route | Time |
 |---|---|
 | Athens → anywhere | 2h+ |
 | Rome → Barcelona | ~2h |
-| Barcelona → Paris | ~2h (or ~6h30 by train) |
+| Barcelona → Paris | ~2h (or ~6h45 by train) |
 
-Greece has no useful rail connection to the rest of Europe, and the Italy–Spain crossing is a sea crossing. Those are flights, and no amount of preference changes it.
+Greece has no useful rail connection to the rest of Europe, and Italy to Spain by rail means routing up through France with several changes and the better part of a day gone. Those are flights, and no amount of preference changes it.
 
-Barcelona → Paris is the one genuine judgment call: 6h30 by direct train versus about 2 hours in the air. The train is roughly a wash on door-to-door time and considerably more pleasant; the flight wins if the day is tight.
+Barcelona → Paris is the one genuine judgment call: 6h45 by direct train versus about 2 hours in the air. The train is roughly a wash on door-to-door time and considerably more pleasant; the flight wins if the day is tight.
 
 ## My recommendation
 
-**Trains wherever the route offers them; flights only for the sea crossings.** This is close to a non-decision.
+**Trains wherever the route offers them; flights only where rail doesn't realistically go.** This is close to a non-decision.
 
 One practical warning that is worth more than the routing advice: **budget carriers have strict and aggressively enforced bag rules.** With four people and two weeks of luggage, the add-on charges and the risk of a gate-side repack make them a poorer deal than the headline fare suggests. Full-service carriers or trains are usually the better call for a family this size, even before comfort enters into it.
 

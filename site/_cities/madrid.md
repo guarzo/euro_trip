@@ -14,7 +14,7 @@ highlights:
 
 ## In winter
 
-January highs are around 11&nbsp;°C (52&nbsp;°F), colder than coastal Spain — Madrid sits on a plateau at roughly 650&nbsp;m, and the air is thin and dry. What that buys you is sunshine: it is frequently bright and clear when Barcelona is grey, and sunset is not until about 5:55&nbsp;PM. Cold in the shade, pleasant in the sun, and almost never wet for long.
+January highs are around 10&nbsp;°C (50&nbsp;°F), colder than coastal Spain — Madrid sits on a plateau at roughly 650&nbsp;m, and the air is thin and dry. What that buys you is sunshine: it is frequently bright and clear when [Barcelona]({{ '/cities/barcelona/' | relative_url }}) is grey, and sunset is not until about 5:55&nbsp;PM. Cold in the shade, pleasant in the sun, and almost never wet for long.
 
 The Plaza Mayor Christmas market runs through early January. The bigger draw is **New Year's Eve at Puerta del Sol**, where the entire country watches the clock and eats twelve grapes on the twelve strokes of midnight — one of the few genuinely distinctive holiday experiences available on this trip. It is also extremely crowded; the square fills hours ahead.
 
@@ -97,11 +97,21 @@ The honest counterpoint: Madrid has no single unmissable landmark. There is no C
 </div>
 
 <div class="activity-card">
-<h3>Toledo, if there is appetite</h3>
-<p>About 35 minutes by high-speed train. A walled medieval hill town of cathedrals and synagogues, easily a full day. Optional, and the obvious thing to drop.</p>
+<h3>Toledo, as a day trip</h3>
+<p>About 33 minutes each way by high-speed Avant from Atocha, and worth the whole day it costs. Toledo was Spain's capital before Madrid and its Cathedral, a Gothic monument on the scale of Seville's, sits a few streets from the Alcázar fortress on the hill above the Tagus gorge. The Cathedral holds El Greco's <em>Espolio</em>; walk five minutes to the Church of Santo Tomé for his single best-known painting, <em>The Burial of the Count of Orgaz</em>, still hanging in the small chapel it was painted for. The city's three faiths are still visible in its stones: the Synagogue of Santa María la Blanca and the Sinagoga del Tránsito stand a few minutes apart in the old Jewish quarter, with the mosque-turned-church of Cristo de la Luz a longer walk across the historic center. Both synagogues were taken over as churches — Santa María la Blanca in 1411, the Tránsito after the 1492 expulsion — and preserved rather than demolished, which is why they survive at all. Toledo is also still a working center for damascene metalwork and sword-making, a craft tradition that predates the Reconquista.</p>
+<p>It is a full day, not a half day — the old city is steep and dense, and the walk down to the Tagus gorge and back up for the classic view from the Mirador del Valle takes real time on its own. If Madrid's three days need to give up a day somewhere, this is where the slack comes from.</p>
+<div class="activity-meta">
+<span>⏱️ Full day</span>
+</div>
 </div>
 
 </div>
+
+## Where to stay
+
+**Barrio de las Letras**, between Sol and the Prado, sits inside Day 1's art-triangle walk and stays pedestrian and central without feeling as frantic as Sol itself — though the restaurant-heavy streets get loud in the evening.
+
+**Salamanca** is quieter and residential, with wide avenues and good metro coverage, but it's more of a metro-in base than a walk-everywhere one — the Prado, Retiro, and Plaza Mayor cluster is a real trip from here, not a stroll.
 
 ## Eat
 

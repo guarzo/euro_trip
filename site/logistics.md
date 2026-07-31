@@ -52,7 +52,7 @@ permalink: /logistics/
 
 <p>All of these are city center to city center with no airport transfer and no security queue worth the name. <strong>A three-hour train usually beats a one-hour flight door to door</strong> — see <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for why.</p>
 
-<h3>Fly — no practical rail</h3>
+<h3>Fly — rail is impractical or slow</h3>
 
 <div class="table-wrapper" markdown="1">
 
@@ -62,11 +62,11 @@ permalink: /logistics/
 | Athens → Barcelona | ~3h |
 | Athens → London | ~3h30 |
 | Rome → Barcelona | ~2h |
-| Barcelona → Paris | ~2h (or ~6h30 by train) |
+| Barcelona → Paris | ~2h (or ~6h45 by train) |
 
 </div>
 
-<p>Greece has no useful rail link to the rest of Europe, and Italy to Spain is a sea crossing. Those legs are flights regardless of preference.</p>
+<p>Greece has no useful rail link to the rest of Europe, and Rome to Barcelona by rail means several changes up through France and the better part of a day — those legs are flights regardless of preference. Barcelona &rarr; Paris is the exception: a direct train exists at ~6h45, which is a real option rather than a fallback. See <a href="{{ '/questions/trains-vs-flights/' | relative_url }}">Trains or budget flights?</a> for that trade-off.</p>
 
 <h2 class="section-heading">✈️ Getting there and home</h2>
 
@@ -93,16 +93,17 @@ permalink: /logistics/
 
 | City | January high | Sunset in late December |
 |---|---|---|
-| Seville | ~16 °C / 61 °F | ~6:00 PM |
-| Barcelona | ~15 °C / 59 °F | ~5:30 PM |
-| Athens | ~13 °C / 55 °F | ~5:20 PM |
+| Seville | ~16 °C / 61 °F | ~6:10 PM |
+| Barcelona | ~14 °C / 57 °F | ~5:30 PM |
+| Athens | ~13 °C / 55 °F | ~5:10 PM |
 | Naples | ~13 °C / 55 °F | ~4:45 PM |
-| Granada | ~12 °C / 54 °F | ~6:00 PM |
+| Granada | ~12 °C / 54 °F | ~6:05 PM |
 | Rome | ~12 °C / 54 °F | ~4:40 PM |
-| Madrid | ~11 °C / 52 °F | ~5:55 PM |
-| Florence | ~10 °C / 50 °F | ~4:45 PM |
+| Florence | ~11 °C / 52 °F | ~4:45 PM |
+| Madrid | ~10 °C / 50 °F | ~5:55 PM |
 | London | ~8 °C / 47 °F | ~3:53 PM |
 | Paris | ~7 °C / 45 °F | ~4:55 PM |
+| Venice | ~7 °C / 45 °F | ~4:40 PM |
 | Amsterdam | ~6 °C / 43 °F | ~4:29 PM |
 
 </div>

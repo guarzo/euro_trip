@@ -29,11 +29,11 @@ The cost is that roughly a third of the trip is spent in transit or in hotel lob
 
 ## My recommendation
 
-**Three bases, four nights minimum each, with day trips carrying the extra places.**
+**Three bases, four nights minimum each, with day trips carrying the extra places** — this is the guideline for a trip that stays inside one arc.
 
 Fourteen days minus two flying days is twelve. Three bases uses two of those on moves, leaving ten real days across three cities — enough for each city to have a proper unstructured day. Six stops would use five days on moves, leaving seven real days across six cities, and none of them unstructured.
 
-If that feels too slow, **four bases is the reasonable stretch** — that is what the [split arc]({{ '/questions/which-arc/' | relative_url }}) proposes, and it is brisk but workable. Five or more is where I would push back.
+**The [split arc]({{ '/questions/which-arc/' | relative_url }}) is the one deliberate exception.** It spends a fourth base to cover both the Mediterranean and the northern cities, which means nights per stop drop to three or four rather than four-plus. That is a real trade against this page's default, made on purpose for what the extra base buys — not a case of the site disagreeing with itself. Five or more bases is still where I would push back regardless of arc.
 
 ## What would change my mind
 

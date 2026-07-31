@@ -33,13 +33,13 @@ The catch is darkness and weather. Late-December sunsets: London **3:53&nbsp;PM*
 
 ### 3. Split arc — e.g. Rome · Barcelona · Paris · London
 
-Covers both moods: Mediterranean light at the start, northern cities at the end, finishing with an easy English-speaking base and a straightforward flight home. Rome to Barcelona is a 2-hour flight, Barcelona to Paris a 2-hour flight or 6.5-hour train, Paris to London 2h20 by train.
+Covers both moods: Mediterranean light at the start, northern cities at the end, finishing with an easy English-speaking base and a straightforward flight home. Rome to Barcelona is a 2-hour flight, Barcelona to Paris a 2-hour flight or 6h45 train, Paris to London 2h20 by train.
 
 It drops Greece — the geographic outlier — and spends the most days moving. Four bases in fourteen days is a brisk pace with a lot of packing.
 
 ## My recommendation
 
-**Option 3, the split arc**, if the group can tolerate the pace. It gets the Mediterranean daylight that makes the first week pleasant *and* the northern cities that the kids will actually remember, and it ends somewhere with a lot of direct flights home.
+**Option 3, the split arc**, if the group can tolerate the pace. It gets the Mediterranean daylight that makes the first week pleasant *and* the northern cities that the kids will actually remember, and it ends somewhere with a lot of direct flights home. Taking it means overriding this site's own defaults on [pace]({{ '/questions/pace/' | relative_url }}) (three bases, not four) and [country count]({{ '/questions/how-many-countries/' | relative_url }}) (two, not four) — on purpose, for what the extra base buys.
 
 If the group would rather move less, **option 1 without Athens** — Rome, Barcelona, Seville — is the most relaxed and the sunniest version of this trip.
 

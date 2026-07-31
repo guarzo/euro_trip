@@ -106,6 +106,12 @@ The honest counterpoint: beyond the darkness, Paris in January is the least atmo
 
 </div>
 
+## Where to stay
+
+**Saint-Germain-des-Prés**, in the 6th, is consistently the calmest, most walkable family base — close to the Louvre-Orsay-Latin Quarter loop and the Luxembourg Gardens, at a price that reflects it.
+
+**Le Marais**, in the 3rd and 4th, is this page's own Day 3 neighborhood, and staying there keeps that walk on foot rather than by Métro. Buildings here are old, though, and narrow stairs with no elevator are common — worth asking about before booking with heavy winter luggage.
+
 ## Eat
 
 - **Croissants and pain au chocolat** — from a bakery with a queue of locals, eaten immediately, not carried back to the room.
@@ -118,4 +124,4 @@ The honest counterpoint: beyond the darkness, Paris in January is the least atmo
 
 Charles de Gaulle (CDG) has extensive direct US service year-round; Orly handles more European and domestic traffic. The RER B from CDG reaches the center in about 35 minutes.
 
-Onward by rail: London 2h20 and Amsterdam about 3h20, both by Eurostar, both city center to city center. Barcelona is about 6h30 by direct train — long, but competitive with flying once airport time is counted. By air: Rome about 2 hours, Athens about 3h30.
+Onward by rail: London 2h20 and Amsterdam about 3h20, both by Eurostar, both city center to city center. Barcelona is about 6h45 by direct train — long, but competitive with flying once airport time is counted. By air: Rome about 2 hours, Athens about 3h30.

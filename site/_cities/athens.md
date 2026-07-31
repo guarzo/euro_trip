@@ -14,9 +14,9 @@ highlights:
 
 ## In winter
 
-Athens is the one Greek destination that genuinely works in December and January. Daytime highs sit around 13&nbsp;°C (55&nbsp;°F) — jacket weather, not parka weather — and the sun sets around 5:20&nbsp;PM, about fifty minutes later than in Amsterdam.
+Athens is the one Greek destination that genuinely works in December and January. Daytime highs sit around 13&nbsp;°C (55&nbsp;°F) — jacket weather, not parka weather — and the sun sets around 5:10&nbsp;PM, about forty minutes later than in Amsterdam.
 
-Two things get *better* in winter. The Acropolis in July is a slow shuffle in punishing heat; in January you can walk up and actually look at it. And entry to the state archaeological sites drops to a reduced winter rate from 1 November through 31 March.
+Two things get *better* in winter. The Acropolis in July is a slow shuffle in punishing heat; in January you can walk up and actually look at it. And the state archaeological sites have historically dropped to a reduced winter rate from 1 November through 31 March, though Greek ministry pricing has been in flux — worth a live check closer to booking rather than counting on it.
 
 The tradeoff is rain — January is one of the wetter months — and shorter site hours, typically closing around 5&nbsp;PM instead of 8&nbsp;PM. Plan ruins for the morning and neighborhoods for the afternoon.
 
@@ -75,10 +75,34 @@ The honest counterpoint: Athens is also the geographic outlier. Every other cand
 
 <div class="activity-card">
 <h3>Sunset from Lycabettus Hill</h3>
-<p>The highest point in the city, reached by funicular. In winter, sunset lands around 5:20&nbsp;PM, so this works as an early-evening stop rather than a late one.</p>
+<p>The highest point in the city, reached by funicular. In winter, sunset lands around 5:10&nbsp;PM, so this works as an early-evening stop rather than a late one.</p>
 </div>
 
 </div>
+
+<div class="activity-block">
+<div class="activity-time">🌊 Day 3 — Cape Sounion, or nothing scheduled</div>
+
+<div class="activity-card">
+<h3>Cape Sounion and the Temple of Poseidon</h3>
+<p>About 70&nbsp;km southeast along the coast road, 1.5 hours each way. The temple's Doric columns stand alone on a cliff over the Aegean, and Byron carved his name into one of them. Winter's early sunset actually helps here — leave after lunch and the light for the drive back is the same golden hour people pay tour operators to time.</p>
+<div class="activity-meta">
+<span>⏱️ Half day, with driving</span>
+</div>
+</div>
+
+<div class="activity-card">
+<h3>Or: nothing scheduled</h3>
+<p>Three nights is enough to leave one day open — return to Plaka for the shop you didn't have time for, or just sit in a café near the market. Sounion is the better story, but an open day is the one people actually rest on.</p>
+</div>
+
+</div>
+
+## Where to stay
+
+**Koukaki**, just south of the Acropolis, is the calmer, more residential choice, and it's a short walk to the Acropolis Museum — most guides call it the easy family pick.
+
+**Plaka**, the old town this page's Day 1 already wanders through, is the more atmospheric option and the closest to the Acropolis itself, at the cost of being touristy and pricier. Either way, the cheaper listings around Omonia and Exarchia are cheaper for a reason: both sit further from the sights, and both are noisier and scruffier at night than the walk back from dinner wants to be.
 
 ## Eat
 

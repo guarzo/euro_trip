@@ -100,6 +100,30 @@ The honest counterpoint: Rome is busy, loud, and relentlessly hard-surfaced. The
 
 </div>
 
+<div class="activity-block">
+<div class="activity-time">🌲 Day 4 — Appian Way, and nothing scheduled</div>
+
+<div class="activity-card">
+<h3>Catacombs and the Appian Way</h3>
+<p>The ancient road south out of the city, pines overhead and 2,000-year-old paving underfoot, with several catacomb complexes along it. The road itself is free to walk and never crowded — the quietest morning Rome offers. The catacombs are a separate matter: entry is by guided tour only, and San Callisto and San Sebastiano each keep their own hours, closing days, and last admission, so check the one you pick before building a morning around it.</p>
+<div class="activity-meta">
+<span>⏱️ 2–3 hours</span>
+</div>
+</div>
+
+<div class="activity-card">
+<h3>The rest of the day, deliberately open</h3>
+<p>Four nights is enough to leave one afternoon unplanned — return to whichever neighborhood or museum earned a second look, or just sit somewhere with coffee. This is the day people actually remember.</p>
+</div>
+
+</div>
+
+## Where to stay
+
+**Monti**, the neighborhood already recommended for Day 1's dinner, doubles as the best base: one Metro stop from Termini, and a short walk to the Forum and Colosseum in the morning before the day's crowds arrive. It has been discovered in the last decade and some streets get loud with bar traffic at night, but it is still quieter and more walkable than staying inside the ancient center itself.
+
+**Trastevere** is the alternative, across the river — more atmosphere after dark, a genuine neighborhood rather than a hotel district, and public transport connects it to the historic center — though the routes across the river change with roadworks, so check what is actually running before booking on the strength of a connection. It is livelier and noisier at night than Monti, which is either the appeal or the drawback depending on who's sharing a wall with it.
+
 ## Eat
 
 - **Cacio e pepe and carbonara** — Roman pasta is four dishes done perfectly. Order them where the menu is short.

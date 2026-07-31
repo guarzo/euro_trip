@@ -107,6 +107,12 @@ The honest counterpoint, beyond the weather: Amsterdam's center is small and hea
 
 </div>
 
+## Where to stay
+
+**The Jordaan** is already where this page sends you for the evening after the Anne Frank House — calm canals, small shops, and quieter than the central ring, while still walkable to everything. It is central enough to book early; it does not stay cheap or empty.
+
+**The Museum Quarter**, around Museumplein, sits directly on the Rijksmuseum and Van Gogh Museum, with the square itself turned into a skating rink in winter. It trades some of the Jordaan's canal-side atmosphere for being steps from Day 1's whole itinerary.
+
 ## Eat
 
 - **Stroopwafels** — pressed fresh at a market stall, warm, with the syrup still soft. Not the packaged kind.

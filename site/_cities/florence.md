@@ -9,12 +9,12 @@ highlights:
   - Uffizi without the line
   - Duomo
   - Compact and walkable
-  - The most skippable stop
+  - Duomo dome climb
 ---
 
 ## In winter
 
-January highs are around 10&nbsp;°C (50&nbsp;°F) — the coldest in Italy on this list — and it is damp and grey more often than not. Florence sits in a river basin ringed by hills, which traps the chill and the fog.
+January highs are around 11&nbsp;°C (52&nbsp;°F) — colder than Rome or Naples, and beaten only by Venice among the Italian cities here — and it is damp and grey more often than not. Florence sits in a river basin ringed by hills, which traps the chill and the fog.
 
 The compensation is specific and large: the Uffizi and the Accademia in January are a different experience from the same rooms in July. In summer you shuffle past the Botticellis in a press of people. In winter you can stand in front of the *Birth of Venus* for as long as you want. If the art is why you would go to Florence, winter is unambiguously the better time.
 
@@ -77,6 +77,12 @@ Renaissance art at a density that exists nowhere else, in a city compact enough 
 </div>
 
 </div>
+
+## Where to stay
+
+**Oltrarno**, across the river around Santo Spirito, is where Florentines actually eat — quieter and less trodden than the main tourist strip, and a walkable distance from the Duomo and the Uffizi, if a longer one than it looks on a map.
+
+**San Lorenzo / San Marco**, near the Duomo and the Accademia, keeps everything in this page's two-day sketch within a ten-minute walk, at the cost of the market district's daytime noise and crowds.
 
 ## Eat
 
