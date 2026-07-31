@@ -72,7 +72,7 @@ function consumeAuthErrorFromHash() {
   // social-engineering precaution, not an injection one.
   setStatus(
     errorCode === 'otp_expired'
-      ? 'That link expired — request a new one below.'
+      ? 'That sign-in link is no longer valid — request a new one below.'
       : "That sign-in link didn't work — request a new one below."
   );
 

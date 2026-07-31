@@ -146,6 +146,22 @@ or `comments.js`.
 5. **Failed comment post.** Offline again, post a note. It must report
    "Didn't post — try again" *and leave your text in the box*. Clear the box
    and submit: the stale error must disappear rather than linger.
+6. **Magic link comes back with `otp_expired`.** Click a fresh link and land
+   on the site with `#error=access_denied&error_code=otp_expired` in the URL.
+   `otp_expired` only means the token was not accepted — it does NOT
+   distinguish an aged-out link from an already-used one, so don't assume
+   expiry. Check Authentication → Logs: two `GET /verify` entries seconds
+   apart, the first `303` (success) and the second `403` "One-time token not
+   found", means the link worked and something re-fetched it — not an auth
+   problem. Known cause: a stale service worker registered on `localhost`
+   from an earlier build of this site re-issuing the navigation (this
+   project's own service worker was removed; `check.sh` asserts
+   `serviceWorker` never returns to `ui.js`, but a browser that visited an
+   older build may still have one installed). Fix: DevTools → Application →
+   Service Workers → Unregister, then Clear site data. Also note: Supabase
+   treats `http://localhost:4000` and `http://127.0.0.1:4000` as different
+   origins — whichever you browse, that exact origin must be in the redirect
+   allowlist.
 
 ## Deployment and the custom domain
 
