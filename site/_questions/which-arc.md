@@ -39,7 +39,7 @@ It drops Greece — the geographic outlier — and spends the most days moving. 
 
 ## My recommendation
 
-**Option 3, the split arc**, if the group can tolerate the pace. It gets the Mediterranean daylight that makes the first week pleasant *and* the northern cities that the kids will actually remember, and it ends somewhere with a lot of direct flights home.
+**Option 3, the split arc**, if the group can tolerate the pace. It gets the Mediterranean daylight that makes the first week pleasant *and* the northern cities that the kids will actually remember, and it ends somewhere with a lot of direct flights home. Taking it means overriding this site's own defaults on [pace]({{ '/questions/pace/' | relative_url }}) (three bases, not four) and [country count]({{ '/questions/how-many-countries/' | relative_url }}) (two, not four) — on purpose, for what the extra base buys.
 
 If the group would rather move less, **option 1 without Athens** — Rome, Barcelona, Seville — is the most relaxed and the sunniest version of this trip.
 

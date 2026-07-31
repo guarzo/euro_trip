@@ -30,8 +30,8 @@ audited.
 | RN-10 | City pages | content | med | Pages argue against each other without ever linking to each other | open |
 | RN-11 | Cities hub | content | low | Suggested nights total 31 for a 14-day trip, with no framing | open |
 | RN-12 | Florence | copy | med | "The most skippable stop" is a highlight tag, shown as a poster bill | open |
-| RN-13 | Questions | content | med | `pace.md` recommends 4 nights minimum; the split arc it endorses gives 3.5 | open |
-| RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | open |
+| RN-13 | Questions | content | med | `pace.md` recommends 4 nights minimum; the split arc it endorses gives 3.5 | fixed |
+| RN-14 | Questions | content | med | `how-many-countries` recommends 2 countries; `which-arc` recommends a 3-country split arc | fixed |
 | RN-15 | Index / hubs | content | low | "Eleven cities / six countries" is hardcoded in 4 places; adding Venice breaks all of them | open |
 | RN-16 | Questions | idea | low | Nothing encodes which questions block which; `which-arc` is upstream of most | open |
 | RN-17 | Athens | content | low | Sunset claimed ~5:20 PM, actually ~5:10 PM (Dec 21) | open |
@@ -234,15 +234,14 @@ unless something changes.
 22 findings, ordered into six batches of work. Order matters: batch 1 gates
 batches 4 and 5, and everything else is independent.
 
-### 1. Settle the arc/pace/countries contradiction (gates batches 4–5)
+### 1. Settle the arc/pace/countries contradiction (gates batches 4–5) — done
 
-- **RN-13, RN-14.** `which-arc`, `pace`, and `how-many-countries` currently
-  give three recommendations that don't agree with each other (split arc /
-  four bases vs. three-bases-four-nights vs. two countries). Needs an actual
-  decision — probably pace and countries get an explicit carve-out for the
-  split arc, the way countries already carves out the northern arc — before
-  RN-06's itinerary page or RN-07's depth pass can be written without baking
-  in the contradiction.
+- **RN-13, RN-14 — fixed.** `pace.md` and `how-many-countries.md` each now name
+  the split arc as a deliberate, acknowledged exception to their default
+  recommendation (three bases / two countries), rather than silently
+  disagreeing with `which-arc.md`. `which-arc.md`'s own recommendation now
+  links back to both, naming the trade-off explicitly. Verified with a clean
+  `jekyll build`.
 
 ### 2. Quick content/structure fixes (small, independent, do anytime)
 
