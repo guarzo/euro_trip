@@ -13,6 +13,7 @@
       <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>Home</a>
       <a href="{{ '/cities/' | relative_url }}" {% if page.url contains 'cities' %}class="active" aria-current="page"{% endif %}>Cities</a>
       <a href="{{ '/questions/' | relative_url }}" {% if page.url contains 'questions' %}class="active" aria-current="page"{% endif %}>Questions</a>
+      <a href="{{ '/itinerary/' | relative_url }}" {% if page.url contains 'itinerary' %}class="active" aria-current="page"{% endif %}>Itinerary</a>
       <a href="{{ '/logistics/' | relative_url }}" {% if page.url contains 'logistics' %}class="active" aria-current="page"{% endif %}>Logistics</a>
       <a href="{{ '/ruled-out/' | relative_url }}" {% if page.url contains 'ruled-out' %}class="active" aria-current="page"{% endif %}>Ruled Out</a>
       <a href="{{ '/feedback/' | relative_url }}" {% if page.url contains 'feedback' %}class="active" aria-current="page"{% endif %}>Feedback</a>

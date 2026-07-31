@@ -337,11 +337,20 @@ Verified with a clean `jekyll build`; spot-checked that "Twelve cities,"
   found and fixed the same suggested-nights/day-blocks mismatch as RN-08 on
   Athens (3 nights, 2 day blocks) — added a third day (Cape Sounion, or an
   explicitly open day).
-- **RN-06** — still open. Write the draft itinerary page, framed as "what the
-  split arc would actually look like."
+- **RN-06 — fixed.** Wrote `itinerary.md` ("One Way This Could Go"),
+  permalink `/itinerary/`, added to the nav header. A 15-day calendar for the
+  split arc (Rome 4 nights, Barcelona 3, Paris 3, London 4), linking out to
+  each city's own day sketch rather than duplicating it, naming the
+  Rome→Barcelona flight and the Barcelona→Paris judgment call explicitly, and
+  closing with an honest cost/benefit paragraph that ties back to the
+  reconciled pace and country-count pages from batch 1. Framed throughout as
+  a proposal to react to, not a settled plan — the opening alert box says so
+  directly and links to the three open questions it answers one particular
+  way.
 
 Verified with a clean `jekyll build` and confirmed all twelve city pages
-render a "Where to stay" section.
+render a "Where to stay" section and the itinerary page builds and appears
+in the nav.
 
 ### 6. Design (independent, needs a front-end look)
 
