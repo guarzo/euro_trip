@@ -32,7 +32,7 @@ Comments and interest marks require a Supabase project. `supabase/schema.sql`
 is applied by hand in the SQL editor — there is no migration tooling.
 
 **⚠️ WARNING:** The schema file drops and recreates every table. Once the four
-users and their profile rows are seeded (steps 2-3), re-running the file will
+users and their profile rows are seeded (see below), re-running the file will
 destroy all comments, interest marks, and profile rows. Do not re-run it to
 "check something" — re-runs are only safe before users are created.
 
