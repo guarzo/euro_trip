@@ -58,12 +58,6 @@ permalink: /ruled-out/
 <p>Sorrento stays partly open, but Positano and Capri largely close down, and the boat connections that make the coast work are reduced or suspended. <a href="{{ '/cities/naples/' | relative_url }}">Naples</a> and Pompeii cover the same region far better in winter.</p>
 </div>
 
-<div class="activity-card">
-<h3>Venice</h3>
-<p>The closest call on this page, and reasonable people would disagree. Venice does stay open, and winter fog over the canals is genuinely atmospheric. But December and January are cold and damp, and it is peak <em>acqua alta</em> season — the periodic tidal flooding that puts raised walkways across St. Mark's Square. With limited days, <a href="{{ '/cities/rome/' | relative_url }}">Rome</a> and <a href="{{ '/cities/florence/' | relative_url }}">Florence</a> deliver more reliably.</p>
-<p><strong>Reopen this if:</strong> the trip lands in northern Italy anyway and someone really wants it.</p>
-</div>
-
 </div>
 
 <h2 class="section-heading">🇬🇷 Mainland Greece beyond Athens</h2>

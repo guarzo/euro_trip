@@ -43,9 +43,11 @@ permalink: /feedback/
 
 {% include comments.html %}
 
+{% capture question_count_word %}{% include number-word.html num=site.questions.size %}{% endcapture %}
+{% capture feedback_standfirst %}{{ question_count_word | strip }} decisions, none of them made. Reading one and disagreeing with it is worth more than agreeing with all of them.{% endcapture %}
 {% include close-wall.html
    shout_a="Still"
    shout_b="Open"
-   standfirst="Ten decisions, none of them made. Reading one and disagreeing with it is worth more than agreeing with all ten."
+   standfirst=feedback_standfirst
    action="See the questions"
    href="/questions/" %}

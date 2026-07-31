@@ -19,10 +19,10 @@ audited.
 | ID | Page | Type | Sev | Finding | Status |
 |---|---|---|---|---|---|
 | RN-01 | All | design | med | Hero images overflow the viewport on desktop; fine on mobile | open |
-| RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | open |
+| RN-02 | Questions | content | high | Missing a meta question: is winter break the right window at all? | fixed |
 | RN-03 | Questions | content | med | Drop the "are Bubu and Gaby coming" framing from `what-kids-want` | fixed |
-| RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | open |
-| RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | open |
+| RN-04 | Cities / Ruled out | content | med | Venice: no longer dismissed. Move off ruled-out into a candidate city page, but not pushed as a contender | fixed |
+| RN-05 | Madrid | content | med | Toledo goes *inside* the Madrid page as a day trip, not its own city page | fixed |
 | RN-06 | New page | content | high | Draft itinerary framed as "what option 3 would actually look like" — an argument for the recommendation, not a settled plan | open |
 | RN-07 | City pages | content | med | Add depth to every city page — enough that people can buy in | open |
 | RN-08 | Rome | content | med | 4 suggested nights but only 3 day blocks; every other city matches | fixed |
@@ -299,12 +299,30 @@ Verified with a clean `jekyll build`; the "Seville gets more than two extra
 hours than London" comparison in `logistics.md` still holds against the
 corrected sunset times (2h17m).
 
-### 4. New candidate content (depends on batch 1 only for tone/consistency, not blocking)
+### 4. New candidate content — done
 
-- **RN-04** — write a Venice city page; remove it from `ruled-out.md`.
-- **RN-05** — add Toledo as a day-trip section inside `madrid.md`.
-- **RN-02** — write the new meta question page ("Is winter break the right
-  choice?"), as a peer to the other ten.
+- **RN-04 — fixed.** Wrote `_cities/venice.md` (rated `mixed`, 2 suggested
+  nights): winter facts (7 °C January high, ~4:40 PM sunset, all verified),
+  the acqua alta/MOSE update to the ruled-out reasoning, a two-day sketch
+  (St. Mark's/Doge's Palace/Grand Canal, then Murano/Burano or Dorsoduro),
+  Eat, and journey times. Removed the old ruled-out entry. Explicitly framed
+  as "no longer dismissed," not pushed as a contender, per your call.
+- **RN-05 — fixed.** Toledo already had a one-line optional card in
+  `madrid.md`'s day 3 — expanded it into real depth (Cathedral, Santo Tomé's
+  El Greco, the three-faiths synagogues, damascene craft, the Tagus gorge
+  view), verified the existing 33-minute Avant train claim was already
+  accurate, and reframed it as a full day trip rather than a throwaway
+  optional stop.
+- **RN-02 — fixed.** Wrote `_questions/right-window.md`, "Is winter break the
+  right window at all?", as a peer question (order 11, impact high): four
+  options (winter / summer / spring / open-ended), recommendation to stay
+  with winter break on practical-availability grounds, not just weather.
+  Updated `feedback.md`'s hardcoded "Ten decisions" to compute from
+  `site.questions.size` via the `number-word` include, so it now reads
+  "Eleven decisions" automatically.
+
+Verified with a clean `jekyll build`; spot-checked that "Twelve cities,"
+"Eleven decisions," and "11 open" all render correctly from the new content.
 
 ### 5. The big content asks (do after batch 1)
 
