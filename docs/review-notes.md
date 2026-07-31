@@ -431,3 +431,17 @@ above. Numbered `CR-nn` to keep them separate from the `RN` sweep.
   separate and still runs, roughly twice daily at about 6h45. The claim
   stands. It remains worth re-checking closer to booking, since 2028/29
   timetables are not published.
+
+### Second round
+
+- **CR-14 — fixed.** Naples' Chiaia entry pointed at "this page's Day 1" for
+  Spaccanapoli and Via San Gregorio Armeno, which are Day 2 (Day 1 is
+  Pompeii). Audited the same "this page's Day N" cross-reference on every
+  other city page — Athens, Granada, Seville, Paris, Rome, and Madrid all
+  point at the right block.
+- **CR-15 — fixed.** Toledo's two synagogues were both dated to after 1492.
+  Santa María la Blanca was taken over as a church in 1411, eighty years
+  earlier; only the Tránsito followed the expulsion.
+- **CR-16 — fixed.** `trains-vs-flights` still carried the "Fly — no
+  practical rail" heading over a table containing the Barcelona → Paris
+  train, the same contradiction already fixed in `logistics.md`.

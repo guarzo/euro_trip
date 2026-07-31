@@ -31,7 +31,7 @@ This is not really a preference — it is a matter of which routes have usable r
 
 All city center to city center. All comfortably better than flying.
 
-### Fly — no practical rail
+### Fly — rail is impractical or slow
 
 | Route | Time |
 |---|---|
