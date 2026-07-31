@@ -121,15 +121,24 @@ export async function initAuth() {
   }
   render();
 
-  // Fires on sign-in, sign-out, and token refresh — including when the user
-  // arrives back from a magic link, which is what completes that flow.
-  await onAuthStateChange(function (nextUser) {
-    const changed = (nextUser && nextUser.id) !== (user && user.id);
-    user = nextUser;
-    render();
-    // Token refresh fires this with the same user every hour or so. Notifying
-    // on that would re-render every thread and every interest row for no
-    // reason, so only a real identity change propagates.
-    if (changed) notify();
-  });
+  try {
+    // Fires on sign-in, sign-out, and token refresh — including when the user
+    // arrives back from a magic link, which is what completes that flow.
+    await onAuthStateChange(function (nextUser) {
+      const changed = (nextUser && nextUser.id) !== (user && user.id);
+      user = nextUser;
+      render();
+      // Token refresh fires this with the same user every hour or so. Notifying
+      // on that would re-render every thread and every interest row for no
+      // reason, so only a real identity change propagates.
+      if (changed) notify();
+    });
+  } catch (e) {
+    // onAuthStateChange() awaits db(), which rejects if the CDN import
+    // failed. Swallow rather than reject initAuth(): main.js's .then()
+    // chain must still run initInterests()/initComments() so they can render
+    // their own "couldn't load" states, same reasoning as the DOM-lookup
+    // guard above. The banner already rendered whatever session it got, it
+    // just won't hear about future sign-in/sign-out events this page load.
+  }
 }
