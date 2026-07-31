@@ -1,12 +1,20 @@
 # Handover — Shared Comments and Interests
 
-**Branch:** `worktree-shared-comments` · **Base:** `origin/main` @ `26d7217`
-**Status:** Tasks 1–5 of 7 complete. **Tasks 6 and 7 not started.**
+> **SUPERSEDED — historical checkpoint, 2026-07-30.** This document records the
+> branch as it stood partway through, and is kept for its decision rationale and
+> the trap-notes on testing. It is **not** a current status report: all 7 tasks
+> are now complete, Giscus is deleted, the docs are corrected, and Supabase is
+> configured and verified against the live project. Where this file and the PR
+> description disagree, the PR is right. Statements below about what is
+> unfinished or unverified describe 2026-07-30, not today.
 
-This branch is **not finished** and should not be merged as-is. It is a
-coherent, working checkpoint: everything on it is verified, but the feature
-set is incomplete — Giscus is still present and the docs still describe the
-old behavior.
+**Branch:** `worktree-shared-comments` · **Base:** `origin/main` @ `26d7217`
+**Status (as of 2026-07-30):** Tasks 1–5 of 7 complete. **Tasks 6 and 7 not started.**
+
+As of that date this branch was **not finished** and should not have been merged
+as-is. It was a coherent, working checkpoint: everything on it was verified, but
+the feature set was incomplete — Giscus was still present and the docs still
+described the old behavior.
 
 ---
 
@@ -233,7 +241,12 @@ surface there.
   optimistic render reverts to the prior state, "Didn't save — try again"
   appears, and server rows are unchanged.
 
-**Not verified:** anything against a real Supabase project. `supabase.url`
-is still empty, so every reader currently sees the placeholder note. The
-manual verification script in Task 7 covers the live path and has not been
-run.
+**Not verified as of 2026-07-30:** anything against a real Supabase project.
+`supabase.url` was still empty, so every reader saw the placeholder note, and
+the manual verification script in Task 7 had not been run.
+
+**Since resolved.** A live project is configured and its guardrails were
+exercised directly: anon reads work on both tables, a `person` outside the four
+family keys is rejected with 400, a body over 2000 characters is rejected with
+400, comment `DELETE` affects no rows (there is no delete policy), and the
+upsert on `(interest_key, person)` updates in place rather than duplicating.

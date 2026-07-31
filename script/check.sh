@@ -165,11 +165,14 @@ assert_file "$SITE_OUT/assets/js/interests.js"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:athens"'
 assert_contains "$SITE_OUT/cities/index.html" 'data-interest-key="city:amsterdam"'
-# The old per-device copy must not survive anywhere, including the city
-# page's closing wall.
-assert_absent "$SITE_OUT/cities/index.html" "not shared with anyone"
-assert_absent "$SITE_OUT/cities/athens/index.html" "nobody else sees this"
-assert_absent "$SITE_OUT/cities/athens/index.html" "only tells your own browser"
+# The old per-device copy must not survive anywhere. These assert against the
+# exact phrases that were actually on the pre-Supabase pages — earlier versions
+# of this block guarded invented phrasings and so passed while the real stale
+# copy ("Picks stay on your device") shipped.
+assert_absent "$SITE_OUT/cities/index.html" "Picks stay on your device"
+assert_absent "$SITE_OUT/cities/index.html" "keeps it on your own device"
+assert_absent "$SITE_OUT/cities/index.html" "your device"
+assert_absent "$SITE_OUT/cities/athens/index.html" "your device"
 
 echo "== checking internal links =="
 # External links are deliberately not checked: the site links to dozens of

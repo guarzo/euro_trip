@@ -124,9 +124,44 @@ these five steps by hand:
 5. Post a comment, reload, and confirm it survives. Then clear your mark and
    confirm it disappears in both browsers and on the index.
 
+### Failure paths
+
+The five steps above only prove the happy path. These cover the behaviors that
+are easy to break silently, because nothing renders differently until they are
+provoked. Each has been verified at least once; re-run the relevant ones after
+touching `supabase.js`, `interests.js`, or `comments.js`.
+
+6. **CDN unreachable.** Block `esm.sh` (DevTools → Network → block request
+   domain) and reload. Nav, smooth scroll, the slam animation, and the identity
+   picker must all still work, with no uncaught exceptions in the console. This
+   is why the Supabase client is a dynamic `import()` — a static one would take
+   the whole module graph down with it.
+7. **No in-session CDN recovery.** With `esm.sh` still blocked, marks and notes
+   report a load failure. Unblock it and interact again *without reloading*:
+   they stay failed. That is expected — the browser caches a failed module
+   resolution against its URL for the life of the page, so the retry never hits
+   the network. A reload fixes it. If you ever want true in-session recovery,
+   it needs a cache-busted URL; that was deliberately not done.
+8. **Failed write on a mark.** With the network throttled to offline, tap your
+   mark. It must snap back to its previous state and show "Didn't save — try
+   again" — and that message must survive, since it lives in a live region
+   outside the row rather than inside the part that gets re-rendered.
+9. **Rapid repeated taps.** Tap one mark four times fast. The mark shown must
+   match what is stored — reload and confirm it did not change. Writes are
+   chained per mark precisely so a double-tap cannot strand a stale value; this
+   is the check that catches a regression there.
+10. **Failed comment post.** Offline again, post a note. It must report
+    "Didn't post — try again" *and leave your text in the box*. Clear the box
+    and submit: the stale error must disappear rather than linger.
+11. **Identity spoofing is possible by design.** In the console, run
+    `localStorage.setItem('euro-trip-person','papa')` and reload — you are now
+    posting as Papa. This is the accepted trade against making everyone hold an
+    account. The database `CHECK` bounds it to the four real names, so a made-up
+    name is rejected; the remedy for a bad row is the SQL console.
+
 ## Structure
 
-```
+```text
 site/
 ├── _config.yml       # Site config, family members, Supabase keys
 ├── _layouts/         # default; city and question nest inside it

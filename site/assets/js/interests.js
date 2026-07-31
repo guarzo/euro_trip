@@ -78,11 +78,35 @@ function renderAll() {
   rows.forEach(renderRow);
 }
 
+// Status text lives in a sibling of the row, not inside it. renderRow() clears
+// and rebuilds the row's contents on every render, so a live region placed
+// inside it would be destroyed and recreated — and a region that did not exist
+// before its text changed is not reliably announced. This element is created
+// once per row and only ever has its textContent updated, which is what makes
+// assistive tech announce "Didn't save" at all. Mirrors the pattern the
+// comment form gets from markup via [data-comment-status].
+function statusFor(row) {
+  let el = row.nextElementSibling;
+  if (!el || !el.classList.contains('interest-status')) {
+    el = document.createElement('span');
+    el.className = 'interest-status';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    row.insertAdjacentElement('afterend', el);
+  }
+  return el;
+}
+
+function setRowStatus(row, message, isError) {
+  const el = statusFor(row);
+  el.textContent = message;
+  // The error styling stays on this element rather than the row, so it
+  // survives the next renderRow().
+  el.className = 'interest-status' + (isError ? ' interest-error' : '');
+}
+
 function showRowError(row, message) {
-  const err = document.createElement('span');
-  err.className = 'interest-error';
-  err.textContent = message;
-  row.appendChild(err);
+  setRowStatus(row, message, true);
 }
 
 function cycle(row, key, person) {
@@ -93,6 +117,9 @@ function cycle(row, key, person) {
   // was never saved is worse than a slow one.
   setLocal(key, person, next);
   renderRow(row);
+  // Clear any error from a previous attempt: the row now shows this tap's
+  // state, so a stale "Didn't save" would be describing something else.
+  setRowStatus(row, '', false);
 
   // Chain behind any write already in flight for this mark, so the server
   // sees the same order the reader tapped.
@@ -136,10 +163,10 @@ export async function initInterests() {
 
   rows.forEach(function (row) {
     row.textContent = '';
-    const loading = document.createElement('span');
-    loading.className = 'interest-hint';
-    loading.textContent = 'Loading marks…';
-    row.appendChild(loading);
+    // Loading text goes through the live region too, so the transition from
+    // "Loading marks…" to a rendered row (or to an error) is announced rather
+    // than silently swapped.
+    setRowStatus(row, 'Loading marks…', false);
   });
 
   try {
@@ -147,6 +174,7 @@ export async function initInterests() {
     marks = {};
     data.forEach(function (r) { setLocal(r.interest_key, r.person, r.state); });
     renderAll();
+    rows.forEach(function (row) { setRowStatus(row, '', false); });
   } catch (e) {
     rows.forEach(function (row) {
       row.textContent = '';

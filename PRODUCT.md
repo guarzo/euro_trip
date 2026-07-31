@@ -101,8 +101,11 @@ serves the open half.
   in each city's front matter.
 - No budget figures, no bookings, no prices, no reservations — none exist, and
   none may be invented. No testimonials or third-party endorsements exist.
-- Comments and marks are not live until `supabase.url` is filled in; the site
-  must keep working and reading well in that state.
+- Comments and marks are live: `supabase.url` and `anon_key` are configured
+  and the schema is applied. Both features stay dependent on that project
+  remaining reachable with its tables, CHECK constraints, and RLS policies
+  intact — if the config is emptied or the schema is missing, each renders a
+  placeholder note and the site must keep working and reading well that way.
 
 ## Product Principles
 

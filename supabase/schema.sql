@@ -29,6 +29,17 @@ alter table comments  enable row level security;
 
 -- The anon key ships in the client bundle; that is what it is for. The CHECK
 -- constraints and the body length limit are the real guardrails.
+--
+-- Policies are dropped before being recreated: `create policy` has no
+-- `if not exists`, so without this the whole file fails on a second run,
+-- which would defeat the "reproducible" intent stated at the top.
+drop policy if exists "anon reads interests"   on interests;
+drop policy if exists "anon inserts interests" on interests;
+drop policy if exists "anon updates interests" on interests;
+drop policy if exists "anon deletes interests" on interests;
+drop policy if exists "anon reads comments"    on comments;
+drop policy if exists "anon inserts comments"  on comments;
+
 create policy "anon reads interests"   on interests for select to anon using (true);
 create policy "anon inserts interests" on interests for insert to anon with check (true);
 create policy "anon updates interests" on interests for update to anon using (true) with check (true);

@@ -17,7 +17,7 @@ permalink: /cities/
     <p class="wall-credit credit">
       <span>Tap a city to read it</span>
       <span>Mark what you want</span>
-      <span>Picks stay on your device</span>
+      <span>Everyone sees your picks</span>
     </p>
   </div>
 </section>
@@ -64,6 +64,6 @@ permalink: /cities/
 {% include close-wall.html
    shout_a="Which"
    shout_b="Ones"
-   standfirst="Marking a city keeps it on your own device. Saying so out loud is what actually moves the trip &mdash; and the arc question is where that argument really happens."
+   standfirst="Your marks are visible to everyone. Saying so out loud is what actually moves the trip &mdash; and the arc question is where that argument really happens."
    action="Pick an arc"
    href="/questions/which-arc/" %}

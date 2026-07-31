@@ -1182,6 +1182,7 @@ td strong { font-weight: 800; }
 }
 
 .interest-hint,
+.interest-status,
 .interest-error {
   font-size: 0.68rem;
   font-weight: 700;
@@ -1190,6 +1191,17 @@ td strong { font-weight: 800; }
   letter-spacing: 0.13em;
   color: var(--ink-mute);
 }
+
+/* Sits outside .interest-row so renderRow() cannot destroy it — the live
+   region has to persist to be announced. That puts it outside the row's flex
+   layout, so it needs its own inline-block and spacing. Empty most of the
+   time, and :empty keeps it from reserving space when it has nothing to say. */
+.interest-status {
+  display: inline-block;
+  margin: var(--space-xs) 0 0;
+}
+
+.interest-status:empty { display: none; }
 
 /* A failed write is the one state that must not be quiet. It is a word, not
    a color: the credit-block treatment plus an ink rule under it. */
@@ -1324,7 +1336,7 @@ td strong { font-weight: 800; }
 
 @media print {
   .site-header, .site-footer, .day-nav, .day-comments,
-  .menu-toggle, .interest-row, .action { display: none !important; }
+  .menu-toggle, .interest-row, .interest-status, .action { display: none !important; }
 
   body { font-size: 11pt; background: #fff; color: #000; }
   .container { display: block; padding: 0 1rem; }
