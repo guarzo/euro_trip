@@ -38,6 +38,8 @@ audited.
 | RN-18 | Seville / Granada | content | low | Sunset claimed ~6:00 PM, actually ~6:10–6:11 PM — understates the page's own "warmest and brightest" claim | open |
 | RN-19 | Florence | content | low | January high claimed ~10 °C, actually ~11.2 °C | open |
 | RN-20 | Barcelona / Madrid | content | low | January highs off by ~1 °C each (Barcelona 15→14, Madrid 11→10) | open |
+| RN-21 | Athens | content | med | Winter reduced-rate archaeological ticket claim may be outdated — sources conflict on whether the discount still exists | open |
+| RN-22 | Barcelona / Paris | content | low | Barcelona↔Paris train claimed ~6h30, typical journey is closer to 6h45–7h | open |
 
 ---
 
@@ -169,12 +171,36 @@ numbers should be corrected:
   the margin between Madrid and Florence in the `logistics.md` ranking table,
   though it doesn't invert it.
 
-**Not yet checked:** rail/flight durations (Eurostar figures spot-checked
-separately and confirmed accurate; the rest of `trains-vs-flights.md` and
-`logistics.md`'s route tables are unverified) and seasonal-event/opening-hours
-claims (Christmas market dates, Alhambra winter hours, Athens reduced-rate
-pricing window, various "largest X" superlatives). Flagged for a follow-up pass
-if wanted.
+**Second pass — seasonal events, opening hours, and remaining rail claims:**
+
+- **RN-21 — Athens's winter reduced-rate ticket claim may be stale.** The page
+  states archaeological sites drop to a reduced winter rate from 1 November to
+  31 March, as settled fact. Sources conflict on whether the Greek Ministry of
+  Culture eliminated this discount starting the 2025 winter season in favor of
+  a flat year-round rate. Given the trip is 2028/29, this needs a live check
+  closer to booking rather than a confident claim now — soften the wording or
+  re-verify.
+- **RN-22 — Barcelona↔Paris train duration understates the typical journey.**
+  Claimed "~6h30" (`_cities/barcelona.md`, `_cities/paris.md`,
+  `trains-vs-flights.md`, `logistics.md`). The fastest departure does run 6h29,
+  but the typical journey is 6h45–7h. Minor, but it's the one route the site
+  calls "roughly a wash" against a 2-hour flight — worth the accurate range.
+
+**Confirmed accurate, no changes needed:** Alhambra winter hours, Amsterdam
+Light Festival dates (2025/26: 27 Nov–18 Jan, matches "late November to
+mid-January"), Barcelona's Cavalcada dels Reis date (5 January), Anne Frank
+House timed-ticket claim, Seville Cathedral and Madrid Royal Palace
+superlatives, Sierra Nevada distance and "southernmost ski resort" claim,
+Piazza Navona Christmas market dates, Naples/Amalfi winter ferry and hotel
+closures, Acropolis winter closing hours.
+
+**Still not independently re-verified:** the remaining individual rail/flight
+durations in `trains-vs-flights.md` and `logistics.md` (Rome–Naples,
+Rome–Florence, Madrid–Barcelona/Seville/Granada, airport transfer times, and
+the Athens/Rome/Barcelona/Paris/London flight durations). These are
+well-established fixed infrastructure and the figures match commonly cited
+schedules, but were not run through search. Low risk; skip further checking
+unless something changes.
 
 ## Ruled out
 
