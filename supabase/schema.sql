@@ -1,6 +1,12 @@
 -- Applied by hand in the Supabase SQL editor. Committed so the schema is
 -- reviewable and reproducible; this project has no migration tooling.
 --
+-- WARNING: This file drops and recreates every table. After the four users
+-- and their profiles rows are seeded (steps 4-5 of the README's Supabase setup
+-- section), re-running this file will destroy all comments, interest marks,
+-- and profile rows. Do not re-run it to "check something" — re-run is only
+-- safe before users are created.
+--
 -- Authorship is enforced here, not in the browser. The anon key ships in the
 -- page and the JavaScript belongs to whoever opens devtools; `auth.uid() =
 -- user_id` is the only claim in this system that a determined sibling cannot
