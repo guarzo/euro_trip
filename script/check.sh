@@ -114,6 +114,10 @@ else
   echo "ok    no giscus references anywhere in the built site"
 fi
 assert_file "$SITE_OUT/assets/js/comments.js"
+# The locked-state copy changed with the auth model: there is no longer a
+# "who are you" to pick.
+assert_contains "$SITE_OUT/cities/athens/index.html" "Sign in to join in"
+assert_absent "$SITE_OUT/cities/athens/index.html" "Pick who you are to join in"
 assert_contains "$SITE_OUT/cities/athens/index.html" "Family Notes"
 assert_contains "$SITE_OUT/cities/athens/index.html" 'data-page-path="/cities/athens/"'
 assert_contains "$SITE_OUT/questions/pace/index.html" 'data-page-path="/questions/pace/"'
