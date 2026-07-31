@@ -49,10 +49,10 @@ serves the open half.
 
 - Static Jekyll site, deployed to GitHub Pages at `eu.dpao.la`.
 - Read overwhelmingly on phones, in short sessions, often at night.
-- Comments and interest marks run on Supabase, keyed to a family member name
-  picked once per device — no accounts and no GitHub. While `supabase.url` is
-  empty a placeholder note renders in place of both and the site builds fine
-  without it.
+- Comments and interest marks run on Supabase, authenticated via magic-link
+  sign-in to one of four known email addresses — no self-declared identity and
+  no GitHub. While `supabase.url` is empty a placeholder note renders in place
+  of both and the site builds fine without it.
 - `script/check.sh` builds the site and asserts every expected page exists,
   contains its required sections, and has no broken internal links. It is the
   project's only test surface. External links, including hero images, are **not**
@@ -68,8 +68,9 @@ serves the open half.
 - **Interest marks** — a three-state (unset / interested / not for me) marker on
   each city, shared across devices and visible to the whole family. Every
   member's mark shows on both the city page and the cities index, because both
-  key on the city rather than the page. `localStorage` holds only which family
-  member this device belongs to.
+  key on the city rather than the page. `localStorage` holds the Supabase
+  session (via magic-link sign-in); no client-side storage records which
+  family member a device belongs to.
 - Six countries in play: Greece, Italy, Spain, France, UK, Netherlands.
 - Three candidate arcs: Mediterranean, Northern classics, Split.
 - The comparative facts the site turns on are **January high** and **late-December

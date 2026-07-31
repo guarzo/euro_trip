@@ -52,16 +52,21 @@ Disabling signups blocks user *creation*, not link delivery. Each person types
 their own address into the site's sign-in form and Supabase mails them a link.
 Nobody hands out links by hand.
 
+The sign-in form shows identical copy ("Check your email for a sign-in link.")
+whether or not the address is one of the four seeded users — see the comment
+at `auth.js`'s `onSubmit()`. This is deliberate: a different message for
+"no such user" would turn the form into a way to enumerate who has an
+account. That property depends on both sides — our code never branches on
+whether the email exists, and Supabase's own `signInWithOtp` behavior (with
+"Allow new users to sign up" disabled) does not either. Do not "helpfully"
+add a more specific error message here later; it would reopen exactly what
+disabling signups closed.
+
 The built-in mailer is rate-limited to a few messages per hour and is not
 meant for production. Four people logging in once per device sit well inside
 that, but it bites during setup when everyone tests at once — a throttled send
 looks exactly like broken auth. Configuring SMTP is a settings change if it
 becomes a nuisance.
-
-**Note:** Until the client authentication tasks land, comments and marks will
-be non-functional — the RLS policies require a session (`auth.uid()`) that the
-client has not yet established. This is expected mid-branch and does not
-indicate an error.
 
 ## Verifying
 
@@ -96,12 +101,11 @@ latter embed a hash directory that is easy to get wrong and fails silently.
 ## Verifying the shared features
 
 The following manual tests verify behavior in `site/assets/js/interests.js`,
-`comments.js`, and `supabase.js` — these steps cannot run until the client
-authentication tasks land and the JavaScript is able to establish a session.
-Once the client work is merged, re-run these five happy-path steps and the
-failure-path checklist below.
+`comments.js`, `auth.js`, and `supabase.js`. Client authentication has landed
+and these steps are live now; re-run the five happy-path steps and the
+failure-path checklist below after touching any of those files.
 
-### Happy path (once auth is working)
+### Happy path
 
 1. Sign in via magic link.
 2. On a city page, tap your mark until it reads ★.
@@ -113,7 +117,7 @@ failure-path checklist below.
 5. Post a comment, reload, and confirm it survives. Then clear your mark and
    confirm it disappears in both browsers and on the index.
 
-### Failure paths (once auth is working)
+### Failure paths
 
 These cover the behaviors that are easy to break silently, because nothing
 renders differently until they are provoked. Each has been verified at least
@@ -169,14 +173,14 @@ The custom domain requires:
 
 ```text
 site/
-├── _config.yml       # Site config, family members, Supabase keys
+├── _config.yml       # Site config, Supabase keys
 ├── _layouts/         # default; city and question nest inside it
 ├── _includes/        # header, footer, comments, identity-banner, winter-disclaimer
 ├── _cities/          # 11 city pages → /cities/:name/
 ├── _questions/       # 10 decision pages → /questions/:name/
 ├── assets/
 │   ├── css/style.css
-│   └── js/*.js       # main, ui, identity, supabase, interests, comments
+│   └── js/*.js       # main, ui, auth, supabase, interests, comments
 ├── index.md
 ├── cities.md         # /cities/
 ├── questions.md      # /questions/
