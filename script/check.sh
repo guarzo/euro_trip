@@ -125,10 +125,12 @@ assert_contains "$SITE_OUT/feedback/index.html" "Family Notes"
 # The cities index has no thread; interests are city-keyed, threads are not.
 assert_absent "$SITE_OUT/cities/index.html" "data-comments"
 
-for CITY in rome florence naples barcelona madrid seville granada paris london amsterdam venice; do
+for CITY in athens rome florence naples barcelona madrid seville granada paris london amsterdam \
+            venice; do
   assert_file "$SITE_OUT/cities/$CITY/index.html"
   assert_contains "$SITE_OUT/cities/$CITY/index.html" "In winter"
   assert_contains "$SITE_OUT/cities/$CITY/index.html" "Draft day sketch"
+  assert_contains "$SITE_OUT/cities/$CITY/index.html" "Where to stay"
 done
 assert_file "$SITE_OUT/cities/index.html"
 # Every city must be reachable from the index, not just a sampled few.

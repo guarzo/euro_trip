@@ -322,11 +322,13 @@ corrected sunset times (2h17m).
   options (winter / summer / spring / open-ended), recommendation to stay
   with winter break on practical-availability grounds, not just weather.
   Updated `feedback.md`'s hardcoded "Ten decisions" to compute from
-  `site.questions.size` via the `number-word` include, so it now reads
-  "Eleven decisions" automatically.
+  `site.questions` via the `number-word` include, counting only entries with
+  `status: open` so a decided question stops being reported as outstanding.
+  The rendered number tracks the collection rather than being fixed.
 
 Verified with a clean `jekyll build`; spot-checked that "Twelve cities,"
-"Eleven decisions," and "11 open" all render correctly from the new content.
+"Eleven decisions still open," and "11 open" all render correctly from the
+new content.
 
 ### 5. The big content asks
 
