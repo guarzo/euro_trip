@@ -7,9 +7,9 @@ order: 2
 
 ## Why it matters
 
-"Winter break 2028/29" covers about three weeks, and the two ends of it are genuinely different trips. Christmas week is festive, crowded, and expensive; mid-January is quiet, cheap, and grey. Both are defensible. Picking one determines what we book and how far ahead.
+"Winter break 2027/28" covers about three weeks, and the two ends of it are genuinely different trips. Christmas week is festive, crowded, and expensive; mid-January is quiet, cheap, and grey. Both are defensible. Picking one determines what we book and how far ahead.
 
-**A caveat that matters:** school calendars for 2028/29 are not published yet. Everything below is provisional until we know the actual break dates, and this question cannot be closed before then. What we *can* do now is agree on which end of the break we want, so that when the calendar lands we already know what to aim at.
+**A caveat that matters:** school calendars for 2027/28 are not published yet. Everything below is provisional until we know the actual break dates, and this question cannot be closed before then. What we *can* do now is agree on which end of the break we want, so that when the calendar lands we already know what to aim at.
 
 ## The options
 

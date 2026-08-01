@@ -23,7 +23,7 @@ laptop open at a kitchen table.
 
 ## Product Purpose
 
-A decision site for a family trip to Europe over winter break 2028/29. Nothing
+A decision site for a family trip to Europe over winter break 2027/28. Nothing
 is decided — not the dates, not the countries, not the duration. The site exists
 to change that by doing exactly two jobs:
 

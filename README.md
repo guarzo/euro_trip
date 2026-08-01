@@ -1,6 +1,6 @@
 # Europe Trip Planning
 
-A planning site for a family trip to Europe over winter break 2028/29.
+A planning site for a family trip to Europe over winter break 2027/28.
 
 **Live:** [eu.dpao.la](https://eu.dpao.la)
 

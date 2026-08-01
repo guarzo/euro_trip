@@ -27,7 +27,7 @@ Also worth saying plainly: **the Greek islands are out either way.** Santorini a
 
 By far the tightest logistics on offer. London to Paris is 2h20 by Eurostar and Paris to Amsterdam about 3h20, both city center to city center with no airports involved. Three countries, two train rides, zero transfer stress.
 
-It is also the strongest option for Bubu and Gaby. West End theatre, Camden, the Louvre, the Amsterdam Light Festival, no language barrier in London — these land better at 17 and 18 than a fourth archaeological site.
+It is also the strongest option for Bubu and Gaby. West End theatre, Camden, the Louvre, the Amsterdam Light Festival, no language barrier in London — these land better at 15 and 17 than a fourth archaeological site.
 
 The catch is darkness and weather. Late-December sunsets: London **3:53&nbsp;PM**, Amsterdam **4:29&nbsp;PM**, Paris 4:55&nbsp;PM. Highs of 6–8&nbsp;°C (43–47&nbsp;°F), frequent rain. You are touring in the dark and the wet for a meaningful part of each day. Christmas markets and the Light Festival partly turn that into a feature, but only partly.
 
