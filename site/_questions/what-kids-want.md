@@ -29,7 +29,7 @@ Answer in the comments below, or tell us in person and we'll write it down. Ther
 
 **Answer this one before the arc gets locked.** Of all the questions here, this is the one most likely to change the answer to every other question, and it is the only one where the rest of us are guessing.
 
-My honest read of the current plan is that the [northern arc]({{ '/questions/which-arc/' | relative_url }}) is the strongest for a 15- and 17-year-old — West End theatre, Camden, the Light Festival, no language barrier — and that the Mediterranean arc is the better trip for the adults. If that read is wrong, this is where to say so.
+My honest read of the current plan is that the [northern arc]({{ '/questions/which-arc/' | relative_url }}) is the strongest for a 17- and 15-year-old — West End theatre, Camden, the Light Festival, no language barrier — and that the Mediterranean arc is the better trip for the adults. If that read is wrong, this is where to say so.
 
 ## What would change my mind
 
