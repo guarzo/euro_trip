@@ -7,7 +7,7 @@ order: 8
 
 ## Why it matters
 
-By winter 2028/29, Bubu is 18 and Gaby is 17. That is a different trip from the one we would plan for a 16- and a 14-year-old.
+By winter 2027/28, Bubu is 17 and Gaby is 15. That is a different trip from the one we would plan for a 15- and a 13-year-old.
 
 **This question has no options list, because it isn't ours to answer.** It is a question *for them*, and it is on this site so they can answer it directly rather than have it guessed at.
 
@@ -29,7 +29,7 @@ Answer in the comments below, or tell us in person and we'll write it down. Ther
 
 **Answer this one before the arc gets locked.** Of all the questions here, this is the one most likely to change the answer to every other question, and it is the only one where the rest of us are guessing.
 
-My honest read of the current plan is that the [northern arc]({{ '/questions/which-arc/' | relative_url }}) is the strongest for a 17- and 18-year-old — West End theatre, Camden, the Light Festival, no language barrier — and that the Mediterranean arc is the better trip for the adults. If that read is wrong, this is where to say so.
+My honest read of the current plan is that the [northern arc]({{ '/questions/which-arc/' | relative_url }}) is the strongest for a 17- and 15-year-old — West End theatre, Camden, the Light Festival, no language barrier — and that the Mediterranean arc is the better trip for the adults. If that read is wrong, this is where to say so.
 
 ## What would change my mind
 

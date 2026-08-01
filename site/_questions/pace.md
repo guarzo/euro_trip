@@ -39,4 +39,4 @@ Fourteen days minus two flying days is twelve. Three bases uses two of those on 
 
 - **The honest test:** in five years, would the family rather have seen more places, or enjoyed them more? Different families answer this differently and both answers are right.
 - **If everyone genuinely likes moving.** Some people find the travel days themselves fun. If that is this family, the calculus changes.
-- **What Bubu and Gaby say.** At 18 and 17 they will feel the packing fatigue most sharply — see [What do the kids want?]({{ '/questions/what-kids-want/' | relative_url }}).
+- **What Bubu and Gaby say.** At 17 and 15 they will feel the packing fatigue most sharply — see [What do the kids want?]({{ '/questions/what-kids-want/' | relative_url }}).

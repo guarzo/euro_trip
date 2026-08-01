@@ -8,7 +8,7 @@ web
 
 ## Users
 
-**Primary: Bubu (18) and Gaby (17)** — the two teenagers this trip is supposedly
+**Primary: Bubu (17) and Gaby (15)** — the two teenagers this trip is supposedly
 for, who are the swing vote on where it goes and who have not yet said what they
 want. They arrive on a phone, from a link a parent sent them, with roughly the
 attention budget of a group chat. Success is that they read more than one page,
@@ -23,7 +23,7 @@ laptop open at a kitchen table.
 
 ## Product Purpose
 
-A decision site for a family trip to Europe over winter break 2028/29. Nothing
+A decision site for a family trip to Europe over winter break 2027/28. Nothing
 is decided — not the dates, not the countries, not the duration. The site exists
 to change that by doing exactly two jobs:
 
@@ -89,7 +89,7 @@ serves the open half.
   recommendation, then a section on what would change its mind. It says "the
   honest counterpoint" and means it. No brochure enthusiasm, no exclamation
   marks, no invented excitement.
-- Family members are named in `_config.yml`: Papa, Mama, Bubu (18), Gaby (17).
+- Family members are named in `_config.yml`: Papa, Mama, Bubu (17), Gaby (15).
 - Every factual page carries the "directional, not gospel" caveat — the trip is
   more than two years out, and the site is explicit that its own numbers will
   drift.

@@ -1,10 +1,10 @@
 title: "Europe Trip Planning"
-description: "Where, when, and how long — winter break 2028/29"
+description: "Where, when, and how long — winter break 2027/28"
 baseurl: ""
 url: "https://eu.dpao.la"
 
 # Nothing about this trip is decided yet. These are the candidates.
-trip_season: "Winter break 2028/29"
+trip_season: "Winter break 2027/28"
 trip_length_target: "~2 weeks"
 
 # Supabase backs the shared interest marks and comment threads. Both values

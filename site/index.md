@@ -23,7 +23,7 @@ title: Home
       <span>{% include number-word.html num=country_count %} countries</span>
       <span>{% include number-word.html num=site.cities.size %} cities</span>
       <span>Fourteen days</span>
-      <span>Winter 2028/29</span>
+      <span>Winter 2027/28</span>
       <span>No plan</span>
     </p>
 

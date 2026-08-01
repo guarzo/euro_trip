@@ -41,4 +41,4 @@ The one exception worth making regardless: if a stay includes an early-morning d
 
 - **How the family actually likes to travel.** Some people want the hotel experience — the desk, the breakfast, the not-thinking-about-it. That is a legitimate preference and it beats the laundry argument.
 - **If the pace lands on shorter stops**, hotels win by default.
-- **If two rooms is actually preferable** — with an 18- and a 17-year-old, separate rooms may be the feature rather than the bug.
+- **If two rooms is actually preferable** — with a 17- and a 15-year-old, separate rooms may be the feature rather than the bug.

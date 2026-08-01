@@ -7,7 +7,7 @@ order: 11
 
 ## Why it matters
 
-Every other question on this site assumes winter break 2028/29 as the window and argues about what to do inside it. None of them ask whether winter break is the right window in the first place. It's worth answering honestly rather than by default, because the answer changes everything downstream of it — the climate tables, the day sketches, and every recommendation on this site are built for a winter trip specifically.
+Every other question on this site assumes winter break 2027/28 as the window and argues about what to do inside it. None of them ask whether winter break is the right window in the first place. It's worth answering honestly rather than by default, because the answer changes everything downstream of it — the climate tables, the day sketches, and every recommendation on this site are built for a winter trip specifically.
 
 ## The options
 
@@ -25,7 +25,7 @@ A week, sometimes ten days, depending on the school calendar — genuinely pleas
 
 ### 4. A different long weekend or a dedicated trip outside school breaks
 
-If flexibility exists — a gap year, remote work, a trip that doesn't have to align with anyone's school calendar — the whole premise of "winter break 2028/29" dissolves and the question becomes open-ended. Worth naming as a possibility, even if it's the least likely one for this family.
+If flexibility exists — a gap year, remote work, a trip that doesn't have to align with anyone's school calendar — the whole premise of "winter break 2027/28" dissolves and the question becomes open-ended. Worth naming as a possibility, even if it's the least likely one for this family.
 
 ## My recommendation
 
@@ -35,6 +35,6 @@ The honest case for winter is that it was chosen for a reason before this site e
 
 ## What would change my mind
 
-- **If the 2028/29 school calendar makes winter break unusually short** — everything here assumes something like the usual two-to-three-week window. If it's cut down, revisit this before anything else.
+- **If the 2027/28 school calendar makes winter break unusually short** — everything here assumes something like the usual two-to-three-week window. If it's cut down, revisit this before anything else.
 - **If summer becomes genuinely open** — no camp, no job, no conflicting plans — the weather argument for summer is real and would justify rebuilding this site's recommendations from scratch rather than patching them.
 - **If Bubu or Gaby would rather skip a long trip during the school year entirely** — that objection belongs on this page, in the comments below. [What do Bubu and Gaby want?]({{ '/questions/what-kids-want/' | relative_url }}) assumes the trip is happening and asks what they want out of it; it does not ask whether the window is right.
